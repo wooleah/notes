@@ -8,6 +8,7 @@ Questions
  - single threaded -> one call stack only(only can do one thing at a time)
   -> pros: can avoid complicated scenarios that can happen in multi-threaded languages(deadlocks)
  - What if one item in call stack is a massive task?(takes really long time) -> then on a website user won't be able to do anything(other tasks are blocked from performing) -> ASYNC to the rescue! -> wrap that massive task in setTimeout and make it async
+ -> In order to not block the thread, a task can be transformed to async
 2. Stack overflow is when call stack gets too big and there's no more space in call stack
 
 
