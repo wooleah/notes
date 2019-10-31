@@ -1,0 +1,5 @@
+Tree
+
+1. Binary search tree
+- can be O(n) if unbalanced
+- other than that, it's O(log n) meaning that you don't traverse through the whole structure, you simply decide once on each level(depth)
