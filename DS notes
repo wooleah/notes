@@ -16,7 +16,13 @@ https://medium.com/basecs/the-little-avl-tree-that-could-86a3cae410c7
 https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
 https://medium.com/basecs/painting-nodes-black-with-red-black-trees-60eacb2be9a5
 
-2. Heap
+2. Heap(Binary Heap)
+lookup O(n)
+insert O(log N)
+delete O(log N)
+
+lookup is O(n) because Heap is less ordered than BST where left and right had meaning(in Heap, left and right can be any value)
+- Can be used anywhere where ordering is important, IT'S GREAT FOR COMPARATIVE OPERATION
 - Binary Heap(only two children to a node)
 - Max/Min Heap (root node has the largest/smallest value)
 
