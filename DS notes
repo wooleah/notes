@@ -5,3 +5,19 @@ Tree
 - other than that, it's O(log n) meaning that you don't traverse through the whole structure, you simply decide once on each level(depth)
 
 **Divide and conquer : simply means that we don't look at every single node, instead we devide up and make decision on each node to go left or right
+
+Balancing our tree
+- in production we want balanced tree like AVL tree and Red black tree that automatically rebalances itself
+- we won't have to implement this in interview, just mention it and tell why it's useful
+
+resources:
+https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
+https://medium.com/basecs/the-little-avl-tree-that-could-86a3cae410c7
+https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
+https://medium.com/basecs/painting-nodes-black-with-red-black-trees-60eacb2be9a5
+
+2. Heap
+- Binary Heap(only two children to a node)
+- Max/Min Heap (root node has the largest/smallest value)
+
+3. Trie
