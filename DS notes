@@ -16,8 +16,8 @@ https://medium.com/basecs/the-little-avl-tree-that-could-86a3cae410c7
 https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
 https://medium.com/basecs/painting-nodes-black-with-red-black-trees-60eacb2be9a5
 
-2. Heap(Binary Heap)
-lookup O(n)
+2. Heap(Binary Heap) - remember one thing, parent is always greater than children
+lookup O(n) - searching is slow
 insert O(log N)
 delete O(log N)
 
@@ -26,4 +26,18 @@ lookup is O(n) because Heap is less ordered than BST where left and right had me
 - Binary Heap(only two children to a node)
 - Max/Min Heap (root node has the largest/smallest value)
 
-3. Trie
+Binary Heap simply inserts from left to right
+
+Binary Heap is useful for things like Priority Queuevvvvv
+Q. What is Priority Queue?
+A. It's not just a simple FIFO, every element has priorities and elements with higher priority is served first. Simply imagine airplane seats.
+Since we know the order we just go from top to bottom and left to right and insert bunch of items. Like this, most of the time, insertion is really fast except for some cases where you get high priority item being inserted in the heap, then you have to re-balance it.
+
+3. Trie(unlike binary tree it can have multiple children)
+- specialized tree used in searching most often with texts(it tells you if a word or part of a word exists in a text)
+*Prefix tree: when you search something on google, it tries and completes what you were searching(auto-suggestion)
+-> benefits are time and space
+
+search
+O(length of the word)
+- also good in space complexity(no duplicate keys) -> for storing n,o,t and n,e,w,s you need only one n
