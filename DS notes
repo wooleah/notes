@@ -51,3 +51,8 @@ Graphs
 - Directed & Undirected Graph
 - Weighted and Unweighted Graph
 - Cyclic, Acyclic Graph(vertices connected in a circular fashion): cyclic graph works well with weighted graphs because normally there's a way to get back to the vertex you left from.
+
+three ways to represent graph
+1. Edge List: simply a list of all the edges
+2. Adjacency List: for each vertex, we store a list of which other vertices it's connected to
+3. Adjacency Matrix: for each vertex, we store a list(length of all the vertices) that shows weight or simply 0 or 1 indicating whether it's connected to that specific vertex or not
