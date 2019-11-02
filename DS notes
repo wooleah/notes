@@ -41,3 +41,13 @@ Since we know the order we just go from top to bottom and left to right and inse
 search
 O(length of the word)
 - also good in space complexity(no duplicate keys) -> for storing n,o,t and n,e,w,s you need only one n
+
+
+Graphs
+- used a lot for real world modling
+- has Nodes(Vertex) and Edges
+- Tree is a type of Graph as well
+
+- Directed & Undirected Graph
+- Weighted and Unweighted Graph
+- Cyclic, Acyclic Graph(vertices connected in a circular fashion): cyclic graph works well with weighted graphs because normally there's a way to get back to the vertex you left from.
