@@ -56,3 +56,9 @@ three ways to represent graph
 1. Edge List: simply a list of all the edges
 2. Adjacency List: for each vertex, we store a list of which other vertices it's connected to
 3. Adjacency Matrix: for each vertex, we store a list(length of all the vertices) that shows weight or simply 0 or 1 indicating whether it's connected to that specific vertex or not
+
+Algorithm: recursion
+
+1. find the base case
+2. find the recursive case
+3. get closer and closer to the answer
