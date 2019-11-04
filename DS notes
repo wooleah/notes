@@ -80,3 +80,5 @@ Divide and Conquer using Recursion
 1. Divide a problem into a number of subproblems that are smaller instances of the same problem
 2. Each instance of the subproblem is identical in nature
 3. The solutions of each subproblem can be combined to solve the problem at hand
+
+https://stackoverflow.com/questions/105838/real-world-examples-of-recursion
