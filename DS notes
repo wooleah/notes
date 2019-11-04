@@ -62,3 +62,4 @@ Algorithm: recursion
 1. find the base case
 2. find the recursive case
 3. get closer and closer to the answer
+-> Anyway it's exponential time(2^n) why would I ever use this? -> you can optimize it with dp(memoization) to O(n)
