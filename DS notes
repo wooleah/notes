@@ -82,3 +82,14 @@ Divide and Conquer using Recursion
 3. The solutions of each subproblem can be combined to solve the problem at hand
 
 https://stackoverflow.com/questions/105838/real-world-examples-of-recursion
+
+
+Sorting
+
+elementary(something you would think of instantly in your head): Bubble, selection, insertion
+- worst case O(n^2), but space complexity O(1) - no extra space needed
+- note that insertion sort is really fast(O(n)) for small dataset
+
+divide and conquer: merge, quick
+- O(nlogn)
+
