@@ -63,3 +63,20 @@ Algorithm: recursion
 2. find the recursive case
 3. get closer and closer to the answer
 -> Anyway it's exponential time(2^n) why would I ever use this? -> you can optimize it with dp(memoization) to O(n)
+
+*Anything you do with a recursion CAN be done iteratively
+You can keep your code DRY(Do not Repeat Yourself), recursion could be better for readability, but it's not always the best approach(because it creates extra memory footprint-stack)
+
+Andrei use recursion when he's working with ds that he doesn't know how deep they are.
+
+Tail Call Optimization(it's in many languagues)
+- in js(es6), you can do recursion without increasing the call stack
+https://2ality.com/2015/06/tail-call-optimization.html
+
+Recursion is useful in BFS + DFS(Searching) and in some cases in Sorting
+
+**Rule: Every time you are using a tree or converting Something into a tree, consider recursion.
+Divide and Conquer using Recursion
+1. Divide a problem into a number of subproblems that are smaller instances of the same problem
+2. Each instance of the subproblem is identical in nature
+3. The solutions of each subproblem can be combined to solve the problem at hand
