@@ -103,6 +103,8 @@ Which sorting algorithm is the best?
 1. insertion sort should be used with small dataset(+mostly sorted) - easy to implement and uses less space
 2. bubble, selection sort - only for educational purposes(not really gonna use it)
 3. merge sort: divide and conquer, can always guarantee list being divided in half, but it's expensive in terms of memory(O(n))
+- when memory is the concern, don't use merge sort(use quick sort instead), but if you're worried about quick sort's worst case scenario(O(n^2)), then use merge sort(for example if the dataset is massive you're worried about the worst case).
 4. quick sort: space complexity is better and can be faster with time, but if you pick a bad pivot then it's gonna be really slow (O(n^2))
 5. heap sort: on average it's slower than quick sort, but uses less space
-
+6. radix, counting sort - faster than O(nlogn), O(nk). It's an exception that applies to numbers only(range shouldn't be too large)
+- so, no decimal places
