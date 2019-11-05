@@ -99,3 +99,10 @@ quick sort space complexity is better(O(log(n)) than merge sort(O(n))
 time complexity however can be O(n^2) at it's worst when pivot is the smallest or the largest -> you're not splitting the list in half
 *quick sort is generally the fast sorting method, but if you can't guarantee pivot being smart then you shouldn't use it.
 
+Which sorting algorithm is the best?
+1. insertion sort should be used with small dataset(+mostly sorted) - easy to implement and uses less space
+2. bubble, selection sort - only for educational purposes(not really gonna use it)
+3. merge sort: divide and conquer, can always guarantee list being divided in half, but it's expensive in terms of memory(O(n))
+4. quick sort: space complexity is better and can be faster with time, but if you pick a bad pivot then it's gonna be really slow (O(n^2))
+5. heap sort: on average it's slower than quick sort, but uses less space
+
