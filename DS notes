@@ -92,4 +92,10 @@ elementary(something you would think of instantly in your head): Bubble, selecti
 
 divide and conquer: merge, quick
 - O(nlogn)
+- you can implement merge sort with recursion
+- quick sort use pivoting technique to make smaller lists
+
+quick sort space complexity is better(O(log(n)) than merge sort(O(n))
+time complexity however can be O(n^2) at it's worst when pivot is the smallest or the largest -> you're not splitting the list in half
+*quick sort is generally the fast sorting method, but if you can't guarantee pivot being smart then you shouldn't use it.
 
