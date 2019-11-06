@@ -125,3 +125,22 @@ BFS: Good for finding shortest path(between starting point and any other reachab
 - if you kinda know where the node is and it's likely to be in the upper level of the tree(or graph), then use this(because it searches from the closer nodes)
 DFS: better when node is on the lower level of the tree. Good for checking if the path exists, uses less memory.
 - it can get slow if the tree is really really deep, and it's not good for finding shortest path
+
+DFS has three types(preOrder, inOrder, postOrder)
+//     9
+//  4     20
+//1  6  15  170
+1. inOrder: from left(bottom) to right(bottom) - really useful if you have binary tree
+- [1, 4, 6, 9, 15, 20, 170]
+- everything is in order
+
+2. preOrder: start from parent and grab children from ltr
+- [9, 4, 1, 6, 20, 15, 170]
+- good for recreating the tree
+
+3. postOrder: search left hand side first (children come before parent), then do the same on the right side, root is the last
+- [1, 6, 4, 15, 170, 20, 9]
+- good for deleting, getting postfix expression of an expression tree
+
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+
