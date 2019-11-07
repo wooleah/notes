@@ -175,4 +175,4 @@ https://medium.com/basecs/finding-the-shortest-path-with-a-little-help-from-dijk
 
 2. Dijkstra
 - faster and more efficient than Bellman-Ford
-
+- can't take negative weight
