@@ -120,13 +120,18 @@ BFS: move down the tree and search from ltr until you find the node or tree ends
 DFS: follow one branch of the tree to the end, then go back to it's ancestor and repeat
 - requires less memory
 
+- BFS vs DFS(interview) 
+https://repl.it/@aneagoie/Traversal-Quiz-1
+
 time complexity: O(n)
 BFS: Good for finding shortest path(between starting point and any other reachable nodes) but needs more memory
 - if you kinda know where the node is and it's likely to be in the upper level of the tree(or graph), then use this(because it searches from the closer nodes)
 DFS: better when node is on the lower level of the tree. Good for checking if the path exists, uses less memory.
 - it can get slow if the tree is really really deep, and it's not good for finding shortest path
 
-DFS has three types(preOrder, inOrder, postOrder)
+DFS has three types of ordering strategies(preOrder, inOrder, postOrder)
+- uses stack ds using recursion(added to the callstack) -> space complexity of DFS is O(height of the tree)
+
 //     9
 //  4     20
 //1  6  15  170
@@ -143,4 +148,29 @@ DFS has three types(preOrder, inOrder, postOrder)
 - good for deleting, getting postfix expression of an expression tree
 
 https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+
+Graph Traversals
+- graphs are broadly used in real life(recommendation engine)
+
+https://visualgo.net/en/dfsbfs?slide=1
+BFS 
+- shortest path(what's the closest to our node, most related item on Amazon, 
+- uses more memory
+- allows us to change graph into a tree
+DFS
+- good for checking if something exists
+- go as deep as you can and if you hit a road block(dead end) you backtrack and find a different path
+
+code
+https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+
+*Shortest path problem
+- you won't implement this, but you should still know about this to talk about it on the interview
+- problem with DFS is that it thinks each path(edge) to a different node(vertex) has same weight(distance, traffic might be different)
+1. Bellman-Ford
+- Richard Bellman wrote about DP
+https://medium.com/basecs/finding-the-shortest-path-with-a-little-help-from-dijkstra-613149fbdc8e
+
+2. Dijkstra
+
 
