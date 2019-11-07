@@ -169,8 +169,10 @@ https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 - problem with DFS is that it thinks each path(edge) to a different node(vertex) has same weight(distance, traffic might be different)
 1. Bellman-Ford
 - Richard Bellman wrote about DP
+- this could be better because it accomodates negative weights
+- it can take a long time to run with it's complexity(not the most efficient), worst case O(n^2)
 https://medium.com/basecs/finding-the-shortest-path-with-a-little-help-from-dijkstra-613149fbdc8e
 
 2. Dijkstra
-
+- faster and more efficient than Bellman-Ford
 
