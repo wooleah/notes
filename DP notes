@@ -6,3 +6,11 @@ https://medium.com/swlh/dynamic-programming-minimum-jumps-from-start-finish-b294
 2. recap
 https://medium.com/free-code-camp/follow-these-steps-to-solve-any-dynamic-programming-interview-problem-cc98e508cd0e
 
+----
+
+DP helps us solve recursive problems with a highly-overlapping subproblem structure(subproblems repeating again and again)
+: When the subproblems don't overlap, the algorithm is divide and conquer.
+
+1. Come up with recursive solution
+2. Use memoization(caching calculated data to avoid calculating the same subproblem again)
+3. Think of Bottom-up approach
