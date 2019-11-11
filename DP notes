@@ -14,3 +14,9 @@ DP helps us solve recursive problems with a highly-overlapping subproblem struct
 1. Come up with recursive solution
 2. Use memoization(caching calculated data to avoid calculating the same subproblem again)
 3. Think of Bottom-up approach
+
+FAST method (solve any dp problem!)
+Find the first solution
+Analyze the solution
+identify the Subproblems
+Turn around the solution
