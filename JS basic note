@@ -23,3 +23,18 @@ ex)
 3) console.log(3);
 -> 1 and 3 runs first, and after 2s when timer is done, Web API will give you a notice and say there's a callback, and callback of setTimeout will be added to the Callback Queue
 -> Event Loop constantly checks if the Call stack is empty, and if it's empty then it checks the Callback Queue. It sees callback from setTimeout and moves it to the Call Stack
+
+What is JS Engine?
+- Allows cpu to understand JS and give commands to computer
+- Composed of Parser(parse string), AST(abstract syntax tree)
+- then Interpreter -> Profiler -> Compiler -> Optimized code
+- or Interpreter -> Bytecode
+
+Brief history
+- American engineer Brendan Eich, creator of JS made the first js engine spidermonkey(Firefox uses this).
+In 2008, google made v8 with c++ to achieve better speed with their newly created Chrome browser and Google map
+
+Standard(ECMAscript)
+- tells engine creators how js should work and how it should be standardized
+
+
