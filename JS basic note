@@ -24,11 +24,8 @@ ex)
 -> 1 and 3 runs first, and after 2s when timer is done, Web API will give you a notice and say there's a callback, and callback of setTimeout will be added to the Callback Queue
 -> Event Loop constantly checks if the Call stack is empty, and if it's empty then it checks the Callback Queue. It sees callback from setTimeout and moves it to the Call Stack
 
-What is JS Engine?
-- Allows cpu to understand JS and give commands to computer
-- Composed of Parser(parse string), AST(abstract syntax tree)
-- then Interpreter -> Profiler -> Compiler -> Optimized code
-- or Interpreter -> Bytecode
+
+Section 2: JavaScript Foundation
 
 Brief history
 - American engineer Brendan Eich, creator of JS made the first js engine spidermonkey(Firefox uses this).
@@ -37,4 +34,15 @@ In 2008, google made v8 with c++ to achieve better speed with their newly create
 Standard(ECMAscript)
 - tells engine creators how js should work and how it should be standardized
 
+What is JS Engine?
+- Allows cpu to understand JS and give commands to computer
+- Composed of Parser(parse string), AST(abstract syntax tree)
+- then Interpreter -> Profiler -> Compiler -> Optimized code
+- or Interpreter -> Bytecode
 
+Interpreter vs compiler(two ways to run js)
+- Interpreter translates code line by line on the fly
+- Compiler doesn't translate on the fly, it reads through the code then try to understand what it is. Then it'll change that code into a new language that does the same thing.
+*All languagues will have to go through interpreter or compiler at one point
+- Interpreter and Compiler are both compilers but Interpreter read code line by line on the fly(compiles code at runtime dynamically). And compiler does the translation before the code gets executed. So basically they both translate code into bytecode(actually all js engines will produce bytecode). They both will eventually compile the source code down to machine code.
+https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
