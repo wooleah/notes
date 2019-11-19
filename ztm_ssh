@@ -1,1 +1,13 @@
 SSH (Secure SHell) protocol
+
+other protocols
+HTTP: send files(http, css, js) over the internet between browsers - servers
+FTP: send files, used to upload your files to hosting services
+HTTPS: similar to HTTP, but it's encrypted(3rd parties can read the files being transfered when they intercept the message)
+
+SSH
+- Protocol that allows us to communicate between 2 computers between internet. Can send files, modify files, control remote computers. It's also encrypted. Shell needs this protocol to talk to each other(between computers). Shell allows us to talk to the OS
+- It has strong encryption between the host(remote server you're trying to access) and client(computer you're using to access the host)
+
+Commands
+- access: ssh root@ipAddr
