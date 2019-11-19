@@ -46,3 +46,7 @@ Interpreter vs compiler(two ways to run js)
 *All languagues will have to go through interpreter or compiler at one point
 - Interpreter and Compiler are both compilers but Interpreter read code line by line on the fly(compiles code at runtime dynamically). And compiler does the translation before the code gets executed. So basically they both translate code into bytecode(actually all js engines will produce bytecode). They both will eventually compile the source code down to machine code.
 https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+Babel + Typescript
+- Babel is a Javascript compiler that takes your modern JS code and returns browser compatible JS (older JS code).
+- Typescript is a superset of Javascript that compiles down to Javascript.
