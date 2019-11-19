@@ -67,4 +67,19 @@ Most computer will not understand bytecode, you need some kind of engine to tran
 ** Is Javascript an interpreted language?
 - Technically, it depends on the implementation. Because for example v8 runs js code with interpreter line by line at runtime, but then optimizes it with a profiler and compiler(JIT).
 
+Different JS engines across the vast landscape of host environments.
+
+Browsers: 
+Mozilla  - SpiderMonkey
+Chrome and recent Opera  - V8 Engine
+Edge  - Chakra Engine
+Apple Safari - JavaScriptCore
+
+Server Apps
+V8 (Node JS Runtime)
+Desktop Apps
+Electron - V8 (basically, powered by Node JS runtime under the hood + chromium for GUI)
+
+Each js engine applies its own set of optimisation techniques. But they all implement JIT compilation techniques to make our code run faster.
+
 
