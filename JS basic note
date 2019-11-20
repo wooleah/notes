@@ -91,3 +91,6 @@ Writing optimized code(help js engine to do it's job easily)
 1. Be careful with eval(), arguments, for in, with, delete
 - Inline caching, so if we pass object as an argument then compiler caches it and replace places that uses that object so when it runs a bunch of times, it doesn't need to look for those arguments every single time.
 - Hidden classes: define all properties of a class in constructor or at least add properties in the same order. Because compiler won't know that two objects are the same hidden class types and deoptimize them
+-> Write optimized, predictable code
+
+
