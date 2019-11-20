@@ -55,12 +55,17 @@ Babel + Typescript
 -> This is called Transpiling(not compiling), take on language and convert it to a different one
 
 JIT Compiler(Mixed interpreter + compiler) - V8 Engine
-- Interpreter in v8 engine is called Ignition: takes AST and spits out Bytecode(not as low as machine code, but it's a code that's able to be interpreted by the js engine to run our program)
-- Profiler(or monitor): watches our code as it runs and makes notes on how we can optimize our code(types, how many times it's running) passes some code to JIT Compiler.
-- Compiler(JIT Compiler - called Turbofan): It optimizes the passed off code(as it's running) to run it faster, and then replace slower section of the code to optimized code.
+1. Interpreter in v8 engine is called Ignition: takes AST and spits out Bytecode(not as low as machine code, but it's a code that's able to be interpreted by the js engine to run our program)
+2. Profiler(or monitor): watches our code as it runs and makes notes on how we can optimize our code(types, how many times it's running) passes some code to JIT Compiler.
+- First it runs everything through the interpreter and watches. When the same line of code are run a few times, that segment of code is called warm. If it's run a lot, then it's called hot. When a function starts getting warm, JIT send it off to be compiled and store that compilation(each line of the function is compiled to a stub).
+- Stubs are indexed by line number and var type. And when the monitor sees that execution hitting the same code again with the same var types, it'll just pull out its compiled version.
+- When the part of the code is very hot -> monitor send it off to the optimizing compiler. Then it gets optimized and be stored.
+3. Compiler(JIT Compiler - called Turbofan): It optimizes the passed off code(as it's running) to run it faster, and then replace slower section of the code to optimized code.
+- It optimized the code when it's hot(because the code is already running a whole bunch of times, so it's worth taking some execution time to optimize the code)
 - execution speed of js code will gradually improve over time
 
 -> Now we can write optimized code that doesn't confuse the compiler(if it makes a mistake then it does deoptimization - takes really long time to complete).
+https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
 
 Comparing Other Languages
 Most computer will not understand bytecode, you need some kind of engine to translate this to machine code
@@ -82,4 +87,7 @@ Electron - V8 (basically, powered by Node JS runtime under the hood + chromium f
 
 Each js engine applies its own set of optimisation techniques. But they all implement JIT compilation techniques to make our code run faster.
 
-
+Writing optimized code(help js engine to do it's job easily)
+1. Be careful with eval(), arguments, for in, with, delete
+- Inline caching, so if we pass object as an argument then compiler caches it and replace places that uses that object so when it runs a bunch of times, it doesn't need to look for those arguments every single time.
+- Hidden classes: define all properties of a class in constructor or at least add properties in the same order. Because compiler won't know that two objects are the same hidden class types and deoptimize them
