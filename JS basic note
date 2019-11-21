@@ -140,3 +140,29 @@ up to 2009 js was considered a toy language that can only run inside browser, bu
 - node has global instead of window
 - non-blocking means that it passes async tasks to worker thread on the background
 - traditionally we had to make one thread for each request, and if server threadpool is full then it can no longer send request, but in NodeJs you don't have that restriction(it passes that request to async loop)
+
+
+*Exercise(prevent stackoverflow) -> Helps you understand the general concept of JS runtime
+const list = new Array(100000).join('1.1').split('.');
+
+function removeItemsFromList() {
+    var item = list.pop();
+
+    if (item) {
+      // setTimeout(removeItemsFromList, 0);
+      removeItemsFromList();
+    }
+};
+removeItemsFromList();
+
+- before functions in call stack are executed, they have to be pushed in the call stack, and since there are too many of them it causes stack overflow(there's a limit to the call stack). By adding setTimeout, below happens.
+1. removeItemsFromList -> list.pop() gets added to the call stack and list.pop() returns true
+2. setTimeout gets added to the call stack and it calls Web API and setTimeout start running there on the background(timer is 0ms so callback get added to the callback queue right after)
+3. js engine continues to run the function but there's nothing left so it pops removeItemsFromList as well and becomes empty
+4. event loop checks the call stack and sees that it's empty and js code has been run for at least once, so it transfers callback(removeItemsFromList) to the call stack again. 
+5. 1~4 repeats
+
+
+
+
+
