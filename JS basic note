@@ -106,7 +106,8 @@ JS has v8 engine - has two parts(Memory Heap, Call Stack)
 - when we finish calling the func and we don't need that object anymore , js engine freeze up this memory we no longer use and collects our garbage. So only the data that we still need remain intact in memory heap.
 - In garbage collected language like js, GC freeze memory on the heap and prevents memory leaks(memory gets too big and reaches max size). It's automatic btw.
 - So we don't have to worry about memory allocation and management? NO!! (In low level languages like C, you control memory allocation. It's dangerous but that's why it can be super fast and efficient)
-- js uses mark and sweep algorithm to garbage collect.
-
+- js uses mark and sweep algorithm to garbage collect(when nothing is referencing some data, it gets removed from the memory)
 4. Memory Leak: there's a limited amount of memory, so if you make too many vars(that we don't use), then there will be unused memory all around the place -> That's why global var is bad!
+4.1 Three common memory leaks(globar var, event listeners, setInterval): avoid global vars if possible, remove event listeners when not needed, know that referenced objects in setInterval will never be removed if interval is not cleared
+- when an app runs on the background for a really long time, there could be memory leaks.
 
