@@ -142,7 +142,7 @@ up to 2009 js was considered a toy language that can only run inside browser, bu
 - traditionally we had to make one thread for each request, and if server threadpool is full then it can no longer send request, but in NodeJs you don't have that restriction(it passes that request to async loop)
 
 
-*Exercise(prevent stackoverflow) -> Helps you understand the general concept of JS runtime
+*Exercise1-1(prevent stackoverflow) -> Helps you understand the general concept of JS runtime
 const list = new Array(100000).join('1.1').split('.');
 
 function removeItemsFromList() {
@@ -163,6 +163,14 @@ removeItemsFromList();
 5. 1~4 repeats
 
 
+*Exercise1-2. Guess the execution order
+// a
+setTimeout(()=>{console.log('1', 'is the loneliest number')}, 0)
+// b
+setTimeout(()=>{console.log('2', 'can be as bad as one')}, 10)
+// c
+Promise.resolve('hi').then((data)=> console.log('2', data))
+// d
+console.log('3','is a crowd')
 
-
-
+Answer: d -> c -> a -> b
