@@ -88,6 +88,8 @@ Writing optimized code(help js engine to do it's job easily)
 - Hidden classes: define all properties of a class in constructor or at least add properties in the same order. Because compiler won't know that two objects are the same hidden class types and deoptimize them
 -> Write optimized, predictable code
 
+============== Organize this part =================
+
 JS has v8 engine - has two parts(Memory Heap, Call Stack)
 1. Memory Heap - variables and data structures are allocated here(unordered)
 2. Call Stack - where code is read & executed(LIFO)
@@ -95,5 +97,16 @@ JS has v8 engine - has two parts(Memory Heap, Call Stack)
 - Stack overflow: the call stack is full
 3. Garbage Collection - JS is garbage collected language
 - when we define an object and JS engine allocate,
+4. Memory Leak: there's a limited amount of memory, so if you make too many vars(that we don't use), then there will be unused memory all around the place -> That's why global var is bad!
+
+JS has v8 engine - has two parts(Memory Heap, Call Stack)
+1. Memory Heap - variables and ds are allocated here in unorderly manner
+2. Call Stack - where code is read & executed(LIFO)
+3. Garbage Collection - JS is garbage collected language
+- when we finish calling the func and we don't need that object anymore , js engine freeze up this memory we no longer use and collects our garbage. So only the data that we still need remain intact in memory heap.
+- In garbage collected language like js, GC freeze memory on the heap and prevents memory leaks(memory gets too big and reaches max size). It's automatic btw.
+- So we don't have to worry about memory allocation and management? NO!! (In low level languages like C, you control memory allocation. It's dangerous but that's why it can be super fast and efficient)
+- js uses mark and sweep algorithm to garbage collect.
+
 4. Memory Leak: there's a limited amount of memory, so if you make too many vars(that we don't use), then there will be unused memory all around the place -> That's why global var is bad!
 
