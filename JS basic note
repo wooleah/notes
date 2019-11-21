@@ -174,3 +174,12 @@ Promise.resolve('hi').then((data)=> console.log('2', data))
 console.log('3','is a crowd')
 
 Answer: d -> c -> a -> b
+Why??
+This is a common gotcha and it is related to the inner workings of Javascript.
+Promises get resolved or rejected before any method from the Web API.
+The reason why this is the case is, because promises run on there on queue which is called the job queue. The job queue has a higher priority than the callback queue which means, that code gets pushed to the callstack again with a higher priority.
+The order in which code gets executed is the following
+
+1. From callstack
+2. From job queue through the callstack
+3. Fram callback queue via the event loop through the callstack
