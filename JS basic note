@@ -111,3 +111,7 @@ JS has v8 engine - has two parts(Memory Heap, Call Stack)
 4.1 Three common memory leaks(globar var, event listeners, setInterval): avoid global vars if possible, remove event listeners when not needed, know that referenced objects in setInterval will never be removed if interval is not cleared
 - when an app runs on the background for a really long time, there could be memory leaks.
 
+
+Single threaded
+- Means that it only has one call stack, and only one thing can happen at a time(synchronous).
+-> JS Engine is synchronous, but we're never just using JS Engine. We have JS Runtime and JS Engine is part of it.
