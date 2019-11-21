@@ -115,3 +115,28 @@ JS has v8 engine - has two parts(Memory Heap, Call Stack)
 Single threaded
 - Means that it only has one call stack, and only one thing can happen at a time(synchronous).
 -> JS Engine is synchronous, but we're never just using JS Engine. We have JS Runtime and JS Engine is part of it.
+
+
+JS Runtime
+- Js is single threaded so it only has one call stack and one memory heap. Web browser is working on the background while synchronous js is running in js runtime. It uses web API to talk to js engine telling that it has some data js engine requested.
+
+- Web API comes with the browser. All browsers have their own js engine implementation and js runtime that provide web api(Dom, settimeout, fetch, ...). Type window in console. That's web API(things browser provides that js can use). They are not native to js. So browsers use low level language on the background.
+
+Web API: apis provided by Web browsers. asynchronous
+
+When js engine doesn't recognize some function like settimeout in the callstack(cause at first it goes into the call stack) it tells web API to take care of it. And it starts doing it's job on the background. And when it's done it puts the data and callback in callback queue. Then when call stack becomes free event loop will ask js engine to add those callbacks to the call stack
+
+Event loop constantly asks js engine "is the call stack empty?" Event loop only runs when call stack is empty and when the entire js file has been read(after running js file through at least once)
+*Btw console log also get stacked in the call stack
+
+
+NodeJs
+JS code: musical notes
+JS engine: Composer who can read musical notes and play music
+JS runtime: the whole package, music and composer and everything
+-> NodeJs is JS runtime
+
+up to 2009 js was considered a toy language that can only run inside browser, but Ryan Dahl thought it would be great to run js outside the browser and created NodeJS(written in C++). It's a C++ program(node.exe) that provides something similar to JS runtime. Uses V8 engine to understand JS engine, but also uses LIBUV to create event loop.
+- node has global instead of window
+- non-blocking means that it passes async tasks to worker thread on the background
+- traditionally we had to make one thread for each request, and if server threadpool is full then it can no longer send request, but in NodeJs you don't have that restriction(it passes that request to async loop)
