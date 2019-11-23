@@ -1,2 +1,10 @@
 Angular vs React vs Vue
 
+Working for a large bank with massive codebase - Angular(Kitchen)
+-> It's a framework which means that it's an entire kitchen and has their own way of doing things: it's opinionated. So if codebase is huge, then everyone can use this framework and follow the same rules
+
+Lots of junior devs, building something quickly - Vue(Microwave)
+-> It's easy to pickup and syntax is simple to understand. It's still growing so be sure to check them.
+
+Dev team is strong and code needs to be flexible - React(Oven)
+-> Has some learning curves, and you can easily incorporate variety of tools from react ecosystem.
