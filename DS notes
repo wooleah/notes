@@ -4,7 +4,7 @@ Tree
 - can be O(n) if unbalanced
 - other than that, it's O(log n) meaning that you don't traverse through the whole structure, you simply decide once on each level(depth)
 
-**Divide and conquer : simply means that we don't look at every single node, instead we devide up and make decision on each node to go left or right
+**Divide and conquer : simply means that we don't look at every single node, instead we divide up and make decision on each node to go left or right
 (* greedy : simple, intuitive algorithm that'sused in optimization problems. This algorithm makes the optimal choice at each step as it attempts to find the overall optimal way to solve the entire problem, tps://brilliant.org/wiki/greedy-algorithm/#)
 Balancing our tree
 - in production we want balanced tree like AVL tree and Red black tree that automatically rebalances itself
