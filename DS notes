@@ -28,7 +28,7 @@ lookup is O(n) because Heap is less ordered than BST where left and right had me
 
 Binary Heap simply inserts from left to right
 
-Binary Heap is useful for things like Priority Queuevvvvv
+Binary Heap is useful for things like Priority Queue
 Q. What is Priority Queue?
 A. It's not just a simple FIFO, every element has priorities and elements with higher priority is served first. Simply imagine airplane seats.
 Since we know the order we just go from top to bottom and left to right and insert bunch of items. Like this, most of the time, insertion is really fast except for some cases where you get high priority item being inserted in the heap, then you have to re-balance it.
