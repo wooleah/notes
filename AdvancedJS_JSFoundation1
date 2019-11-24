@@ -101,7 +101,7 @@ JS Runtime
 
 Web API: apis provided by Web browsers. asynchronous
 
-When js engine doesn't recognize some function like settimeout in the callstack(cause at first it goes into the call stack) it tells web API to take care of it. And it starts doing it's job on the background. And when it's done it puts the data and callback in callback queue. Then when call stack becomes free event loop will ask js engine to add those callbacks to the call stack
+When js engine doesn't recognize some function like settimeout in the callstack(cause at first it goes into the call stack) it tells web API to take care of it. And it starts doing it's job on the background. And when it's done it puts the data and callback in callback queue. Then when call stack becomes free, the event loop will ask js engine to add those callbacks to the call stack
 
 Event loop constantly asks js engine "is the call stack empty?" Event loop only runs when call stack is empty and when the entire js file has been read(after running js file through at least once)
 *Btw console log also get stacked in the call stack
