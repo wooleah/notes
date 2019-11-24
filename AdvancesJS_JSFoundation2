@@ -1,0 +1,43 @@
+Execution context - Whenever code is run in JS it runs in ec(TRUE)
+When JS engine starts, global ec gets added to the call stack and then whenever the engine sees (), it adds another ec(of that function) to the call stack. And when all of the code runs, global ec gets popped from the callstack.
+
+
+Lexical environment(scope, environment)
+It is basically about where it is written. When compiler is doing lexical analysis, it means that it's checking where that code was written(what universe is it part of, considering each function makes it's own universe).
+Check where did we write that function? and What part of universe is it? Is the function written in global scope? Or is it written inside of another function?
+
+*Lexical === compile time(where is the code written), compiler and interpreter will know different things about that code
+Example:
+function findName() {
+  function a() {
+  }
+}
+function sayMyName() {
+  function findName()
+}
+-> a() is lexically inside findName(), compilere knows where it was written and can decide where to put things, and what actions to take, what a() has access to in that universe.
+
+In JS, everytime we write a new function, it creates a new world for us inside of that function. Everytime we add another function into the call stack we are in that world(planet), and we have different environment, information.
+-> Execution context tells you which lexical environment is currently running. 
+-> In JS our lexical scope(where function was written) determines our available variables. Not where the function is called(dynamic scope). So it doesn't matter that findName() was called inside sayMyName(), it's lexical environment is global because that's where it was written.
+
+
+
+There are two phases in Global execution context: creation and execution phase
+creation phase provides global object and this keyword, and does this thing called "hoisting"
+
+Hoisting - behavior of moving the variables and function declarations to the top of their respective environment during compilation phase. Variables are partially hoisted and functions are hoisted
+- JS engine sees your code and allocates memory during the creation phase before it executes it. It specifically checks for "var" and "function" keywords(should be the first thing it sees on that line): var moves to the top and gets assigned undefined, and also function gets move to the top
+*note that let and const don't get hoisted
+- It's not physically moving codes, JS engine checks through the codes and reserve memory for vars and functions.
+
+In global execution context, during creation phase JS engine will reserve spots in the Memory Heap and during execution phase it references to those spots(but at the point vars are undefined).
+
+// function declaration
+function sing() {
+  console.log('lalala')
+}
+// function expression
+var sing2 = function() {
+  console.log('hahaha');
+}
