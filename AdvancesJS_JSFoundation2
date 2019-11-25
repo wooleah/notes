@@ -43,7 +43,7 @@ var sing2 = function() {
 }
 
 
-Exercise.
+Exercise1
 var a = 1
 var a = 2
 -> during creation phase, var a gets hoisted and gets assigned undefined, and during execution phase it becomes 1 and 2, so final value is 2
@@ -58,4 +58,22 @@ function a() {
 }
 First a gets written in memory and then second a overwrites it, so a() becomes bye
 *Note that any time you call a function, there's execution context and creation phase and an execution phase, hoisting involved.
+
+Exercise2. What would happen here?
+var favouriteFood = "grapes";
+var foodThoughts = function () {
+     console.log("Original favourite food: " + favouriteFood);
+
+     var favouriteFood = "sushi";
+
+     console.log("New favourite food: " + favouriteFood);
+};
+foodThoughts();
+
+- during creation phase, hoisting happens and favouriteFood and foodThoughts becomes undefined, and during execution phase foodThoughts is assigned function(function expression) in memory. Then foodThoughts is called so that execution context goes into the call stack and creation phase for foodThoughts happens. so favouriteFood gets hoisted to the top of the function so it becomes undefined and during execution phase both console log runs and it prints undefined first, then favouriteFood gets sushi assigned in memory and then prints new favourite food: sushi
+
+// P.s. when you change the 'var' to 'const' technically there is still hoisting happening. That is why you get a reference error instead of looking at the global favouriteFood variable. let and const hoist but you cannot access them before the actual declaration is evaluated at runtime. So the engine says, "ya there is a favouriteFood variable here but you can't access it yet"
+-> let and const gets hoisted but they live in temporary dead zone. Variables which are defined with let or const are only available at the point of time when they are declared and never before.
+
+As you can see, hoisting can be confusing, and unpredictable -> Don't use it. Use const, let, function expression
 
