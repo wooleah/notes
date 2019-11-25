@@ -133,3 +133,21 @@ call stack has [global(), one(), two()]
 **keep in mind that in variable environment in execution context(which is one stack in the whole call stack), some reference to the memory address can get stored or something in that call stack can get stored.
 
 
+
+There's another part of ec that we didn't discuss yet(there's a link to it's outside world, parent)
+- outer world? -> depends on where the function sits lexically(where it's written)
+
+var x = 'x'
+function printName() {
+  var b = 'b';
+  console.log(x);
+}
+
+They both lexically sits on the global scope/space(ec) -> printName() have access to var x(this connection is called scope chain)
+- what happens up there is first js engine first check's printName's execution context's variable environment, and doesn't find anything so it goes up the scope chain(static scope)  and checks for var x
+- So basically, where the function's ec is located doesn't matter, what matters is where that function is written(lexical/static scope)
+-> And that means only by looking at the source code, we can determine which env the vars and data are available in, what data can be access by which function(this is what compiler does). JS compiler looks at the code and attaches scope chains before it runs the code.
+- This scope chain is created during the creation phase
+*You can go up the scope chain and check var env for each ec, not down(parent O, children O)
+
+- for performance, to optimize code for js engine, we don't use eval and with because of scope. with changes how scope in js works internally -> it might trick the js engine
