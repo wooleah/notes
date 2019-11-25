@@ -113,7 +113,7 @@ Because functions in call stack are like little planets they usually don't know 
 
 exercise
 function two() {
-  var isValid; // 5. isValid is undefined in this execution context.
+  var isValid; // 5. isValid is undefined in this execution context. When this line is done, two() ec gets popped off the stack, and that memory space for that var is gone
 }
 
 function one() {
@@ -128,5 +128,8 @@ call stack has [global(), one(), two()]
 -> global variable environment has isValid=false, one, two
 -> one ec has isValid = true
 -> two ec has isValid = undefined
+*When we're finally done, we pop global ec and get rid of the memory allocation space(all the memory is gone from our program)
+
+**keep in mind that in variable environment in execution context(which is one stack in the whole call stack), some reference to the memory address can get stored or something in that call stack can get stored.
 
 
