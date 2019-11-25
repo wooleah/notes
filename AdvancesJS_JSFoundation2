@@ -103,5 +103,30 @@ function marry(...args) {
   // parameters passed to this function can be accessed in an array form by args + rest operator
 }
 
-- If you look for arguments in a function with no parameters, it becomes an empty object {}
+- If you look for arguments in a function with no parameters, it becomes an empty object {} -> each execution context creates new arguments keyword(and this keyword, and global ec creates this keyword and global object)
+
+
+
+Variable environment(local env for other function ec in the call stack and global env for global ec in the call stack)
+In ec, we have little space called variable env, this is where vars can live in this specific stack world. Of course all vars live in JS engine's memory heap. But they need to know how they relate to one another.
+Because functions in call stack are like little planets they usually don't know about each other
+
+exercise
+function two() {
+  var isValid; // 5. isValid is undefined in this execution context.
+}
+
+function one() {
+  var isValid = true; // 3. this variable will be put into the new execution context. It's own variable environment
+  two(); // 4. New execution context created.
+}
+
+var isValid = false; // 1. Global variable is created as undefined. Then during execution, it changes in memory to false.
+one() // 2. New execution context is created on top of the stack.
+
+call stack has [global(), one(), two()]
+-> global variable environment has isValid=false, one, two
+-> one ec has isValid = true
+-> two ec has isValid = undefined
+
 
