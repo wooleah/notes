@@ -41,3 +41,21 @@ function sing() {
 var sing2 = function() {
   console.log('hahaha');
 }
+
+
+Exercise.
+var a = 1
+var a = 2
+-> during creation phase, var a gets hoisted and gets assigned undefined, and during execution phase it becomes 1 and 2, so final value is 2
+
+But for function declaration something gets assigned in memory during creation phase
+a();
+function a() {
+  console.log('hi');
+}
+function a() {
+  console.log('bye');
+}
+First a gets written in memory and then second a overwrites it, so a() becomes bye
+*Note that any time you call a function, there's execution context and creation phase and an execution phase, hoisting involved.
+
