@@ -151,3 +151,35 @@ They both lexically sits on the global scope/space(ec) -> printName() have acces
 *You can go up the scope chain and check var env for each ec, not down(parent O, children O)
 
 - for performance, to optimize code for js engine, we don't use eval and with because of scope. with changes how scope in js works internally -> it might trick the js engine
+
+**JS has [[scope]] internally that matches with lexical environment
+- when we declare a function in window object, we can look into [[Scopes]] in dev tool
+
+
+Leakage of global var
+function weird() {
+  height = 50;
+  return height;
+}
+-> height is not in the weird() ec, when js engine sees it, it goes up the scope chain to global ec and it's not there. So it creates that for you. It's a legacy code and it caused a lot of problem so now we have 'use strict' to prevent that.
+*ALWAYS use strict!! this prevents this pitfall of js(it's not perfect)
+
+Another gotcha
+var hey = function doodle() {
+  return 'hey'
+}
+hey()
+doodle() -> reference error: means it's nowhere to be found in scope chain
+*WHY? doodle function is enclosed in it's own scope, it gets added to it's own ec var env, so you can only access doodle in doodle(). Kinda weird
+- function doodle isn't a method of the new variable. The new variable gets a reference of the doodle function.
+- we give the function it's own name, it will only be accessible via this name in its own execution context.
+
+
+Function scope vs block scope
+if (5 > 4) {
+  var secret = '12345'
+}
+secret;
+-> secret is accessible here because JS has function scope, meaning it only creates a new scope(environment) when there's a function.
+In other languages this is not possible because they have block scope. Which means with curly brackets there's a new scope
+-> JS wanted to do that so they made let and const which has block scope
