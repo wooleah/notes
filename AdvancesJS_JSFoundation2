@@ -183,3 +183,52 @@ secret;
 -> secret is accessible here because JS has function scope, meaning it only creates a new scope(environment) when there's a function.
 In other languages this is not possible because they have block scope. Which means with curly brackets there's a new scope
 -> JS wanted to do that so they made let and const which has block scope
+
+
+Global variables
+- if we pollute global execution environment, eventually memory heap will overflow.
+Q. BUT how about few variables?
+A. We can have variable collision(same name) -> bug-prone code
+
+-> Long ago before we had modules, JS devs used IIFE to avoid var collision
+
+Q. What is IIFE(Immediately invoked function expression)?
+A. It's a common JS design pattern that looks like below
+(function() {
+  // code
+})()
+
+OR
+
+(function() {
+  // code
+}())
+
+In this way, we can put all our library code in local namespace
+1. first js engine knows that it's a function expression, not a function declaration by looking at "(".
+*note that you can't call function declaration immediately
+2. Also we're not making a global variable because it's an expression and we're creating an EC with variable env that has own var scope. So any private data in there cannot be accessed by global EC
+
+example.
+const script1 = (function() {
+  function a() {
+    return 5;
+  }
+  return {
+    a: a
+  }
+})()
+-> we used global var script1, but script1 is an object that contains many properties we wanna use. Also we have private data that's protected(accessed only in the IIFE's EC).
+
+Passing parameter onto IIFEs have better performance(technically) because we don't have to go up the scope chain to access global EC for some var in global EC's var env.
+
+const script1 = (function(OMG) {
+  OMG('h1').click(() => {
+    OMG('h1').hide();
+  });
+  return {
+    a: a
+  }
+})(jQuery)
+
+Summary: IIFE creates a fresh env for us, and we can protect private data in here. With this we don't pollute global EC
