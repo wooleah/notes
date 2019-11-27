@@ -232,3 +232,6 @@ const script1 = (function(OMG) {
 })(jQuery)
 
 Summary: IIFE creates a fresh env for us, and we can protect private data in here. With this we don't pollute global EC
+-> We don't want to pollute global EC and scope things
+
+
