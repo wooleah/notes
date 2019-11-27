@@ -235,3 +235,22 @@ Summary: IIFE creates a fresh env for us, and we can protect private data in her
 -> We don't want to pollute global EC and scope things
 
 
+THIS keyword - **'this' is the object that the function is property of**
+example.
+function a() {
+  console.log(this); -> this is the 'window' object
+}
+function b() {
+  'use strict' // helps us avoid common mistake that occurs due to how js was designed long ago
+  // ES6 Modules have 'use strict' by default
+  console.log(this); -> this is the undefined
+}
+const obj = {
+  name: 'Woojae',
+  sing: function() {
+    return 'lalala ' + this.name;
+  }
+}
+
+
+
