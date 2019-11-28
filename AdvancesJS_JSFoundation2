@@ -250,7 +250,82 @@ const obj = {
   sing: function() {
     return 'lalala ' + this.name;
   }
+  or 
+  sing() {
+    return 'lalala ' + this.name;
+  }
+}
+-> to call sing you basically have to obj.sing() and inside sing() this keyword is what's to the left of the dot, which is obj
+-> How the function was called is what MATTERS
+remember DRY: Do not Repeat Yourself
+
+this keyword was created because:
+1. It gives methods access to their object
+2. It allows us to execute same code for multiple objects
+** EC asks this question: Who called me? -> then saves that in this keyword
+
+Another example.
+const a = function() {
+  console.log(this) // window
+  const b = function() {
+    console.log(this) // a
+    const c = {
+      hi: function() {
+     console.log(this) // c
+    }}
+    c.hi()
+  }
+  b()
+}
+a()
+-> As expected BUT... look at the next example
+
+const obj = {
+  name: 'Billy',
+  sing: function() {
+    console.log(this) // obj
+    var anotherFunc = function() {
+      console.log(this) // this points to windows!
+    }
+  }
+}
+*'this' is not lexically scoped(it doesn't matter where it is written, only how it was called matters). What happened underneath the hood was anotherFunc wasn't called by obj, it was called by sing function. And 'this' keyword defaults to the window object, that's why it this was window.
+-> Meaning this keyword is dynamically scoped
+
+**SO WHAT CAN WE DO ABOUT THIS?
+1. arrow function (in here 'this' is lexically scoped)
+2. (before arrow function) people used bind() like anotherFunc.bind(this) outside of function expression
+3. save this outside of anotherFunc like var that = this and use that inside the function
+
+
+CALL, APPLY, BIND (another scary topic that we must know to become a senior JS dev)
+1. call() - all functions use call() under the hood. When they are created they have call(), so basically a() === a.call() or a.apply()
+- call('what this should be bound to', and then arguments) -> you can do wizard.heal.call(archer)
+2. apply() - does the same thing with call(), but you can pass arguments in an array
+3. bind() - returns a new function with a certain context and params, useful when we want to call certain function later
+*call is faster than apply
+
+example.
+
+const wizard = {
+  name: 'Merlin',
+  health: 100,
+  heal: function(num1, num2) {
+    this.health += num1 + num2;
+  }
 }
 
+const archer = {
+  name: 'Robin Hood',
+  health: 50
+}
 
+wizard.heal.call(archer, 50, 60)
+wizard.heal.apply(archer, [20, 30])
+archer
+// function borrowing
 
+const healArcher = wizard.heal.bind(archer, 50, 60); // bind archer(this) to become this in wizard.heal() function
+console.log(archer)
+healArcher()
+console.log(archer)
