@@ -289,7 +289,7 @@ const obj = {
     }
   }
 }
-*'this' is not lexically scoped(it doesn't matter where it is written, only how it was called matters). What happened underneath the hood was anotherFunc wasn't called by obj, it was called by sing function. And 'this' keyword defaults to the window object, that's why it this was window.
+*'this' is not lexically scoped(it doesn't matter where it is written, only how it was called matters). What happened underneath the hood was anotherFunc wasn't called by obj, it was called by sing function. And 'this' keyword defaults to the window object, that's why this was window.
 -> Meaning this keyword is dynamically scoped
 
 **SO WHAT CAN WE DO ABOUT THIS?
@@ -299,6 +299,7 @@ const obj = {
 
 
 CALL, APPLY, BIND (another scary topic that we must know to become a senior JS dev)
+-> BORROW YOUR FUNCTION :)
 1. call() - all functions use call() under the hood. When they are created they have call(), so basically a() === a.call() or a.apply()
 - call('what this should be bound to', and then arguments) -> you can do wizard.heal.call(archer)
 2. apply() - does the same thing with call(), but you can pass arguments in an array
@@ -329,3 +330,17 @@ const healArcher = wizard.heal.bind(archer, 50, 60); // bind archer(this) to bec
 console.log(archer)
 healArcher()
 console.log(archer)
+
+Note: While the syntax of apply() function is almost identical to that of call(), the fundamental difference is that call() accepts an argument list, while apply() accepts a single array of arguments.
+-> Using this, you can do below
+const max = Math.max.apply(null, numbers);
+const min = Math.min.apply(null, numbers);
+*extra: Math.max(...arr);
+
+*With bind you can create a function with a preset leading argument
+var multiplyByTwo = multiply.bind(null, 2);
+
+
+Context vs scope
+scope: what is the var access of a function where it is invoked? What is the var env?(visibility of the variables)
+context: more about object, what's the value of this keyword(reference to the object that is currently executing the code), it's about how a function is invoked
