@@ -350,6 +350,7 @@ var b = {
   name: 'jay',
   say() {console.log(this)}
 }
+b.say() -> creates ec, tells us what lexical environment it's in. Where is that function written? It's in b object (world). So this becomes b object.
 
 var c = {
   name: 'jay',
@@ -360,3 +361,5 @@ var d = {
   name: 'jay',
   say() {return () => console.log(this)}
 }
+
+“Whenever we call a function, a new function execution context is created and pushed into execution context stack with a new associated lexical environment [[Environment]]”.
