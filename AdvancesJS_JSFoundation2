@@ -344,3 +344,19 @@ var multiplyByTwo = multiply.bind(null, 2);
 Context vs scope
 scope: what is the var access of a function where it is invoked? What is the var env?(visibility of the variables)
 context: more about object, what's the value of this keyword(reference to the object that is currently executing the code), it's about how a function is invoked
+
+simple example.
+var b = {
+  name: 'jay',
+  say() {console.log(this)}
+}
+
+var c = {
+  name: 'jay',
+  say() {return function() {console.log(this)}}
+}
+
+var d = {
+  name: 'jay',
+  say() {return () => console.log(this)}
+}
