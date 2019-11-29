@@ -1,6 +1,6 @@
 Execution context - Whenever code is run in JS it runs in ec(TRUE)
 When JS engine starts, global ec gets added to the EC stack(this is the call stack) and then whenever the engine sees (), it adds another ec(of that function) to the call stack. And when all of the code runs, global ec gets popped from the callstack.
-
+- EC defines the context where your code gets executed in.
 
 Lexical environment(scope, environment)
 It is basically about where it is written. When compiler is doing lexical analysis, it means that it's checking where that code was written(what universe is it part of, considering each function makes it's own universe).
