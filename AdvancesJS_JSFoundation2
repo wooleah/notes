@@ -1,10 +1,16 @@
 Execution context - Whenever code is run in JS it runs in ec(TRUE)
-When JS engine starts, global ec gets added to the call stack and then whenever the engine sees (), it adds another ec(of that function) to the call stack. And when all of the code runs, global ec gets popped from the callstack.
+When JS engine starts, global ec gets added to the EC stack(this is the call stack) and then whenever the engine sees (), it adds another ec(of that function) to the call stack. And when all of the code runs, global ec gets popped from the callstack.
 
 
 Lexical environment(scope, environment)
 It is basically about where it is written. When compiler is doing lexical analysis, it means that it's checking where that code was written(what universe is it part of, considering each function makes it's own universe).
 Check where did we write that function? and What part of universe is it? Is the function written in global scope? Or is it written inside of another function?
+
+“Whenever we call a function, a new function execution context is created and pushed into execution context stack with a new associated lexical environment [[Environment]]”. (every time we create an EC, this -universe- lexical environment are made as well)
+- associated being particular EC tracks the pointer where(place that currently executing function is written) statement of the corresponding function is being executed.
+- JS engine has a structure that holds identifier-variable mapping. identifier is the name of vars/funcs and variable is the reference to actual object. Lexical environment also holds a reference to a parent lexical environment(that of parent EC).
+- for every EC, corresponding lexical env is created and if any function is created in that EC, reference to that lexical env is store at the internal property [[environment]] of that function -> every function tracks the lexical environment related to the EC it was created in.
+- because every lexical env tracks its parent lexical env, every function has a chain of lexical env attached to it(scope chain)
 
 *Lexical === compile time(where is the code written), compiler and interpreter will know different things about that code
 Example:
@@ -356,10 +362,12 @@ var c = {
   name: 'jay',
   say() {return function() {console.log(this)}}
 }
+c.say()() -> creates EC, c.say() is lexically in c object, func returned by c.say() is lexically in c object but it's out of scope, so context is global(this becomes window object).
 
 var d = {
   name: 'jay',
   say() {return () => console.log(this)}
 }
+d.say() -> creates EC
 
-“Whenever we call a function, a new function execution context is created and pushed into execution context stack with a new associated lexical environment [[Environment]]”.
+Every function invocation has both a scope and a context associated with it. Fundamentally, scope is function-based while context is object-based. In other words, scope pertains to the variable access of a function when it is invoked and is unique to each invocation. Context is always the value of the this keyword which is a reference to the object that “owns” the currently executing code.
