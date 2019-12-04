@@ -1,1 +1,16 @@
 Two types of languages: static and dynamically typed languages
+- js is dynamic and weakly typed language(when js sees 'aaah' + 18, it thinks we want to add 18 to 'aaah' as a string so it coerces it's type and adds it(weakly typed). strongly typed language just throws error when they run this code(python).
+- also when you don't have to add type like js or python when we declar something then it's dynamically typed language
+
+primitive types in js are immutable
+- number, Boolean, undefined, null, string, Symbol
+- when you change it you create a new space in memory(new value) and replace prev variable
+- primitive value are passed by value(values are copied and stored in memory)
+
+reference types are passed by reference
+- Object, functions, array
+- it passes a pointer that points to somewhere in memory heap(we don't pass the copied value directly)
+
+copying the object
+- simply assigning and spreading object doesn't deep-copy the object(nested object)
+- you have to stringify -> parse it to fully deep copy the object
