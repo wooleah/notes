@@ -10,6 +10,8 @@ primitive types in js are immutable
 reference types are passed by reference
 - Object, functions, array
 - it passes a pointer that points to somewhere in memory heap(we don't pass the copied value directly)
+- with passing by ref we can save space in memory(we're not copying the obj and creating multiple version it's just in one location and we pass the pointer)
+
 
 copying the object
 - simply assigning and spreading object doesn't deep-copy the object(nested object)
