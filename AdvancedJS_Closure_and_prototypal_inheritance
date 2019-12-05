@@ -1,1 +1,6 @@
+When you add param in a function, it adds that variable in var env as if we declared it.
 
+HOF - why is it useful?
+- Higher Order Function is a func that returns a func or accepts a func as a parameter
+1. we can give it the data
+2. tell the func what to do when we invoke it
