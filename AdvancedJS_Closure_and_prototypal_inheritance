@@ -4,3 +4,24 @@ HOF - why is it useful?
 - Higher Order Function is a func that returns a func or accepts a func as a parameter
 1. we can give it the data
 2. tell the func what to do when we invoke it
+** ability to tell the func what to do during invocation
+
+- HOF use the concepts of currying and currying use the concept of closure
+
+Why is invoking a function directly inside our main function a bad idea?
+- it created below side-effects
+1. tight coupling between the two func(main func becomes impure)
+2. part of main func has external dependency and it can be modified by other parts of your code, that creates side-effect
+3. main func becomes less testable and more error-prone
+
+example) creating multiplyBy func
+// should return a func that accepts a num and multiply it by something it wants
+const multiplyBy = (num1) => {
+  return num2 => num1 * num2;
+}
+// I want a func that receives a number and multiply it with 2
+const multiplyTwo = multiplyBy(2);
+const multiplyByTen = multiplyBy(10);
+
+console.log(multiplyTwo(4))
+console.log(multiplyByTen(2))
