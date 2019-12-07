@@ -51,3 +51,70 @@ So.. WHY is closure useful?
 - return functions and properties of the function inside of an object to control how much you want to expose the functionalities.
 -> PRINCIPLE OF LEAST PRIVILEGE(security principle of programming): you don't wanna give anybody access to your API, or you only want to expose some functionalities.
 
+**self redefining function
+Hi Vikas, 
+
+Basically, you define a function expression / declaration / 
+
+let 
+You make it perform a task then, you completely change your function's implementation logic. 
+
+Refering back to Ilyia's example: 
+
+let initialize = () => {
+ view = '🏔';
+ console.log('view has been set!');
+ initialize = () => {
+ console.log('view is already initialized. Aborting..')
+}
+return initialize;
+}
+initialize  holds a reference pointer to  your function expression . 
+Its implementation logic is  this :
+
+view = '🏔';  console.log('view has been set!');
+
+But ,all of a sudden,  the initialize variable pointer is pointing to a completely new implementation
+initialize = () => {  console.log('view is already initialized. Aborting..')
+
+initialize pointer no longer points to a function which prints "view has been set". 
+instead, it points to the second statement . 
+
+so when  you invoke your function :
+initialize(); -  engine  sets up memory allocation for a variable initialize to be a pointer reference to a function 
+but, when the first invocation is done,  initialize variable still exists in memory   - IT IS NOT REMOVED but rather  REDEFINED -  the variable points to a completely different function implementation. And this happened during the first call to the initialise() function .
+The former implementation logic has been completely replaced by a new one . 
+
+I think a better example would be to implement an init time branching technique - which also takes advantage  of self-redefining functions;
+
+Let's imagine you want to find out whether a particular browser supports a feature 
+
+1 / you can declare an empty variable,
+2/ use conditional statements to check for  the existence of this feature, 
+3/ attach a function based upon result
+
+
+let myFeature;
+ 
+if (currentBrowser.hasFeature("feature"){
+myFeature = function(...args){
+// feature supported , do something with it 
+    }
+else{
+myFeature = function(args,errorFallback){
+oops, feature is not supported, fallback code goes here 
+        }
+    }
+}
+
+
+Init-time branching is used when you cannot predict certain future  events within your app at compile time(feature detection springs to my mind) . Instead, you let your browser/ code make the decision at runtime and react accordingly 
+
+I encourage you to review concept of objects being  passed by reference and that functions are also treated as objects in JS  
+
+Hope this illuminates the concept better. 
+
+Kind regards, 
+
+Kamil
+
