@@ -44,6 +44,10 @@ BUT if inner function is referencing outer function variable, it gets store in s
 - this accessing parent function variables after settimeout thing works because closure values are not in the call stack var env, it's in the memory heap. That's why after EC gets popped off the stack, we still have access to closure.
 - as mentioned above SETTIMEOUT() is part of web api, so it gets sent to web api and then gets put in the callback queue and when the call stack is empty, the event loop will push that into the stack AND it still has access to the var it was referencing from the parent function var env(that variable can even be a const, because by the time event loop pushes that function back into the call stack, this var is set)
 
-
-
+So.. WHY is closure useful?
+1. Memory effeciency
+- you don't need to create & delete large objects, you need to return a function inside another function that returns reference to an object inside the function
+2. Data encapsulation (hiding the information to prevent manipulation or access)
+- return functions and properties of the function inside of an object to control how much you want to expose the functionalities.
+-> PRINCIPLE OF LEAST PRIVILEGE(security principle of programming): you don't wanna give anybody access to your API, or you only want to expose some functionalities.
 
