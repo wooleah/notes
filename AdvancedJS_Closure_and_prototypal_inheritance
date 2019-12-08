@@ -129,3 +129,9 @@ if (!Date.prototype.lastYear) {
 new Date('1900-10-10').lastYear() // new Date instance becomes this inside of lastYear()
 // however if lastYear of an arrow function, "this" would be lexically scoped and thus become this of Date object(window)
 //'1899'
+
+**Problem with modifying the prototype
+
+
+
+
