@@ -33,6 +33,7 @@ console.log(multiplyBy(2)(5))
 
 
 Closures
+*When Brandon eich made JS he was inspired by JAVA(was the trendiest lang atm) + Scheme(had concept of closure)
 1. Functions are first class citizens that can be passed around like any other data (function being first class citizen)
 2. Before we even run the code, js engine knows where we wrote our code and which variables each function has access to (lexical scope)
 Combining 1 + 2 -> we get the super power of closures
