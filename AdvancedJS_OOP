@@ -14,5 +14,50 @@ Two different OOP language
 1. class based
 2. prototype based
 
+*quick note
 past       -> now
 procedural -> OOP 
+
+1. Factory functions (functiont that creates objects)
+- if we make millions of instances, same methods will get copied million times in memory
+
+We can use prototypal inheritance to share same functionality in multiple instance -> BUT HOW?
+- we can make global function object and store functions in there, and then create an instance with elfFactory() and attach some function to that instance property and call it -> BUT it feels like a lot of manual work
+-> we can use Object.create()
+*Object.create(object) method creates a new object, using an existing object as the prototype of the newly created object
+-> meaning it creates prototype chain between object and new object created.
+
+example)
+const elfFuctions = {
+  attack() {
+    return `${this.name} attcks with ${this.weapon}`;
+  }
+}
+function createElf(name, weapon) {
+  let newElf = Object.create(elfFuctions)
+  newElf.name = name;
+  newElf.weapon = weapon;
+  return newElf;
+}
+
+const peter = createElf('Peter', 'sword');
+peter.attack();
+-> this is the true form of prototypal inheritance and it's meant to be used like this. BUT it's not JS community standards
+
+What people used before Object.create to follow OOP paradigm
+- instead of Object.create, people used constructor functions
+
+example)
+function Elf(name, weapon) {
+  this.name = name;
+  this.weapon = weapon;
+}
+const peter = new Elf('Peter', 'sword'); // make it capitol letter to let other dev know that you need to call new to invoke this
+
+-> new keyword automatically returns the object(Elf object in this case) and it creates the constructor function(runs the code and constructs elf function)
+(without new keyword, we are not creating the object and not returning the object, and we're not assigning this to the object that calls that func)
+
+constructor function creates a function that creates and returns a new object and modifies "this"(global -> calling object)
+- and constructor function allows us to use new keyword to do all that
+- when that function is created and called new EC is created(has this, arguments
+
