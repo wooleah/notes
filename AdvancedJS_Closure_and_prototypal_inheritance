@@ -118,3 +118,14 @@ Kind regards,
 
 Kamil
 
+Exercise)
+
+//Date object => to have new method .lastYear() which shows you last year 'YYYY' format.
+if (!Date.prototype.lastYear) {
+  Date.prototype.lastYear = function() {
+    return this.getFullYear() - 1; // because it's normal function "this" keyword refers to whatever called this function
+  }
+}
+new Date('1900-10-10').lastYear() // new Date instance becomes this inside of lastYear()
+// however if lastYear of an arrow function, "this" would be lexically scoped and thus become this of Date object(window)
+//'1899'
