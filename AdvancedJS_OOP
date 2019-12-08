@@ -59,5 +59,7 @@ const peter = new Elf('Peter', 'sword'); // make it capitol letter to let other 
 
 constructor function creates a function that creates and returns a new object and modifies "this"(global -> calling object)
 - and constructor function allows us to use new keyword to do all that
-- when that function is created and called new EC is created(has this, arguments
+- when that function is created and called new EC is created(has this, arguments)
+- constructor function is a function(callable object) so it has invokable code(), optional names and properties, and most importantly prototype!
+-> this prototype in constructor function is shared through new instances created by the constructor function
 
