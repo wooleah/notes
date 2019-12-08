@@ -1,0 +1,15 @@
+Why is OOP or FP paradigm good?
+1. clear and understandable
+2. easy to extend
+3. easy to maintain
+4. memory efficient
+5. code is DRY
+
+
+OOP thinks real world model as an object
+- properties are the state of the object
+- methods allow us to manipulate the state of the object
+
+Two different OOP language
+1. class based
+2. prototype based
