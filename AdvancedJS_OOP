@@ -62,4 +62,20 @@ constructor function creates a function that creates and returns a new object an
 - when that function is created and called new EC is created(has this, arguments)
 - constructor function is a function(callable object) so it has invokable code(), optional names and properties, and most importantly prototype!
 -> this prototype in constructor function is shared through new instances created by the constructor function
+-> newElfInstance.__proto__ === Elf.prototype (every function created has prototype, but only constructor function make use of it)
+-> newElfInstance.prototype === undefined (because newElfInstance is an object created by constructor function, not a func)
+(only functions have access to the prototype object)
+
+BIG GOTCHA IN OOP(js)
+this keyword in function inside of a method is window object
+
+-> ANYWAY, using prototype in code is hard to understand(not pretty)
+
+
+*something weird about JS(technically everything in js is an object)
+var a = new Number(5) -> type is object
+var b = 5 -> type is number, but has access to Number.prototype
+(except for null and undefined, everything has constructor functions -> which allows our objects to access prototype)
+-> when we assign a var in js, internally it constructs a number using constructor function
+
 
