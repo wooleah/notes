@@ -102,3 +102,25 @@ Use instanceof to check prototype chain instead of isprototypeof (instanceof goe
 There are no technical classes. It's just object inhering from objects(no technical classes) 
 AND unlike other class based language(JAVA, C++) class is an actual thing classes inherit from classes, and those languages actually copy class object when they extend superclass(methods are shared). 
 -> in js, we link them and reference them 
+
+Public vs Private
+- we used to add _ in front of methods to let people know that's private
+- in js, private methods and vars are not available yet
+
+4 pillars of OOP
+1. encapsulation - each object as a box, and they interact with each other
+2. abstraction 
+- hiding the complex things and creating simpler interfaces so we can just look at it and understand what that class can do
+- it also helps with private methods and vars
+3. inheritance - make DRY code by inheriting other objects and save memories
+4. polymorphism(many forms) - ability to call the same method in a diff obj and each obj respond in diff way
+- ability to redefine methods for different classes(reuse functionality and customize methods, override, overload)
+-> reuse functionality of the superclass and adapt to our class
+
+**learning programming paradigm -> how I should architect my structure and code
+
+
+
+
+
+
