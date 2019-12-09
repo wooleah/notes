@@ -1,15 +1,30 @@
+Fp is also about separation of concerns but also separates data and funcs.
+- Fp langs focus on simplicity. And they don't have classes and methods 
+
+Fp also wants to achieve same goal as oop. and it all comes down to one concept. "Pure functions"
+- Separation between the data and behavior of the program 
+- All object created in fp is immutable 
+- We don't want shared state and we adhere to the functions 
+
+What is the purpose of fp?
+
+Some rules 
+- Function has to return same output for same input 
+- Function cannot modify anything outside of itself(no side effects) 
+
+Problem of shared state is that anything can interact with it. And order of those interactions matter 
+
+
+
 Curry
 
 Partial Application
-
-Pure Functions
 
 Referential Transparency
 
 Compose
 
 Pipe
-
 
 Composition vs inheritance
 
