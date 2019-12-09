@@ -79,3 +79,26 @@ var b = 5 -> type is number, but has access to Number.prototype
 -> when we assign a var in js, internally it constructs a number using constructor function
 
 
+Class keyword in js is syntactic sugar over prototypal inheritance (pseudo classical inheritance) 
+
+When we use new keyword we run constructor function. If we put methods in the constructor each instance will create that method in memory space. 
+
+4 ways of manipulating this 
+1. Using new keyword(binds this to the object calling it) 
+2. Implicit binding (when we create an object and add function property, this in that function refers to that object) 
+3. Explicit binding(using bind) 
+4. Arrow function(normally this is dynamically scoped, but arrow function makes it lexically scoped), remember function inside function is out of scope and gets window as this 
+
+Even if you clone something with spread operator it doesn't copy prototype(you lose prototypal inheritance chain) 
+- Use subclass with extends keywords(get prototype from superclass) 
+- You have to call super class in subclass constructor with super() before accessing this keyword, you basically call superclass constructor to get stuff from there 
+
+ 
+
+When we use extends keyword it's basically saying make __proto__ point to superclass so you can refer to superclass when you call something you don't have 
+
+Use instanceof to check prototype chain instead of isprototypeof (instanceof goes all the way up to the superclass) 
+
+There are no technical classes. It's just object inhering from objects(no technical classes) 
+AND unlike other class based language(JAVA, C++) class is an actual thing classes inherit from classes, and those languages actually copy class object when they extend superclass(methods are shared). 
+-> in js, we link them and reference them 
