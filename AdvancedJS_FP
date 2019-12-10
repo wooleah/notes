@@ -14,7 +14,69 @@ Some rules
 
 Problem of shared state is that anything can interact with it. And order of those interactions matter 
 
+Console log is affecting the outside world browser because it's logging something to the browser 
 
+ 
+
+Referential transparency 
+If I change a function call to a constant would it change the result 
+For same input it should always produce same output 
+This principles outcome in easy to test and easy to compose functions. Also it avoids a lot of bugs. Because there's no shared states and mutations 
+
+Can you have 100% pure function? (No side effects and same input produce same output no matter how many times you call it) 
+- Communicating with outside world with input and output is not pure 
+- You gotta have side effects when writing programs(nature of programming)
+-> basically the goal of fp is not making functions pure. It's goal is to minimize side effects 
+-> side effect and impurity are not bad. Your goal is to organize your code in a way so your code is more predictable and easier to debug 
+
+How do we make a perfect function? 
+1. Func should do one task only 
+2. Every func should should return something 
+3. And it should be pure 
+4. And it shouldn't modify global state 
+5. It should be composable 
+-> Fp is all about making your code predictable 
+
+
+Indempotence 
+: function that always does what we expect it to do.(it doesn't have to be pure and it's ok to communicate with the outside world) 
+Example) deleting a user function is always going to return no more user  
+Example) when we send API get request we expect same result for whatever parameters we passed to 
+
+- This concept(being able to return same output for the same input always) is valuable when it comes to parallel and distributed computing. 
+- Another characteristic of indempotence is that you can call yourself inside of you and still get the same result(math.abs) 
+
+
+Imperative vs declarative 
+Imperative tells computer what to do and how to do something 
+Declarative code tells computer what to do and what should happen. It doesn't tell computer how to do things. 
+Computers are imperative and we are more declarative 
+Example) you tell your friend can you pass me that water instead of saying go there grab it and come back here and put it on my hand. 
+
+
+Machine code is imperative 
+- For loop is imperative. Foreach is more declarative 
+- jQuery is more imperative. Tells browser exactly what to do and how to do it. And react is more declarative. We tell component this is data and display this. 
+-> fp helps us be more declarative. We tell our computer what to do instead of how to do things
+However remember that declarative code always get compiled or transpiled and will be run by something more imperative 
+
+
+Immutability 
+Don't change state instead return a copy of changed state 
+But this seems like it would waste memory 
+-> structural sharing (lots of fp code implementat this, we don't actually copy everything, we only copy changed state and rest stays in memory) 
+
+
+HOF and closures(review)
+1. HOF
+- Functions are first class citizens 
+- HOF does one of two things: takes function as argument or returns func.
+2. Closures
+- it's a mechanism for containing some state, returning a function in another function and inner function makes reference to a state in the outer function. We can save that inner function somewhere and later through that function we can access outer function state.
+-> as long as we don't modify that state, we're following the fp paradigm and not making function(outer) impure. We can just use closure to ensure our data privacy(we can't modify outer function state with returned inner func)
+-> that's why closures are used in fp
+
+==================================
 
 Curry
 
