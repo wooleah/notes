@@ -93,11 +93,179 @@ Q. What's the difference?
 A. Partial applications can take as many or as few arguments a time as desired. But curried functions always return a unary function(function which takes one argument)
 
 
-*idea of fp is to minimize the mutation
+*idea of fp is to minimize the mutation - it can do 1 to 1 data transformation really well
+- making many pure functions to make predictable code
+
+=================================
+// Amazon shopping
+const user = {
+  name: 'Kim',
+  active: true,
+  cart: [],
+  purchases: []
+}
+
+let amazonHistory = []
+// first receive all the functions, then arguments
+const compose = (f,g) => (...args) => f(g(...args))
+const pipe = (f,g) => (...args) => g(f(...args))
+
+// purchaseItem(user, {name: 'laptop', price: 344})
+purchaseItem(
+  addItemToCart,
+  applyTaxToItems,
+  buyItem,
+  emptyCart
+)(user, {name: 'laptop', price: 200})
+
+// function purchaseItem(user, item) {
+//   return {...user, purchases: item}
+//   // return Object.assign({}, user, {purchases: item});
+// }
+function purchaseItem(...fns) {
+  // reduce takes cb(acc, currentVal)
+  // so by compose we're making a chain of functions in acc
+  return fns.reduce(pipe)
+}
+
+function addItemToCart(user, item) {
+  amazonHistory.push(user)
+  const updatedCart = user.cart.concat(item)
+  // make new object and put both user and cart in there
+  return Object.assign({}, user, {cart: updatedCart})
+}
+
+function applyTaxToItems(user) {
+  amazonHistory.push(user)
+  const {cart} = user;
+  const taxRate = 1.3;
+  const updatedCart = cart.map(item => {
+    return {
+      name: item.name,
+      price: item.price * taxRate
+    }
+  })
+  return {...user, cart: updatedCart}
+}
+
+function buyItem(user) {
+  amazonHistory.push(user)
+  return {...user, purchases: user.cart}
+}
+
+function emptyCart(user) {
+  amazonHistory.push(user)
+  return Object.assign({}, user, {cart: []});
+}
+
+amazonHistory
+
+//Implement a cart feature:
+// 1. Add items to cart.
+// 2. Add 3% tax to item in cart
+// 3. Buy item: cart --> purchases
+// 4. Empty cart
+
+// function refundItem() {
+
+// }
+
+//Bonus:
+// accept refunds.
+// Track user history.
+=================================
+
 
 
 Referential Transparency
 
 
 Composition vs inheritance
+1. Inheritance is superclass that has extended to smaller pieces.
+ex) class Character <- class Elf extends Character, class Ogre extends Character
+2. Composition is to make smaller pieces to create something bigger
+ex) amazon cart above
+
+A lot of people prefer composition over inheritance, but there are drawbacks for both paradigm
+
+First let's talk about what they are
+Inheritance: what it is
+Composition: what it has
+
+Inheritance: we have character class and they have attack method, and now we need to add sleep method
+1. Tight coupling problem : parent-child is very tight coupling, small change affect all children subclasses
+2. Fragile base class problem: because of tight coupling, changes to the base class can break subclasses
+3. Heirarchy
+- gorilla-banana problem: you asked for a banana but you got a gorilla holding a banana with the entire jungle, all I wanted was a sleep method, but I got methods and properties from User, Charcter and Elf
+
+User
+  watcher
+  character
+    elf
+      junior elf(should only be able to sleep, but it has all the methods we don't need) -> gorilla-banana problem
+    ogre
+-> we're predicting the future at the time we're building something
+
+Using composition(what it has)
+function getAttack(character) {
+ return Object.assign({}, character, {attack: () {}})
+}
+
+function Elf(name, weapon, type) {
+ // makes basic elf
+ let elf = {
+  name,
+  weapon,
+  type
+ }
+ // adds new elf object with new functionality
+ return getAttack(elf)
+}
+
+Elf = attack() + sleep()
+Ogre = attack() + makeFort() + sleep()
+
+Another example)
+Inheritance
+Robot
+ .drive()
+ CleaningRobot
+  .clean()
+ MurderRobot
+  .kill()
+  MurderRobotDog - bark and it's robot but doesn't poop -> now have to make a superclass for Animal + robot?
+   .bark()
+Animal
+ .poop()
+ Dog
+  .bark()
+ Cat
+  .meow()
+
+Composition to the rescue
+dog = pooper + barker
+cat = pooper + meower
+cleaningRobot = driver + cleaner
+murderRobot = driver + killer
+murderRobotDog = driver + killer + barker
+
+const barker = state => ({
+ bark: () => console.log('Woof I am ' + state.name)
+})
+const driver = state => ({
+ drive: () => state.position = state.position + state.speed
+})
+const murderRobotDog = name => {
+ let state = {
+  name,
+  speed: 100,
+  position: 0
+ }
+ 
+ return Object.assign({}, barker(state), driver(state), killer(state))
+}
+https://www.youtube.com/watch?v=wfMtDGfHWpA
+
+
+
 
