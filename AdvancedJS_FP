@@ -267,5 +267,22 @@ const murderRobotDog = name => {
 https://www.youtube.com/watch?v=wfMtDGfHWpA
 
 
+OOP and FP are programming paradigm
+- writing code compliant with a specific set of rules
+FP
+- code is combination of functions and data is immutable
+- many operations on fixed data
+- stateless(we don't modify state)
+- pure functions: functions we write don't impact the code that's running outside of that function (no side effects)
+- declarative(what we want it to be doing)
+- works really well for high performance(can run on multiple processors)
+- few things running a lot
+- data + behaviors(different things so need to be kept separately)
 
-
+OOP
+- few operations on common data
+- stateful(we modify state)
+- we have this and self(allow more side effects)
+- imperative(how we want it to be done)
+- if you have many things(characters in a game) with few operations
+- data + behaviors in an object
