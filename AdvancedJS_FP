@@ -76,17 +76,25 @@ HOF and closures(review)
 -> as long as we don't modify that state, we're following the fp paradigm and not making function(outer) impure. We can just use closure to ensure our data privacy(we can't modify outer function state with returned inner func)
 -> that's why closures are used in fp
 
-==================================
 
-Curry
+Currying and partial application
+Q. What is a curried function?
+A. It's a function that takes multiple arguments one at a time
+ex) const add = a => b => a + b
 
-Partial Application
+Q. Then why is it useful?
+A. You can return a function(partial application of itself) by giving one argument to the curried function. Then that argument will be saved in closure and you can use that parameter in newly saved function.
+ex) const addToTwo = add(2);
+
+Q. What is a partial application?
+A. It's a function which has been applied to some but not yet all of its arguments. Basically it's a function which has some arguments fixed inside its closure scope.
+
+Q. What's the difference?
+A. Partial applications can take as many or as few arguments a time as desired. But curried functions always return a unary function(function which takes one argument)
+
 
 Referential Transparency
 
-Compose
-
-Pipe
 
 Composition vs inheritance
 
