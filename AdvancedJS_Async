@@ -1,2 +1,29 @@
 Async - code that you can run later
 
+ES9 2018
+For await of
+Loop through array of promises
+
+for await (let req of promises) {
+ const data = await req.json()
+ console.log(data)
+}
+
+Finally keyword
+Use it at the end of promise chain to run some code always
+
+Parallel, sequential, race(do three things and run only the one that is done first)
+
+parallel.then(console.log)
+then passes param to the function inside
+Promise.race already exists
+
+-> Think about what's the most optimal solution for your async code 
+
+Job queue
+Job queue was added in ES6 with Promises
+Event loop already has callback queue(task queue)
+So ecmascript committee made job queue(microtask queue) which has higher priority than callback queue meaning that event queue is going to start looking for job queue before checking callback queue 
+
+settimeout is a facade func, it's not js it's part of web API that calls timer API
+
