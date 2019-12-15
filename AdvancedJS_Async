@@ -20,10 +20,28 @@ Promise.race already exists
 
 -> Think about what's the most optimal solution for your async code 
 
-Job queue
+Job queue (legacy browser might not have job queue in their js runtime)
 Job queue was added in ES6 with Promises
 Event loop already has callback queue(task queue)
 So ecmascript committee made job queue(microtask queue) which has higher priority than callback queue meaning that event queue is going to start looking for job queue before checking callback queue 
 
 settimeout is a facade func, it's not js it's part of web API that calls timer API
 
+
+JS has power to do complex thing despite being single threaded because of it's async model
+- but how to those web API get the computing power to run things on the background?(because it's single thread)
+-> it's background thread hidden from us
+browser has web workers(does background things), nodeJS has worker threads
+- web worker is a js program running on a different thread in parallel to our main thread
+
+example) new Worker('worker.js') -> you can save this as worker and post messages to another thread
+
+fetch() -> facade func because underneath it it calls web API
+
+concurrency(single core CPU)
+- you can do different tasks in different thread but only one thread can run at a time
+concurrency + parallelism(multi core CPU)
+- you can do multiple things at the same time
+
+JS is single threaded(has one call stack), but the beauty is in it's simplicity and restrictions
+-> allows us to write simple clean code
