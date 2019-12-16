@@ -1,0 +1,11 @@
+without modules we have tight coupling problem where everything depends on each other
+- we don't know what would affect which code
+
+So how do we separate big chunk of code?
+1. Adding them in html file won't do much because in the past it simply combined all added js files
+-> same as putting all of those files in one page
+- and dependencies are implicit(it's not written anywhere, you just have to figure it out)
+- without modules, all global vars might clash
+
+how do we handle big codebase while working with many devs? -> in JS we have ES6 modules now
+What about before?
