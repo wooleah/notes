@@ -1,0 +1,4 @@
+Errors in js 
+
+We have native error constructor function in js
+throw error stops code. During runtime when throw statement is encountered 
