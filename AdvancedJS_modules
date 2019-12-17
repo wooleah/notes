@@ -9,3 +9,54 @@ So how do we separate big chunk of code?
 
 how do we handle big codebase while working with many devs? -> in JS we have ES6 modules now
 What about before?
+
+Module pattern in the past 
+
+We have 
+
+Global scope 
+
+Ideally we have module scope where we have bunch of functions working together while not polluting global scope 
+
+Function scope 
+
+  Block scope 
+
+
+Module scope was made with closure and encapsulation 
+
+Assign iffe to a variable 
+And return function inside of iffe if we want to expose that function. then closure allows us to access inner encapsulated variables throught that function 
+Pass the global var into that module with the same parameter name then you won't change global var inside of module 
+
+
+Pros and cons 
+Updating is easier when module is decoupled. 
+Resuability
+We can still have global namespace collision with this module 
+Also order of the code matters 
+
+After iffe and the module pattern commonjs and amd came. Asynchronous module definition 
+We won't have interference of global scope 
+We require modules or specific functions in modules, and we can export modules using module.exports 
+This was mainly created for the server and NodeJs still uses commonjs 
+Module bundler like commonjs and browserify made commonjs extremely popular 
+
+And amd was designed specifically for browsers. It loads scripts or modules asynchronously. Not really used anymore 
+Commonjs allows us to be explicit with dependencies and since it's synchronous we can use module bundler 
+
+Umd (universal module definition) is just some if else statements to understand current running environment and then run commonjs or amd version of the code 
+
+These two solutions solve two main problems with module pattern. Dependency resolution and the pollution of global scope 
+
+
+ES6 module 
+Js need module system because it's now a serious language being used in server 
+Syntax is import from and export and export default 
+default export can be imported with name  
+But export should be imported with {funcName} 
+
+If you want to use it in html you have to specify <script type=module>any time you use import and export.  
+Then you need to serve it from the server 
+
+*Idea behind it is to keep everything simple 
