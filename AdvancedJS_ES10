@@ -1,1 +1,3 @@
-flat()
+1. flat()
+conts array = [1, [2, 3], [4, 5]] -> only one level though
+array.flat() -> [1, 2, 3, 4, 5]
