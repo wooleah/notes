@@ -1,3 +1,17 @@
-1. flat()
-conts array = [1, [2, 3], [4, 5]] -> only one level though
-array.flat() -> [1, 2, 3, 4, 5]
+1. flat() - default to one level 
+flat(2) flattens two levels of array 
+Or flat(99) to flatten the utmost level 
+You can also use flat to get rid of empty data spots 
+[1, 2,,,,,,,,3].flat() becomes [1,2,3] 
+
+
+2. flatmap is map function but flattens result to the depth of one 
+
+3. fromentries 
+Opposite of entries() so it makes objects 
+
+
+*iterating over iterable objects(arrays and strings) : iterating 
+Iterating over object properties: enumerating 
+Properties in object are called enumerable 
+And because everything in js is an object. Arrays are enumerable 
