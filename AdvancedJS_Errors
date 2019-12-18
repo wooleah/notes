@@ -23,6 +23,20 @@ How to catch errors?
 1. try{}catch()
 2. catch() - with Promises
 
-if there was an async functioon in try-catch statement, it won't catch that error
+If there was an async functioon in try-catch statement, it won't catch that error
 - if we don't catch async error, it does silent fail on the browser js runtime(in nodejs runtime, it shows unhandledPromiseRejectionWarning)
 -> always have .catch() on promise chain
+
+You can use try-catch again for async-await
+
+catch is not a function, but a clause
+
+we can extend Error class to make our own Error
+class AuthenticationError extends Error {
+  constructor(message) {
+    super(message)
+    this.name='authenticationError'
+    this.favoriteSnack = 'grapes'
+  }
+}
+-> but don't reveal all of the Error object
