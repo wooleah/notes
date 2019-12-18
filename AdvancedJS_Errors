@@ -1,4 +1,28 @@
 Errors in js 
 
-We have native error constructor function in js
-throw error stops code. During runtime when throw statement is encountered 
+We have native error constructor function in js(new Error())
+throw error stops code. During runtime when throw statement is encountered, execution of the current function will stop and control will be passed to the next part of the call stack
+
+throw
+- you can throw anything
+
+Error object
+- errorObj.stack -> stack trace(where in our call stack did that error happen)
+- errorObj.message -> message inside the Error object(passed in constructor)
+
+There are many kinds of Error constructor in js
+- new SyntaxError
+- new ReferenceError
+
+What happens when Error happend(or is thrown)?
+1. exits out of current execution context
+2. check if next EC has catch, if not -> check next EC
+3. if there's nothing handling it in the EC, onError() implemented in the browser catches it. (In nodejs, process.on('uncaughtException) catches it)
+
+How to catch errors?
+1. try{}catch()
+2. catch() - with Promises
+
+if there was an async functioon in try-catch statement, it won't catch that error
+- if we don't catch async error, it does silent fail on the browser js runtime(in nodejs runtime, it shows unhandledPromiseRejectionWarning)
+-> always have .catch() on promise chain
