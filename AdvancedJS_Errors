@@ -40,3 +40,7 @@ class AuthenticationError extends Error {
   }
 }
 -> but don't reveal all of the Error object
+
+
+** catch in try-catch is called a catch "clause" and has it's own lexical environment.
+It creates a new one(deriving from the current one) and binds the exception identifier to it(When executing the catch block, current EC's lexical environment is switched to a new one, but var env stays unchanged)
