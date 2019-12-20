@@ -133,6 +133,7 @@ new Date('1900-10-10').lastYear() // new Date instance becomes this inside of la
 
 **Problem with modifying the prototype
 
-
+If all of our functions locked var scope around it, wouldn't it affect memory badly?
+A. In theory yes, but no. JS engines optimize this and if var isn't getting used by anything they get rid of it -> you don't need to do that manually
 
 
