@@ -163,5 +163,6 @@ function Person(firstName, lastName, age) {
     // return this;
 }
 -> if we add this to our factory function, then factory function basically becomes a constructor function
+however it won't have any effect
 
 
