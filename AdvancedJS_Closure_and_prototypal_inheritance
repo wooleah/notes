@@ -163,6 +163,13 @@ function Person(firstName, lastName, age) {
     // return this;
 }
 -> if we add this to our factory function, then factory function basically becomes a constructor function
-however it won't have any effect
+however it won't have any effect on the outcome because this function is returning a custom object.
+
+So basically in JS
+- You can use new operator on ANY function
+- You can call function intended as constructor WITH or WITHOUT the new keyword
+
+because JS engine sets this variable to reference the newly created object instance behind the scene, without new operator on constructor function, we can accidentally pollute global namespace..
+
 
 
