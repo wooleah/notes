@@ -137,3 +137,8 @@ If all of our functions locked var scope around it, wouldn't it affect memory ba
 A. In theory yes, but no. JS engines optimize this and if var isn't getting used by anything they get rid of it -> you don't need to do that manually
 
 
+Factory function and constructor function
+factory func returns an object + func name not capitol letter
+-> you can use new keyword to make a new Object of that func, but both their __proto__ is Object.prototype
+However if you use constructor function, when you use new keyword to generate a new object it's __proto__ is that constructor function's prototype
+
