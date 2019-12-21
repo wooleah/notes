@@ -142,3 +142,26 @@ factory func returns an object + func name not capitol letter
 -> you can use new keyword to make a new Object of that func, but both their __proto__ is Object.prototype
 However if you use constructor function, when you use new keyword to generate a new object it's __proto__ is that constructor function's prototype
 
+*new operator lets dev create an instance of a user-defined object type or of one of the built-in object types that has a constructor function
+Behind the scene stuff when you use new keyword:
+
+function Person(firstName, lastName, age) {
+    // this = {};
+    // this.__proto__ = Person.prototype;
+    // Set up logic such that: if
+    // there is a return statement
+    // in the function body that
+    // returns anything EXCEPT an
+    // object, array, or function:
+    //     return this (the newly
+    //     constructed object)
+    //     instead of that item at
+    //     the return statement;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    // return this;
+}
+-> if we add this to our factory function, then factory function basically becomes a constructor function
+
+
