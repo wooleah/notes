@@ -82,8 +82,8 @@ initialize pointer no longer points to a function which prints "view has been se
 instead, it points to the second statement . 
 
 so when  you invoke your function :
-initialize(); -  engine  sets up memory allocation for a variable initialize to be a pointer reference to a function 
-but, when the first invocation is done,  initialize variable still exists in memory   - IT IS NOT REMOVED but rather  REDEFINED -  the variable points to a completely different function implementation. And this happened during the first call to the initialise() function .
+initialize(); -  engine  sets up memory allocation for a variable initialized to be a pointer reference to a function 
+but, when the first invocation is done,  initialize variable still exists in memory   - IT IS NOT REMOVED but rather REDEFINED -  the variable points to a completely different function implementation. And this happened during the first call to the initialise() function .
 The former implementation logic has been completely replaced by a new one . 
 
 I think a better example would be to implement an init time branching technique - which also takes advantage  of self-redefining functions;
@@ -108,8 +108,7 @@ oops, feature is not supported, fallback code goes here
     }
 }
 
-
-Init-time branching is used when you cannot predict certain future  events within your app at compile time(feature detection springs to my mind) . Instead, you let your browser/ code make the decision at runtime and react accordingly 
+Init-time branching is used when you cannot predict certain future events within your app at compile time(feature detection springs to my mind) . Instead, you let your browser/ code make the decision at runtime and react accordingly 
 
 I encourage you to review concept of objects being  passed by reference and that functions are also treated as objects in JS  
 
@@ -138,7 +137,7 @@ A. In theory yes, but no. JS engines optimize this and if var isn't getting used
 
 
 Factory function and constructor function
-factory func returns an object + func name not capitol letter
+factory func returns an object + func name not capital letter
 -> you can use new keyword to make a new Object of that func, but both their __proto__ is Object.prototype
 However if you use constructor function, when you use new keyword to generate a new object it's __proto__ is that constructor function's prototype
 
@@ -164,6 +163,7 @@ function Person(firstName, lastName, age) {
 }
 -> if we add this to our factory function, then factory function basically becomes a constructor function
 however it won't have any effect on the outcome because this function is returning a custom object.
+
 
 So basically in JS
 - You can use new operator on ANY function
