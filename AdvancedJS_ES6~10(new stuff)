@@ -9,6 +9,14 @@ sym2 === sym3 -> false
 ES 7
 const square = x => x**2 (means x^2)
 
+ES 8
+1. padStart(), padEnd()
+'test'.padStart(10)
+"      test" -> 10 spaces from front including the string
+
+2. ending comma in parameter list in functions are valid now
+const fun = (a, b, c, d,) => {}
+fun(1, 2, 3, 4,)
 
 ES 10
 1. flat() - default to one level 
