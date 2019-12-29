@@ -1,3 +1,14 @@
+ES 6
+
+Symbol
+let sym1 = Symbol();
+let sym2 = Symbol('foo');
+let sym3 = Symbol('foo');
+sym2 === sym3 -> false
+- pretty much only used for object name(creates unique identifier)
+
+
+ES 10
 1. flat() - default to one level 
 flat(2) flattens two levels of array 
 Or flat(99) to flatten the utmost level 
@@ -15,3 +26,5 @@ Opposite of entries() so it makes objects
 Iterating over object properties: enumerating 
 Properties in object are called enumerable 
 And because everything in js is an object. Arrays are enumerable 
+
+
