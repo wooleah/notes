@@ -1,1 +1,22 @@
-Html file indicates what we need from the server
+Think like a senior developer - think about the problem and find effecient solution that saves time
+-> We will focus on the big tickets that covers 90% of the website loading speed
+
+Just a little random note
+*Html file indicates what we need from the server(like an instruction)
+
+What we will learn
+A. Frontend
+1. Critical render path
+2. Optimized code
+3. Progressive web app
+
+B. communication between front-back
+1. Minimizing files
+2. Minimizing deliveries
+
+C. Backend
+1. CDNs
+2. Caching
+3. Load Balancing
+4. DB Scaling
+5. GZIP
