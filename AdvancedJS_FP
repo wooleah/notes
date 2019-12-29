@@ -278,6 +278,7 @@ FP
 - works really well for high performance(can run on multiple processors)
 - few things running a lot
 - data + behaviors(different things so need to be kept separately)
+- *write deterministic code by removing side effects
 
 OOP
 - few operations on common data
