@@ -6,12 +6,12 @@ Just a little random note
 
 What we will learn
 A. Frontend
-1. Critical render path
+1. Critical render path <-
 2. Optimized code
 3. Progressive web app
 
 B. communication between front-back(Transfer)
-1. Minimizing files
+1. Minimizing files <-
 2. Minimizing deliveries
 
 C. Backend
@@ -20,3 +20,44 @@ C. Backend
 3. Load Balancing
 4. DB Scaling
 5. GZIP
+
+
+Network performance(2 main)
+1. Honey I shrunk the files
+- minimize text and images, so we have less data to transfer over wire
+- minimizing text -> people used to do this manually but now it's part of the build process(more on webpack videos)
+- minimizing images -> described below
+2. The traveling deliveryman
+
+
+
+
+Image file formats
+1. jpeg: complex images with many colors(phtorograph), don't really allow transparency, usually big in size
+2. gif: color is limited to 2~256, good for small sized animations
+3. png: like jpg but limits colors, used for simple logos, also can add transparency
+4. svg: very different from others(vector graphics), you can expand them and they'll be still clear, really good for retina and 4k display. Also can be customized with css. But usually very simple.
+
+png vs jpg
+png uses lossless compression algorithm and jpg uses lossy one, but on the web pngs are generally smaller because they are used for non-complex images.
+
+New types
+There are new image types that are superior to those 4 formats above. But browser support is not there yet.
+
+What you can do with these knowledge
+- select the right image format and compress them as much as possible
+
+1. Minimizing images
+- transparency -> png
+- animations -> gif
+- colorful images -> jpg
+- simple icons, logos, illustrations(that can scale) -> svg
+- reduce png with TinyPNG
+- reduce JPG with JPEG-optimizer
+- choose simple illustrations over highly detailed photograph
+- always lower JPEG image quality(30-60%)
+- resize image based on size it will be displayed
+
+- diplay different sized images for different backgrounds
+- use cdns like imigx
+- remove image metadata
