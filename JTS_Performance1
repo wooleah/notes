@@ -61,3 +61,7 @@ What you can do with these knowledge
 - diplay different sized images for different backgrounds
 - use cdns like imigx
 - remove image metadata
+
+About resizing images
+- @media screen(css will be showed it in screen where it's viewed on), also can be @media print(shows in print screen mode)
+-> Might have to make different image sizes for different media queries
