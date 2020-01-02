@@ -59,9 +59,17 @@ What you can do with these knowledge
 - resize image based on size it will be displayed
 
 - diplay different sized images for different backgrounds
-- use cdns like imigx
+- use cdns like imgix
 - remove image metadata
 
 About resizing images
 - @media screen(css will be showed it in screen where it's viewed on), also can be @media print(shows in print screen mode)
 -> Might have to make different image sizes for different media queries
+
+Image metadata?
+- verexif.com
+- pictures taken on cameras contain a lot of information(remove this for performance and security reasons)
+
+Delivery optimizations(traveling deliveryman)
+- you also have to reduce download frequency(not just download size), reducing the number of components a page requires proprtionally reduces the number of http request it has to make.
+- think twice before adding a big script library(or css) to your website
