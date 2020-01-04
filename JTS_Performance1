@@ -88,4 +88,19 @@ What happens first:
 -> paint -> DONE
 * for images as soon as browser sees an image tag, it starts downloading(not part of render tree building process)
 
+In order to construct render tree, you need CSSOM(that's why CSS is render blocking). This means that we will wait until CSSOM is complete -> That's why we want to make it as lightweight as possible 
+TO IMPROVE PERFORMANCE
+1. Only load whatever is needed
+2. Possibly incorporate above the fold loading -> LAZY LOADING(create link element later when you actually need to see them, so you can finish loading the page first and incorporate the css files when you need them)
+3. Add media attributes
+- CSS file is only fetched from the server once the condition is met(media="all", media="only screen and (min-width:500px)" on link tag)
+4. less specifity
+- browser has to do more work to understand more deeply nested specifity
+5. Internal CSS(allow us to not have to request CSS file) with <style>
+or inline css
+- It's fast, but we have to apply this to every single element
+
+
+-> 1~4 are rather done automatically nowadays, this is just a reference to what's happening under the hood
+
 
