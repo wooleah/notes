@@ -88,6 +88,7 @@ What happens first:
 -> paint -> DONE
 * for images as soon as browser sees an image tag, it starts downloading(not part of render tree building process)
 
+CSS
 In order to construct render tree, you need CSSOM(that's why CSS is render blocking). This means that we will wait until CSSOM is complete -> That's why we want to make it as lightweight as possible 
 TO IMPROVE PERFORMANCE
 1. Only load whatever is needed
@@ -100,7 +101,19 @@ TO IMPROVE PERFORMANCE
 or inline css
 - It's fast, but we have to apply this to every single element
 
-
 -> 1~4 are rather done automatically nowadays, this is just a reference to what's happening under the hood
 
+JS
+Once a script tag is discovered in html, dom construction is paused and script is requested from the server
+-> parses that and when it's done, page will get rendered by going through the render tree & layout & paint
+1. Load scripts asynchronously
+- <script async> tells browser to make another thread download js file
+- if core functionality needs js, use async and if core functionality doesn't need js use defer
+2. Defer loading of scripts
+3. Minimize DOM manipulation
+4. Avoid long running JS
+
+DOMContentLoaded(now we can build render tree) -> load(when the webpage is completely loaded)
+
+*when js changes DOM -> redraw render tree -> layout and paint(pixels on the screen)
 
