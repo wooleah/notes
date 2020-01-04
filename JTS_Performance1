@@ -81,7 +81,7 @@ Now let's think about WHAT HAPPENS to files when it arrives at the browser -> Ho
 - THAT WHOLE PROCESS IS CALLED THE CRITICAL RENDER PATH
 What happens first:
 1. HTML: when html arrives browser reads(parses) it into vocabularies it understands and creates tree model of html element(DOM), and while building that when it sees external resources it starts downloading all of those(CSS, JS are higher priorities, images lower).
-- we want to load the CSS as soon as possible, and JS as late as possible 
+- we want to load the CSS as soon as possible, and JS as late as possible(because JS requires HTML and CSS parsing to finish before it can be run), so if you place JS tag at the top(head), then it blocks page render.
 2. CSS: generate tree model CSS OM(CSS object model) - has styling information attached to the tree nodes
 -> when browser sees javascript tag it grabs it from the server -> js file is read by the browser -> execute changes js file wants
 -> browser combines DOM, CSS OM and creates a render tree -> browser uses this tree to figure out the layout -> construct the layout
