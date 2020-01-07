@@ -117,3 +117,21 @@ DOMContentLoaded(now we can build render tree) -> load(when the webpage is compl
 
 *when js changes DOM -> redraw render tree -> layout and paint(pixels on the screen)
 
+// Exercise 4
+How to improve a website
+1. check html
+- many css files(why do we have all of them, do we really need this, I could get rid of some of these)
+- move js files to the very end(do we really need these)
+- minimize all js files and bundle them
+2. Lazy loading and media query
+3. Check if you can avoid using massive libraries
+4. Ask questions: do we really need these?
+
+- performance optimization is a never ending thing -> as a senior dev, use your time wisely(focus on the big tickets)
+
+
+
+HTTP/2 - is a protocol to improve latency(how fast we can deliver resources)
+has multiplexing(request to servers are faster here), so combining(bundling) files might not be that faster.
+
+premature optimization is the root of all evil
