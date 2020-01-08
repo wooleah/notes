@@ -1,3 +1,15 @@
 Remember that React, Vue, Angular are just tools
 
-jQuery was very imperative
+jQuery was very imperative, tells the browser exactly what and how to do stuff -> creates lots of inconsistencies
+- constantly keeping track of what changed and what to change is a huge mess(hard to scale and manage)
+
+React does one thing(View) really really good
+- manages to make our website(DOM) change in predictable ways that is easy to scale and easy to manage.
+
+Think in component point of view
+- it works on its own
+
+React has one-way dataflow(data only flows from top -> bottom)
+- less bug-prone code
+React has virtual DOM(js object that describes the website)
+- we want less DOM manipulation because browser has to work really hard
