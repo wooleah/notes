@@ -18,3 +18,8 @@ React has virtual DOM(js object that describes the website)
 Use npx to create-react-app(guranteed updated version of reactjs)
 
 serviceWorker in index.js is automatically unregistered, it's used to make PWA
+
+
+React is the core library(view, dom manipulation)
+and ReactDOM is the glue
+- seperation of concerns in React components are that each components are only concerned about themselves
