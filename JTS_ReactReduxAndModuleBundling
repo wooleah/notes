@@ -50,6 +50,7 @@ class ErrorBoundary extends Component {
 componentDidCatch lifecycle hook
 - runs when there's an error in that component
 
-
+How can redux improve a react app
+** AS A SENIOR DEV we have to think about pros and cons
 
 
