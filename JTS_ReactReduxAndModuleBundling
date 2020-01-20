@@ -82,6 +82,7 @@ Middleware
 - createStore(rootReducer, applyMiddleware(middleware()))
 
 Async
-- redux-thunk: checks if any actions return function instead of an object
+- redux-thunk: checks if any actions return function instead of an object(redux doesn't understand when action returns a function)
+-> by adding this we're now listening to actions, and when func gets returned by an action, redux-thunk passes dispatch func to it. So it can call some actions
 
 
