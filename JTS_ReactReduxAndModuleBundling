@@ -30,3 +30,7 @@ Components are just js code snippets and reactjs allows us to write JSX and use 
 Refactoring
 - components: functional components(pure component)
 - containers: class components(that has lifecycle hooks, smart components)
+
+package.json (npm update)
+- in dependencies if you put '^' in front of the dependencies, it means to upgrade as much as possible(not major version upgrade)
+- you can also add > or <
