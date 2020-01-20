@@ -25,3 +25,8 @@ and ReactDOM is the glue
 - seperation of concerns in React components are that each components are only concerned about themselves
 
 Components are just js code snippets and reactjs allows us to write JSX and use react functionalities.
+
+
+Refactoring
+- components: functional components(pure component)
+- containers: class components(that has lifecycle hooks, smart components)
