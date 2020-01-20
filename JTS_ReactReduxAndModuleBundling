@@ -52,5 +52,36 @@ componentDidCatch lifecycle hook
 
 How can redux improve a react app
 ** AS A SENIOR DEV we have to think about pros and cons
+- redux follow 3 principles
+1. single source of truth
+2. state is read-only
+3. changes using pure functions
+
+all the actions go through one reducer(pure function) and that changes the state, and react gets notified with that change
+
+Flux pattern(redux uses this pattern)
+Action -> Dispatcher -> Store -> View
+- before this we used MVC pattern Action -> controller -> Model(many of them) -> View(many of them)
+
+Only containers(smart components) are going to know about redux store, not functional components
+(react-redux connects react and redux)
+
+Actions are just objects, and it changes state in related reducer
+- later we'll have many different reducers, and we have to gather them into one rootReducer and pass that to createStore in index.js
+(use combineReducers from 'redux' -> combineReducers({searchRobots, requestRobots});)
+- You need {createStore} from redux, {Provider, connect} from react-redux
+- After creating the store, pass it to Provider(wrapping the App components) via props
+- Provider component is going to pass store down the component tree
+- dispatch sends actions to reducer
+
+Wrap export with connect()(App)
+- connect() is a HOF which returns another function
+
+Middleware
+- you can add middlewares like follow: action -> middleware -> reducer with {applyMiddleware} from 'redux'
+- createStore(rootReducer, applyMiddleware(middleware()))
+
+Async
+- redux-thunk: checks if any actions return function instead of an object
 
 
