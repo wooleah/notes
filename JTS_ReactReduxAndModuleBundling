@@ -34,3 +34,22 @@ Refactoring
 package.json (npm update)
 - in dependencies if you put '^' in front of the dependencies, it means to upgrade as much as possible(not major version upgrade)
 - you can also add > or <
+
+Error boundaries
+- You should use a Error Boundary every time if you want to inform the user about something he/she did wrong or the server did wrong
+- Don't use it everywhere because it'll take more resources
+
+Access props in the constructor()
+-> 
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+  }
+}
+
+componentDidCatch lifecycle hook
+- runs when there's an error in that component
+
+
+
+
