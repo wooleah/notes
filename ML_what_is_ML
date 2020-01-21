@@ -1,0 +1,9 @@
+Machine Learning
+- we have more data now, and we use improved computational power and big data to predict something that helps us make business decisions.
+- supervised learning(classification, regression) is for labeled inputs and unsupervised learning(clustering, association rule learning) is for unlabeled inputs
+- reinforcement is teaching machine in real time with trial and error
+
+Data science = Data analysis + ML
+Data analysis: finding patterns in data
+Machine learning: running experiments on a set of data with the hopes of finding actual insights from it
+- given the inputs and outputs, computer tries to figure out what instruction is
