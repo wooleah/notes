@@ -85,6 +85,15 @@ Async
 - redux-thunk: checks if any actions return function instead of an object(redux doesn't understand when action returns a function)
 -> by adding this we're now listening to actions, and when func gets returned by an action, redux-thunk passes dispatch func to it. So it can call some actions
 
+1. When action is dipatched, all reducers in rootReducer(created by combineReducers) runs from top -> bottom
+- So basically all switch statement run, and that's why action type is important when you dispatch an action
+- Also that's why you MUST RETURN state for default case in switch statement
+(because all actions, when dispatched, go through each and every reducer included in rootReducer)
+
+2. Reducer actually works as store in Vue
+- reducer has both states and mutations
+- when passed to mapStateToProps(state), state obj has properties(names of the reducers)
+
 ---
 
 Module bundling
