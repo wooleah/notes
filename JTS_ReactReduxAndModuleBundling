@@ -121,24 +121,36 @@ module.exports = {
   }
 }
 3. install babel to support all browsers
-- install babel-core, babel-loader(loader for webpack), babel-preset-env(depending on the browser that's running the code, it knows which es6 features it doesn't support)
+- install @babel/core, babel-loader(loader for webpack), @babel/preset-env(depending on the browser that's running the code, it knows which es6 features it doesn't support)
 4. npm script update for babel(could be .babelrc)
 "babel": {
     "presets": [
-      "env",
-      "stage-2",
-      "react"
+      "@babel/env",
+      "@babel/react"
     ]
   },
 5. load babel in webpack config
 module: {
   rules: [{
-    test: /\.(.js|.jsx)$/, -> if it passes this test
+    test: /\.(js|jsx)$/, -> if it passes this test
     exclude: /node_modules/, -> but it's not in node modules
     use: ['babel-loader'] -> transpile that file through babel-loader
   }]
 },
 resolve: {
-  extensions: ['js', 'jsx']
+  extensions: ['.js', '.jsx']
 }
 *resolve allows us to omit js, jsx file extensions(automatically assume it's those files)
+6. add eslint-loader module to webpack
+  module: {
+    rules: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: ['babel-loader']
+    }, {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: ['eslint-loader']
+    }],
+  },
+7. install eslint and eslint-loader, create .eslintrc config file
