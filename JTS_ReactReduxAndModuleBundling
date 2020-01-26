@@ -169,6 +169,7 @@ npm install --save-dev eslint eslint-loader babel-eslint
 OR
 
 go parcel(zero configuration)
+- parcel is smart enough to know how to bundle with just "start": "parcel index.html" npm script
 
 
 
