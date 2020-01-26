@@ -96,6 +96,29 @@ Async
 
 ---
 
-Module bundling
-Parcel, webpack
+Module bundling(Parcel, webpack)
 
+Webpack
+- in development mode, we're going to serve buldled file through webpack server
+- install webpack, webpack-dev-server, webpack-cli
+- because set up is cumbersome, use create-react-app, but you can always read doc and configure it yourself
+
+1. npm script setup
+- "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+2. basic webpack config setup
+- write in module.exports
+```
+module.exports = {
+  entry: [
+    './src/index.js'
+  ],
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  devServer: {
+    contentBase: './dist'
+  }
+}
+```
