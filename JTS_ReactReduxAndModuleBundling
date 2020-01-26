@@ -154,3 +154,17 @@ resolve: {
     }],
   },
 7. install eslint and eslint-loader, create .eslintrc config file
+npm install --save-dev eslint eslint-loader babel-eslint
+{
+  parser: "babel-eslint", -> from babel-eslint
+  "rules": {}
+}
+8. Because writing every single eslint rules are tedious, download airbnb or google style guide
+- npx install-peerdeps --dev eslint-config-airbnb
+9. extend those plugins in .eslintrc
+"extends": [
+    "airbnb"
+  ]
+
+
+
