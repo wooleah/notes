@@ -1,1 +1,7 @@
+How to optimize code & Code splitting
+Progressive web app(looks like mobile app & works offline)
+
+Once downloaded, one of the JS's heaviest cost is parse and compile(JS engine does this work)
+
+
 
