@@ -166,5 +166,9 @@ npm install --save-dev eslint eslint-loader babel-eslint
     "airbnb"
   ]
 
+OR
+
+go parcel(zero configuration)
+
 
 
