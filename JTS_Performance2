@@ -2,6 +2,14 @@ How to optimize code & Code splitting
 Progressive web app(looks like mobile app & works offline)
 
 Once downloaded, one of the JS's heaviest cost is parse and compile(JS engine does this work)
+- So basically parse/ompile/execution of JS takes time(quite a bit of time)
 
+Angular did Ahead of Time compilation(comiple the JS code and ship that instead of browser JIT comilation)
+-> significantly reduced JS parse/compile time, but there's pros and cons to it
 
+Before shipping the product, test it in WebPageTest like websites to see if it can run normally in other devices
+- we want to reduce 1. time to meaningful paint, 2. time to interactive
 
+JS can benefit from code splittin(progressive bootstraping)
+- start with the minimum code for current page, then later lazy load or unlock different pages
+VENDOR files are loaded in the beginning(react, react dom and third party libraries)
