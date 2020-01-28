@@ -42,8 +42,11 @@ Different types of code splitting
 2. Component based(code split on a component level)
 - react loadable
 
+-> This approach is too cumbersome -> use React.lazy or loadable components
 
+--------------
 
+How to improve React performance
 
 
 
