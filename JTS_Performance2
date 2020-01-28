@@ -13,3 +13,37 @@ Before shipping the product, test it in WebPageTest like websites to see if it c
 JS can benefit from code splittin(progressive bootstraping)
 - start with the minimum code for current page, then later lazy load or unlock different pages
 VENDOR files are loaded in the beginning(react, react dom and third party libraries)
+
+With create-react-app, if we put the import on the top of our code, webpack detects code splitting
+- webpack knows that it's dynamic import and it'll only import it when that piece of code is requested
+
+One way of code splitting:
+render() {
+  return <this.state.component />
+}
+-> save Components in state after importing it when route changes, then this weird syntax will work
+*in onRouteChange
+if (rouet === 'page3') {
+  import ('./components/Page3').then(Page3 => this.setState({route: route, component: Page3.default}))
+  // because Page3 is default exported
+}
+
+You can make AsyncComponent component that returns class component
+- takes importComponent as an argument, and awaits for that and save it in the state
+- then render it (return this.state.component ? <Component {this.props} /> : null
+
+Code splitting can induce flashing(you have to decide to adopt this or not)
+
+-> Instead of AsyncComponent you can use react hook(lazy and suspense)?? ** check
+
+Different types of code splitting
+1. Route based(most of the time you use this)
+- react router
+2. Component based(code split on a component level)
+- react loadable
+
+
+
+
+
+
