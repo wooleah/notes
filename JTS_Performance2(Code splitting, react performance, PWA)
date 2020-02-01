@@ -63,6 +63,14 @@ How to avoid unnecessary re-renders
 this.setState(state => {
       return { count: state.count + 1 };
     });
-    
-2. you can use PureComponent or React.memo(ized) for stateless components
+- don't overuse it since it could hinder performance
+
+2. you can use React.memo(ized) for stateless components
+3. you can use PureComponent for class based components to only re-render when prop changes
+- caveat is that this does shallow comparison(it might miss some prop changes if you use deeply nested objects)
+- writing your own shouldComponentUpdate has more control
+4. You can use why did you update library
+
+Tree shaking(done by webpack automatically)
+- removed unused code(if you use large library but only use one function from it, it discards the rest)
     
