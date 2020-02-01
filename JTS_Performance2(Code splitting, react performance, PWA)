@@ -48,5 +48,13 @@ Different types of code splitting
 
 How to improve React performance
 
+1. How to see the performance
+- in local development -> ?react_perf
+- by doing this, chrome dev tool gets what component was doing in performance tab(in cpu - timing)
+- [update] -> this is the lifecycle
+- because passing props(when it changes) cause re-render, have to be careful not to make giangantic passing chain
+2. use react dev tool (chrome extension)
+- changes from green to red when renders a lot
 
-
+How to avoid unnecessary re-renders
+1. use lifeCycles like shouldComponentUpdate
