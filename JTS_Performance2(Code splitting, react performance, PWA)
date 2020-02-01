@@ -71,6 +71,6 @@ this.setState(state => {
 - writing your own shouldComponentUpdate has more control
 4. You can use why did you update library
 
-Tree shaking(done by webpack automatically)
+Tree shaking(done by webpack automatically) - it may not be perfect
 - removed unused code(if you use large library but only use one function from it, it discards the rest)
-    
+- Babel preset(env) does some of this for you    
