@@ -57,4 +57,12 @@ How to improve React performance
 - changes from green to red when renders a lot
 
 How to avoid unnecessary re-renders
-1. use lifeCycles like shouldComponentUpdate
+1. use lifeCycles like shouldComponentUpdate (for class based components)
+*in vuejs it's automatically tracked
+- remember that setState is async
+this.setState(state => {
+      return { count: state.count + 1 };
+    });
+    
+2. you can use PureComponent or React.memo(ized) for stateless components
+    
