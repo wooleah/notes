@@ -1,1 +1,42 @@
+PWA(Google's idea) -> Apple doesn't like it that much(slow on implementing this idea)
+- runs on all platforms
+- has icons, faster(mobile in mind)
+- works offline
+- you can add it to the home screen
+*check https://whatwebcando.today/
+Real use cases:
+1. twitter made this as well and moved all their mobile traffic to PWA(create-react-app)
+2. Uber and Lyft
+3. pokedex.org -> for studying
+4. https://hnpwa.com/ -> hackernews pwa page
+*You can check App Manifest in Application tab
 
+
+What is the value of this tech?
+- Enhances UX
+
+Create-react-app has this setup out of the box
+
+**Lighthouse by Google** (already implemented in chrome dev-tool Audits tab)
+- chrome extension that tells us how close our app is to the PWA
+- used as an indicator
+
+- Things you need to know before making a PWA
+A. HTTPS(PWA requires HTTPS for security reasons)
+- Google is really pushing it
+*use letsencrypt.org to get free certificate or cloudflare
+- also github pages automatically implement this
+
+B. app manifest
+- create-react-app generates this for you out of the box
+- simple JSON file that explains how that app should look on the home screen and such
+*html head meta="viewport" really helps with different screen sizes, and optimized it, so it's a MUST
+https://developers.google.com/web/tools/lighthouse/audits/has-viewport-meta-tag
+- you can make favicon with realfavicongenerator.net, and also customize and preview splash screen for our manifest file
+
+C. Service worker(it's a script that your browser runs on the background)
+- separate from the web-page web-app(used for features that doesn't need a webpage or UI)
+- think of it as another worker thread(programmable proxy): allows us to customize what happens on each request(this is why PWA works offline)
+- push notification also works with this(still on the work)
+- in create-react-app this is serviceWorker.js (check with https://jakearchibald.github.io/isserviceworkerready/)
+- when serviceWorker is activated and registered, it's either going to be terminated or run on background to fetch messages
