@@ -58,3 +58,9 @@ if ('serviceWorker' in navigator) {
 }
 - add the manifest file
 - set sw-precache-config.js
+
+How do we create PWA?
+1. deploy it on the web (using gh-pages package)
+- https://create-react-app.dev/docs/deployment/#step-2-install-gh-pages-and-add-deploy-to-scripts-in-packagejson
+2. change serviceWorker.unregister to register
+3. audit and improve low scores
