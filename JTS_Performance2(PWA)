@@ -40,3 +40,21 @@ C. Service worker(it's a script that your browser runs on the background)
 - push notification also works with this(still on the work)
 - in create-react-app this is serviceWorker.js (check with https://jakearchibald.github.io/isserviceworkerready/)
 - when serviceWorker is activated and registered, it's either going to be terminated or run on background to fetch messages
+
+Why do we need this?
+- Without the serviceWorker website simply requests files to the server and gets it
+- But with the serviceWorker(network proxy), website talks to SW first
+1. it intercepts the request made to the network
+2. checks if it really needs that request(Web api: Cache api) - Cache Storage in Application tab(chrome dev-tool)
+3. if not, we talk to the network and get those files
+
+What if we didn't have creat-react-app
+- with library(sw-precache) build react app with --config=sw-precache-config.js
+- and in index.html, we do
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
+- add the manifest file
+- set sw-precache-config.js
