@@ -35,3 +35,11 @@ basket = ['basketball', 5];
 
 reference
 - https://github.com/Microsoft/TypeScript-Vue-Starter#typescript-vue-starter
+
+- You can do type assertion like dart with x as string -> can use string methods
+- Be careful with using any(no point of using typescript)
+- never shows no error when there's no reachable endpoint
+- interface and classes are used a lot in react
+- you can make properties private in typescript(default to public)
+- you can set more than one type with Union type like below
+let food = string | number | boolean = true;
