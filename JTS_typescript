@@ -42,4 +42,8 @@ reference
 - interface and classes are used a lot in react
 - you can make properties private in typescript(default to public)
 - you can set more than one type with Union type like below
-let food = string | number | boolean = true;
+let food: string | number | boolean = true;
+
+// inferred type
+let x = 4; -> tsc thinks we did let x: number = 4;
+x = 'test';
