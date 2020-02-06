@@ -1,0 +1,8 @@
+Why are we considering SSR now?
+-> Websites in the past
+- request made to the server, and server returns fully rendered html page
+-> SPA got popular
+- websites has one html file, rest is done with js(navigating between links)
+-> 2 major issues
+1. more js is sent to the client on the initial request(takes longer to get sent and execute) - slower to load
+2. SEO optimization
