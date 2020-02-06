@@ -47,3 +47,7 @@ let food: string | number | boolean = true;
 // inferred type
 let x = 4; -> tsc thinks we did let x: number = 4;
 x = 'test';
+
+Declaration files: files that allows you to descript the shape the code that is written in it
+- adding types for tsc to understand 3rd party lib(allows us to use types for react and vue and etc..)
+- DefinitelyTyped -> community based(because libraries don't usually come with declaration files)
