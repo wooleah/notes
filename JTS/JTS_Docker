@@ -28,3 +28,13 @@ frontend - Load balancer(distributes clients to different api servers so we don'
 Load balancer - API server1
               - API server2(clones)...
 API server - Database, Redis, ...etc
+
+
+
+
+
+
+
+
+
+
