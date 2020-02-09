@@ -1,0 +1,14 @@
+Because setting up env is annoying, people used virtualization techinique to take care of that
+and docker container uses host OS(they don't have their own OS like virtual machines), it's a lot faster
+- fast and easy access to run small apps(multiple of those to make monolithic app -> container orchestration: kubernetes)
+
+How it works
+Host: your laptop(machine that hosts your container)
+Container: created with Docker on top of Host
+Image: Inside the container, Docker uses this to bundle your application into a standalone package that can live inside of a container
+- it's just a file that describes what container should do
+- inside the image I can say I want node server, then Docker reads it and generates a container that runs node for us
+- env inside the container is completely isolated
+- also has a writable file system(extra functionality)
+- Docker executes this image in container
+
