@@ -51,3 +51,18 @@ x = 'test';
 Declaration files: files that allows you to descript the shape the code that is written in it
 - adding types for tsc to understand 3rd party lib(allows us to use types for react and vue and etc..)
 - DefinitelyTyped -> community based(because libraries don't usually come with declaration files)
+
+
+React typescript
+- in stless component, make interface with nameStlessProps and assign it to const componentName: React.SFC<nameStlessProps>
+
+- Consider types for stless components
+type Props = {
+  children?: JSX.Element
+}
+? means that it might not have children
+
+interface ISearchBoxProps {
+  searchChange(event: React.SyntheticEvent<HTMLInputElement>): Function
+}
+- event that is coming from an input element

@@ -1,8 +1,8 @@
-Why are we considering SSR now?
--> Websites in the past
-- request made to the server, and server returns fully rendered html page
--> SPA got popular
-- websites has one html file, rest is done with js(navigating between links)
--> 2 major issues
-1. more js is sent to the client on the initial request(takes longer to get sent and execute) - slower to load
-2. SEO optimization
+SSR
+- render page on the server and send it to the client so client sees the page(not interactive yet) before js are fully loaded
+
+Basically the only difference between CSR and SSR(to user) is that SSRendered page looks like it loads a lot faster
+
+Create react element from the server and send it to the client
+- using renderToString from 'react-dom/server'
+- and on the client side call ReactDOM.hydrate(), then react will preserve server-side rendered markup and later attach event handlers(we need window object for this)
