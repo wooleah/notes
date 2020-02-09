@@ -12,3 +12,19 @@ Image: Inside the container, Docker uses this to bundle your application into a 
 - also has a writable file system(extra functionality)
 - Docker executes this image in container
 
+Docker hub(it's like npm)
+- community already created many images
+- you would most likely use this instead of writing your own images
+
+What we're going to do in JTS course
+1. create Docker container that will connect to the frontend(smartbrain)
+2. We'll have node express api in this container
+3. implement postgres and redis(caching, session management)
+4. with all of those setup in a single container we can easily access this app
+
+How other companies are doing this
+frontend - Load balancer(distributes clients to different api servers so we don't clog up one api server when there are tons of req)
+
+Load balancer - API server1
+              - API server2(clones)...
+API server - Database, Redis, ...etc
