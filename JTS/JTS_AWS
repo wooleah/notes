@@ -1,1 +1,21 @@
+Problem: Service got larger and managing all the servers and dbs are getting more and more difficult
+Solution: make other people do it(+ take responsibilities)
 
+AWS
+- cloud infra as a service(rent)
+- choose solutions you need and only pay for those
+- on prem datacenter(server on your own machine) is becoming less common because of security and reliability, scaling
+
+What can they provide?
+- load balancers
+- scaling when user grows
+- push notification, badges
+- and tons more
+
+Competitors(They offer different services)
+- Microsoft Azure
+- GCP(Google cloud platform)
+- IBM(not really in the market)
+
+*This is the field of DevOps and most likely web devs won't work on this(because there are people dedicated to this field)
+- but it's important to know how this works with web dev stack
