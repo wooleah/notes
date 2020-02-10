@@ -35,3 +35,16 @@ CloudFront: Web server that speeds up distribution of our static files(CDN)
 DynamoDB: Fast nosql db, automatic scaling, key-value storage model
 - good performace and reliability
 - used for web, mobile, gaming, IoT, ...etc
+
+Google aws flow: show what people use to make their architecture, how their logic flows through their app
+- you can check this as well
+
+Example architecture
+1. CloudFront to serve static files worldwide
+2. EC2 to handle REST api
+3. user info in DynamoDB(profiles)
+4. when user submit image -> EC2 -> Lambda function store that to S3 bucket
+
+It's important to understand infra as a senior dev(No need to deep dive into DevOps field but just knowing how thing connect are important)
+
+
