@@ -19,3 +19,19 @@ Competitors(They offer different services)
 
 *This is the field of DevOps and most likely web devs won't work on this(because there are people dedicated to this field)
 - but it's important to know how this works with web dev stack
+
+Some of their services
+EC2(bare metal machine): compute whatever you want(think of it as a basic server you can run)
+S3(Object storage service): each object is stored as a file with it's metadata and id(key)
+- we can upload, store, download pretty much any file
+- size limit of 5gb
+Lambda: run code for any type of app and backend service, you just provide a function and conditions
+- zero config, setup
+- automatic scaling
+CloudFront: Web server that speeds up distribution of our static files(CDN)
+- we put html, js, css on cloudfront and amazon sends this to datacenters(like CDN)
+- make our app very fast(because amazon has server everywhere)
+- automatic https
+DynamoDB: Fast nosql db, automatic scaling, key-value storage model
+- good performace and reliability
+- used for web, mobile, gaming, IoT, ...etc
