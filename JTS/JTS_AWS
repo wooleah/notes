@@ -47,4 +47,9 @@ Example architecture
 
 It's important to understand infra as a senior dev(No need to deep dive into DevOps field but just knowing how thing connect are important)
 
-
+Monolithic vs Micro-services
+Because now it's easier to manage apps with AWS and Docker and so on, idea of building smaller inter-connected services are popular
+- isn't monolithic better cause it's simple? Might be, depends on the company
+- smaller chunks are better for testing and developing, and publishing
+- one module works really well(pure functions)
+- It's going to become more and more popular because of it's effeciency
