@@ -13,9 +13,9 @@ What can they provide?
 - and tons more
 
 Competitors(They offer different services)
-- Microsoft Azure
-- GCP(Google cloud platform)
-- IBM(not really in the market)
+- Microsoft(Azure)
+- Google(Google cloud platform)
+- IBM(Open whisk)
 
 *This is the field of DevOps and most likely web devs won't work on this(because there are people dedicated to this field)
 - but it's important to know how this works with web dev stack
@@ -52,4 +52,16 @@ Because now it's easier to manage apps with AWS and Docker and so on, idea of bu
 - isn't monolithic better cause it's simple? Might be, depends on the company
 - smaller chunks are better for testing and developing, and publishing
 - one module works really well(pure functions)
-- It's going to become more and more popular because of it's effeciency
+- It's going to become more and more popular because of it's efficiency
+
+Problem with having own server
+- Have to pay when no one's accessing the service
+-> Serverless app (we hand them code to run)
+store the function in db and run it when there's a request
+-> cold start problem(have to grab it from db and starting it takes time)
+
+
+Use a tool Serverless to not worry about configuration
+npm i -g serverless
+sls create -t aws-nodejs
+
