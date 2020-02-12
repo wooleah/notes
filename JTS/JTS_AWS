@@ -64,4 +64,19 @@ store the function in db and run it when there's a request
 Use a tool Serverless to not worry about configuration
 npm i -g serverless
 sls create -t aws-nodejs
+-> change configuration in serverless.yaml
+
+Now add IAM user and change service name(in serverless.yaml) to that username
+then add credential to sls with below command
+sls config credentials --provider aws --key <KEY> --secret <SECRET>
+then sls deploy
+- serverless zips all our files, saves it to s3 bucket
+then you can invoke it with sls invoke --function <name>
+*you can also invoke it locally(simulate it) with sls invoke local --function <name>
+
+API gateway(aws service)
+- if you add http event in serverless.yml it uses API gateway
+
+
+
 
