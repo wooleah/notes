@@ -5,4 +5,4 @@ Basically the only difference between CSR and SSR(to user) is that SSRendered pa
 
 Create react element from the server and send it to the client
 - using renderToString from 'react-dom/server'
-- and on the client side call ReactDOM.hydrate(), then react will preserve server-side rendered markup and later attach event handlers(we need window object for this)
+- and on the client side call ReabctDOM.hydrate(), then react will preserve server-side rendered markup and later attach event handlers(we need window object for this)
