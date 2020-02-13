@@ -1,0 +1,40 @@
+Because setting up env is annoying, people used virtualization techinique to take care of that
+and docker container uses host OS(they don't have their own OS like virtual machines), it's a lot faster
+- fast and easy access to run small apps(multiple of those to make monolithic app -> container orchestration: kubernetes)
+
+How it works
+Host: your laptop(machine that hosts your container)
+Container: created with Docker on top of Host
+Image: Inside the container, Docker uses this to bundle your application into a standalone package that can live inside of a container
+- it's just a file that describes what container should do
+- inside the image I can say I want node server, then Docker reads it and generates a container that runs node for us
+- env inside the container is completely isolated
+- also has a writable file system(extra functionality)
+- Docker executes this image in container
+
+Docker hub(it's like npm)
+- community already created many images
+- you would most likely use this instead of writing your own images
+
+What we're going to do in JTS course
+1. create Docker container that will connect to the frontend(smartbrain)
+2. We'll have node express api in this container
+3. implement postgres and redis(caching, session management)
+4. with all of those setup in a single container we can easily access this app
+
+How other companies are doing this
+frontend - Load balancer(distributes clients to different api servers so we don't clog up one api server when there are tons of req)
+
+Load balancer - API server1
+              - API server2(clones)...
+API server - Database, Redis, ...etc
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+Performance1: network optimization
+Performance2: frontend optimization
+Performance3: Backend optimization <-- You are here
+
+Topics
+- CDNs
+- Caching
+- DB Scaling
+- GZIP
+- Load Balancing
+
+1. CDNs (Content Delivery Network)
+- caches static files on the server around the world and serves it quickly
