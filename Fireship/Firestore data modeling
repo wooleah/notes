@@ -27,3 +27,54 @@ Some unusual data types
 -> combine these two: make a collection with only those data embedded
 - make tags collection but document id is the user(or post) id (ids match) -> one doc to show the user data, and other to show tags
 example) if you have one post with 50 tags, then you can just read 2 docs
+
+================ Reading ================
+General rule of thumb: Concise and readable query code -> effective data model
+Access pattern to reference data:
+
+get(): return data as a promise
+onSnapshot(): realtime stream of the data
+
+1. single doc read: 
+db.collection('users').doc('id')
+
+2. subcollection read: 
+db.collection('users').doc('id').collection('tokens')
+
+3. Bucket read: 
+db.collection('posts').doc('id')
+db.collection('tokens').doc('id')
+- concurrent read, read two docs with the same ids
+
+4. multiple read:
+const post = await db.collection('posts').doc('postId').get();
+const tagIds = post.data().tags;
+const tagReads = tagIds.map(tag => db.collection('tags').doc(tag).get())
+const tags = await Promise.all(tagReads)
+
+// Reads an array of IDs from a collection concurrently
+const readIds = async(collection, ids) => {
+  const reads = ids.map(id => collection.doc(id).get());
+  const result = await Promise.all(reads);
+  return result.map(v => v.data);
+}
+
+- firebase sdk under the hood does "pipe lining", so if you make multiple requests at the same time it will combine all those request and run them concurrently
+
+================ Querying ================
+1. orderBy
+db.collection('posts').orderBy('date', 'desc') -> default is asc
+- orderBy can be a filter as well
+- remember that you can chain methods like orderBy().limit()
+2. Paginate
+startAfter(lastWeek) - exclusive(not including lastWeek)
+- you can do startAt to be inclusive
+endBefore, endAt(lastWeek)
+3. Where
+db.collection('posts').where('field', 'operator', 'value to compare to')
+: where('date', '==', today)
+- chain where()s to use AND
+- There's no not equals operator(!=) -> do this by making two queriers where of (> and <) amd combine theme
+- array-contains
+
+- make simple query
