@@ -1,0 +1,29 @@
+*Firebase index the fields on a  document automatically which means you can sort, query, filter them
+
+Some unusual data types
+1. geopoint (lat, long)
+2. reference: ref to another doc in db(useful when model is deeply nested)
+--- especially useful for relational data modeling ---
+3. map(hashmap): you can embed this on a doc
+- in sql you would usually normalize this data by making an address table(for example) then associate it with user data with primary, foreign key pair
+-> we can denormalize this data by embedding it in a user doc itself
+(and firestore will also index the fields on this map as well)
+4. array: unique set of values in order
+- use it to embed raw data on the doc or normalize data and join it with different query
+
+================ Main techniques ================
+1. Embedding: adding data directly to a doc(put everything in one doc) instead of normalizing them to their own collection
+- most performant(you just need to read one doc) and cost effective(only if dataset is small enough to fit in 1MB)
+- you can't query any embedded data, you need to read the entire document
+2. Root collection: instead of shoving everything in one doc you make many collections and reference that id in other doc
+- for example post and tags have many to many relationship(you can use this technique here)
+- has flexibility when querying across multiple properties
+3. Subcollection: You can nest the data
+- one to many relationship is setup implicitly(we don't need to setup a tag array like root collection)
+- You can't query across the same property
+4. Bucketing(not the official name)
+- with embedded data we have one doc read -> we might not need some of the data
+- with collection we might need to read multiple docs for a small amount of data
+-> combine these two: make a collection with only those data embedded
+- make tags collection but document id is the user(or post) id (ids match) -> one doc to show the user data, and other to show tags
+example) if you have one post with 50 tags, then you can just read 2 docs
