@@ -142,5 +142,16 @@ Ask yourself: How many items can be in this set?
 - IF it's TRUELY a one-to-one relationship, you don't want to accidentally create another account for same user 
 -> it's impossible in this case
 
+// embedded, all data contained on single doc
+const authorWithAccount = db.collection('authors').doc(userId)
+// shared doc id
+const author = db.collection('authors').doc(userId);
+const account = db.collection('account').doc(userId);
+// join related documents with different IDs
+const getAccount = async(userId) => {
+  const snapshot = await db.collection('authors').doc(userId).get();
+  const user = snapshot.data();
+  return db.collection('accounts').doc(user.accountId);
+}
 
 
