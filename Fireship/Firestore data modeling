@@ -78,3 +78,38 @@ db.collection('posts').where('field', 'operator', 'value to compare to')
 - array-contains
 
 - make simple query
+
+================ Indexes ================
+* In order to query something efficiently at scale it need to have an index
+- by default firestore indexes all your document properties
+
+If you want to create index for multiple properties(points >= 8 && nickname == 'Woojae')
+- for example, you want to query docs that have more than 10 points(you can manually index that)
+-> create composite index on firestore console or write code on your client-side app -> you get error msg saying create index
+-> click -> it makes index
+* this firebase sdk asking you to make index is a better approach
+
+
+================ Security ================
+* Remember that if you read a document, you have to read the entire document
+That's why you want to model your user data in separate collection because someone can scrape it and spam your users
+
+most secure /accounts collection
+match /accounts/{id} {
+  allow read, write: if false;
+}
+
+only that specific user can access /users collection
+match /users/{id} {
+  allow read, write: if id == request.auth.uid;
+}
+
+public data /profiles
+match /profiles/{id} {
+  allow read;
+  allow write: if id == request.auth.uid;
+}
+
+
+
+
