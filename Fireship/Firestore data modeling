@@ -110,6 +110,37 @@ match /profiles/{id} {
   allow write: if id == request.auth.uid;
 }
 
+* If you don't want to expose some data to the frontend -> make separate collection
+
+
+================ Cardinality ================
+Ask yourself: How many items can be in this set?
+1. one-to-few
+- Say for author they would have at most 20 books -> embed it on the parent document
+2. one-to-hundreds
+- If authors(or just some) have around 100 books then embeding it on the parent doc is not really ideal
+-> go with bucket document(document ID will be the title/id of the book)
+-> So book title/id will be stored in /authors doc and in separate /books doc details will be stored
+- this is good if all book data can fit in 1MB + you don't need to query books in any sophisticated way
+3. one-to-billions
+- If authors can write millions, billions of books
+- set with high cardinality -> you want a collection(sub or root)
+- because collections can store unlimited amount of doc and can be queried efficiently
+- size of the collection doesn't affect performance(amount of data you're sending over the network matters)
+- IT'S OK TO MAKE LARGE COLLECTIONS
+
+
+================ Models ================
+1. One to one
+- think about whether the data is ok to be exposed(if it is, simple embed it in the parent document)
+- store sensitive data in separate document with same document ID(make two different collections)
+- you don't necessarily have the same document ID, you can make a field accountID in /authors collection and save that accountID in /accounts collection
+-> this methods is bit less efficient
+- we have to first read authors documnent and read accountID and then read that secondary document
+- it's not really a big deal but it's best to avoid complexity as much as possible
+- ALSO if you share a doc ID, it enforces uniqueness on this relationship
+- IF it's TRUELY a one-to-one relationship, you don't want to accidentally create another account for same user 
+-> it's impossible in this case
 
 
 
