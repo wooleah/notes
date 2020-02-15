@@ -1,0 +1,19 @@
+============== What is serverless ==============
+It's a pre-configured nodejs server -> you don't have to stuff that you normally have to do such as:
+load-balancing, networking, ..etc
+drawback: what you can do is limited(nodejs version for example)
+
+Two basic type of cloud functions
+1. HTTP
+- allow you to build RESTful endpoints(you get an url that you can call from client-side)
+2. Background
+- function that automatically gets fired when some event happens
+- user signs up, some file is uploaded, something changes on analytics
+
+-> This approach allows you to build more reactive infra with less code with less cost
+- pay as you go(pay as much as you used)
+- scale in linear way
+- everything you do on your backend is isolated microservice, so you don't have to worry about affecting other logics when changing something
+*Other popular approach is to write all of your code in monolith and deploy it to cloud as a docker container
+- all your code is contained in a single code base and shared throughout that project
+- to scale you deploy it with more docker container
