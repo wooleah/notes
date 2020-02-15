@@ -155,3 +155,207 @@ const getAccount = async(userId) => {
 }
 
 
+2. One to many
+- the most common relationship
+*the most important thing is understanding the tradoffs when choosing data-model in firestore
+- embedding an array of maps on the parent document(great when you have small cardinality)
+(use it when you don't need to query those items in some other documents)
+
+what if we want to query book that were published on the same day
+-> not effecient
+
+So when you're dealing with one to many relationship, ask yourself this question
+"Do I need to query this data?"
+If yes, consider subcollection -> but then still I can only query for one author
+"Do I need to query across multiple parents?"
+If yes, model book as root collection, and each doc would have author field that references author docId
+-> this is the most flexible way of modeling one to many relationship 
+
+3. Many to Many
+- most common and complex
+- let's say you want review for each book -> make middleman collection reviews
+reviews collection will have authodId, and book Id as its fields and it would have compoundId(authorId + bookId)
+-> this way of creating id makes user write only one review for one book
+
+You can achieve this with embedding reviews in books
+
+
+================ Duplication ================
+
+It's bad in SQL world but not in NoSQL world
+
+Example: You want to show username for every comment
+/users collection and /comments collection are connected with userid(docID of user is saved in comments)
+- good one to many relationship
+-> instead of reading all the user documents with userid saved in those comments, you duplicate username in comments doc
+-> if you need a lot of reads but not a lot of writes, you use data duplication
+- avoid if you might have to change certain value frequently(if we copy user bio in the comment doc and user changes it, and that user has 5000 comments, then we have to write 5000 doc)
+
+You are decreasing the complexity for read, but you are increasing the complexity for writes
+
+
+================ Aggregation ================
+Process of calculating some values based on a collection of documents
+-> check more in cloud functions course
+
+cloud functions: listen to change event on a doc and run some code on the backend
+(onCreate, onDelete, onUpdate, onWrite)
+
+It's good to use with a middleman collection
+example) likes on a book
+1. add a cloud function that listens to likes document
+2. add total count of like to the book document everytime it changes
+- we never have to read the likes document directly to know how many likes a book has
+- this like documents are only read by the cloud function
+-> reduce the total number needed on the frontend(less data over the network)
+
+
+================ Data model: likes/votes ================
+Similar to many-to-many model with middleman collection
+3 root level collection(users, votes, posts)
+
+/users: has total number of upvotes from other users
+docId: username(or id)
+
+/posts: has total number of upvotes for that post
+docId: postname(or id)
+
+/votes:
+docId: composite id (userid_postid) for uniqueness
+value: -1, 0, 1
+has both userId and postId as field
+-> so cloud function can calculate both total user upvotes and post upvotes
+
+middle /votes collection will have many docs but we need single read on user or post doc to know the total upvote number
+- we're using /votes collection just to keep track of the relationship but we don't show that on the ui
+
+
+================ Model: Role-based authorization ================
+After user authentication you have to lock down certain parts of the app
+- user authorization is usually tied to the payment
+
+Two fundamental ways to model access control in Firebase
+1. Role based
+2. Access control list
+
+Role based authorization
+- alternative: control access with custom claims and security rules
+
+just add roles array field in user doc(/users collection has role data)
+This is a good for services like netflix where if you're subscribed, you can access all contents
+, but not for google or apple where you can only access content you paid for(individual content has info who can access it)
+
+actually firestore rules makes this work
+// first match the doc
+match /posts/{document} {
+  function getRoles() {
+    return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles;
+  }
+
+  allow read;
+  allow update: if getRoles().hasAny(['admin', 'editor']) == true;
+  allow write: if getRoles().hasAny(['admin]) == true;
+}
+
+-> Nice beacuse we don't need to write any backend code
+drawbacks: we have to execute a doc read to check roles everytime user tries to run an update or delete operation
+-> if this is your concern, check custom claims
+
+
+================ Model: Access control list ================
+Role based authorization is good if you have global authorization rule
+Access control list is the one if content should decide who can access
+- liks a digital product and only who bought that can access that content
+
+in /posts collection a post doc can have members array with userids who have access to that post
+- we could create a separate access control list under the user doc and save all the posts that user has access to
+
+You want to save the relational data on whichever entity that is going to have fewer relationship
+- if we only have some users that can access a post, then saving users in post doc is fine
+- but if there are billions of users who need access to that post, then saving access control list under the user doc is better
+(because a user has finite number of content that they can buy)
+
+firebase rule:
+if we embed the data on the host doc, then we don't need extra doc read
+
+
+match /posts/{document} {
+  allow read;
+  allow write: if resource.data.members.hasAny(request.auth.uid) -> currently logged in user
+}
+
+On backend you would have the logic of adding user to the document(members field) when user pays
+
+You can user both role based auth + access control list if you want to 
+- user doc has user role + post has access control list but instead of userids it has roles that can take action on the doc
+(like canEdit: admin, and user would have roles array with admin, editorx)
+
+
+================ Model: Tree / Hierarchy ================
+Good for threaded comments, deeply nested categories
+
+/comment collection doc: a, b, c, d, e
+a node has parent of false,
+b node has parent of a
+c node has parent of ab
+*with auto generated id you add _ between docIds
+
+you can also save level field in the doc telling how deep that comment(doc) is
+-> user this number to easily travers the length and width of the tree
+
+// start with getting the top level comment
+const topLevel = db.collection('comments').where('parent', '==', false);
+
+const traverseBreadth = (level) => db.collection('comments').where('level', '==', level);
+
+// user clicks on a comment and wanna see all the comment underneath it
+// query on the composit string we added to the doc
+const traverseDepth = id => {
+  return db.collection('comments').where('parent'. '>=', id)
+    .where('parent', '<=', `${id}~`) // query that starts with the parent id + any strings that are longer
+}
+-> basically getting all comments that are longer than the id provided to query but includes that id
+
+================ Model: Social follower feed ================
+Most difficult model: Why?
+
+First look at failed attempts
+1. client queries
+- select * from posts where user in (...userIds) -> if user was following 5 million users it's not gonna work
+2. mass Duplication
+- create a timeline for each individual user and whenever that user(following) does something new, then duplicate that content and copy that
+- you can just read that one user's timeline, but it doesn't scale
+
+ANSWER
+1. 3 data collection (/posts /users /followers)
+2. all data held on the follower doc
+3. follower doc belongs to the user who is being followed
+- followers: keep track of all of the users that are following this user(users field, array of strings)
+- recentPosts map: duplicate of users(who is being followed) post collection (we need to duplicate data but only on one place)
+- lastPost: timestamp(allows us to query all of the recent post)
+
+export const getFeed = async() => {
+  const followedUsers= await db.collection('followers')
+    .where('users', 'array-contains', 'jeffd23')
+    .orderBy('lastPost', 'desc') // since it's a compound query, firestore will give you a warning to make index
+    .limit(10)
+    .get();
+
+  const data = followedUsers.docs.map(doc => doc.data())
+
+  const posts = data.reduce((acc, cur) => acc.concat(cur.recentPosts), []);
+
+  const sortedPosts = posts.sort((a, b) => b.published);
+}
+
+================ Extra - watch several times ================
+
+https://fireship.io/courses/firestore-data-modeling/bonus-top-five/
+
+
+================ Collection group queries ================
+You can query across the several subcollections at the same time AS LONG AS the subcollections have same name
+- useful for 1 to many relationship
+db.collectionGroup('books').where('published', '==', '1974')
+-> will find all books subscollections under author doc
+useful for comments subcollection under a post
