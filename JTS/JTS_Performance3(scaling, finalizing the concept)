@@ -11,3 +11,7 @@ Topics
 
 1. CDNs (Content Delivery Network)
 - caches static files on the server around the world and serves it quickly
+
+
+Load Balancing
+- create your own load balancer(nginx, haproxy), but mostly companies use digitalOcean, aws load balancer

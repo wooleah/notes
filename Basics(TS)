@@ -1,0 +1,5 @@
+Basic types
+- number
+- string
+- boolean: there's no truthy or falsy values
+*REMEMBER ts only helps us before we compile ts -> js(in development)
