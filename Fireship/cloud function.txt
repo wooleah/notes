@@ -45,3 +45,59 @@ firebase deploy --only functions -> deploy all the functions you exported in ind
 Cloud functions are based on expressJs
 - these are invoked manually
 - if there is a backend code you wanna run but there's no event that can trigger it, you can use this
+
+firebase server --only functions
+or npm run serve from /functions (better)
+
+with functions.http.onRequest(req, res)
+you can res.send to the client, and parse req.query, params
+- in the real world you might use url params as an id for a doc from db and return that to the client
+
+Sending errors to the client
+- with response.status(400).send('error message')
+
+
+============== ExpressJs for advanced routing ==============
+install express in /functions dir
+const app = express();
+app.get()..
+export const api = functions.http.onRequest(app);
+
+then when you're done configuring routes -> do firebase serve
+cloud function is hosted at localhost:5000
+- when sending request from localhost to different origin you get an error -> CORS
+
+Using middleware
+app.use(cors({origin: true}))
+by using express you can keep your code DRY and maintainable
+
+study more expressjs to master this
+
+============== Auth functions(background functions) ==============
+List of events that trigger background functions
+- cloud firestore triggers
+- realtime database triggers
+- firebase authentication triggers
+- google analytics for firebase triggers
+- crashlytics triggers
+- cloud storage triggers
+- cloud pub/sub triggers
+
+*Every background function needs to return a promise
+
+1. Auth function
+- When new user signs up, run the function and store that user in the db
+
+export const createUserRecord = functions.auth.user().onCreate((user, context) => {
+  // context is a metadata that can be useful sometimes
+});
+
+defining database directly in the function is going to affect the performance
+
+admin.firestore() to get db
+and inside onCreate we get user and we can use that to get documentReference db.doc(`users/${user.uid}`)
+then return userRef.set() -> write function that returns promise
+*remember that onCreate needs to return a promise
+
+Testing: npm run shell
+firebase shell allows us to test function before deploying it
