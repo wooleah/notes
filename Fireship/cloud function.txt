@@ -17,3 +17,31 @@ Two basic type of cloud functions
 *Other popular approach is to write all of your code in monolith and deploy it to cloud as a docker container
 - all your code is contained in a single code base and shared throughout that project
 - to scale you deploy it with more docker container
+
+
+============== Project setup ==============
+1. Typescript
+2. npm i firebase-tools -g
+
+*keep in mind that cloud function backend is completely isolated nodejs environment and is agnostic to what frontend framework you're using
+
+3. firebase login
+4. firebase init
+
+
+============== Project structure ==============
+Functions are little microservices that handle different task we need for the backend
+- what we export from index.js will be deployed to cloud function's backend
+- we can install our own node dependencies in cloud functions
+ 
+
+============== Deployment ==============
+firebase deploy --only functions -> deploy all the functions you exported in index.js
+- logs are important as well
+- your functions will also be deployed to GCP(your actual source-code can be viewed) + can send test requests
+
+
+============== Intro to HTTP functions ==============
+Cloud functions are based on expressJs
+- these are invoked manually
+- if there is a backend code you wanna run but there's no event that can trigger it, you can use this
