@@ -1,9 +1,9 @@
 ============= Typescript basic types =============
-
-Basic types
 - number
 - string
 - boolean: there's no truthy or falsy values
+- object
+- array
 *REMEMBER ts only helps us before we compile ts -> js(in development)
 
 JavaScript Numbers are Always 64-bit Floating Point
@@ -54,8 +54,21 @@ Write type object
 
 *if you want to use mixed type of array, use 'any' type(be careful), or 'union' type
 
+
+============= Typescript additional types =============
+
 Tuple: fixed length array
 - you can set the type for each item
 - have to explicitly write types (role: [number, string] -> length of 2, each item's type set)
 *We can still push to tuples and typescript won't catch it - it's an exception
 Why use this? -> it's basically a more strict array
+
+Enum: number but has human readable identifier
+enum Permission {
+  ADMIN = 1,
+  AUTHOR,
+  EDITOR,
+  READER
+};
+- you can adjust the starting value(default to zero)
+- you can also set values for each one of them
