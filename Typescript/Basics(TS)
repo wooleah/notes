@@ -4,6 +4,7 @@
 - boolean: there's no truthy or falsy values
 - object
 - array
+- undefined
 *REMEMBER ts only helps us before we compile ts -> js(in development)
 
 JavaScript Numbers are Always 64-bit Floating Point
@@ -57,13 +58,13 @@ Write type object
 
 ============= Typescript additional types =============
 
-Tuple: fixed length array
+1. Tuple: fixed length array
 - you can set the type for each item
 - have to explicitly write types (role: [number, string] -> length of 2, each item's type set)
 *We can still push to tuples and typescript won't catch it - it's an exception
 Why use this? -> it's basically a more strict array
 
-Enum: number but has human readable identifier
+2. Enum: number but has human readable identifier
 enum Permission {
   ADMIN = 1,
   AUTHOR,
@@ -72,3 +73,40 @@ enum Permission {
 };
 - you can adjust the starting value(default to zero)
 - you can also set values for each one of them
+
+3. Any: remove typescript support
+- don't use it
+
+4. Union: for supporting multiple types
+input1: number | string 
+- '+' operator for both number/string works, but ts doesn't know that, so it'll complain
+-> check with typeof (ex: typeof input1 === 'number' && ...etc) -> add flexibility to your type checking
+let food: string | number | boolean = true;
+
+5. Literal: for specific inputs
+convertingOption: 'as-number' | 'as-text'
+
+6. Custom type(type alias): make your own type
+- usually with union type, or union + literal
+- you can use it with nested object as well
+type adminName = 'Woojae' | 'Aleah' 
+type User = {name: string; age: number};
+
+7. optional parameter: use '?:'
+
+
+============= Typescript function types =============
+*if ts can infer the type, let it do it's job
+
+1. void: doesn't return anything
+function printResult(): void
+*if you want to set the return type of function undefined, you should return nothing, check below examples
+
+function printResult(num: number): void {
+  console.log(`result: ${num}`);
+}
+
+function printResult(num: number): undefined {
+  console.log(`result: ${num}`);
+  return;
+}
