@@ -1,5 +1,61 @@
+============= Typescript basic types =============
+
 Basic types
 - number
 - string
 - boolean: there's no truthy or falsy values
 *REMEMBER ts only helps us before we compile ts -> js(in development)
+
+JavaScript Numbers are Always 64-bit Floating Point
+JavaScript numbers are always stored as double precision floating point numbers, following the international IEEE 754 standard.
+-> And so it typescript
+
+Type inference
+- if you initialize it with a type, then typescript fixes that variable's type
+you can write 
+let number1: number = 5 <- not a good practice(it doesn't rely on type inference anymore)
+instead write
+let number1 = 5; or let number1:number;
+
+in the same way I can write
+const person: {
+  name: string;
+  age: number;
+} = {
+  name: 'Woojae',
+  age: 30
+}
+but since you're initializing it, just write
+const person = {
+  name: 'Woojae',
+  age: 30
+}
+
+practice(nested object)
+const product = {
+  id: 'abc1',
+  price: 12.99,
+  tags: ['great-offer', 'hot-and-new'],
+  details: {
+    title: 'Red Carpet',
+    description: 'A great carpet - almost brand-new!'
+  }
+}
+Write type object
+{
+  id: string;
+  price: number;
+  tags: string[] or Array<string>
+  details: {
+    title: string;
+    description: string;
+  }
+}
+
+*if you want to use mixed type of array, use 'any' type(be careful), or 'union' type
+
+Tuple: fixed length array
+- you can set the type for each item
+- have to explicitly write types (role: [number, string] -> length of 2, each item's type set)
+*We can still push to tuples and typescript won't catch it - it's an exception
+Why use this? -> it's basically a more strict array
