@@ -1,0 +1,21 @@
+console.log is the browser's built-in debugger
+1. console.assert(bool, 'error msg')
+- console log only when the condition is false
+2. console.log({})
+- provide labels for things that it's logging
+3. console.table(object)
+- prettier output
+4. console.group(label)
+- group things with label
+- console.groupCollapsed makes it collapsed
+5. console.dir(obj)
+- cleaner object console log
+6. console.count(label)
+- everytime it's called increment it's counter by one
+7. console.time(label)
+- start with this and end the timer with console.timeLog()
+- you can call timeLog 
+8. console.trace(message)
+- shows call stack
+9. adding styles to console.log
+- console.log('$c JS is beautiful', 'color: pink; font-weight:bold; background-color:black;')
