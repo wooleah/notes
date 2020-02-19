@@ -18,4 +18,4 @@ console.log is the browser's built-in debugger
 8. console.trace(message)
 - shows call stack
 9. adding styles to console.log
-- console.log('$c JS is beautiful', 'color: pink; font-weight:bold; background-color:black;')
+- console.log('%c JS is beautiful', 'color: pink; font-weight:bold; background-color:black;')
