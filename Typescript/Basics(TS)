@@ -3,7 +3,8 @@
 - string
 - boolean: there's no truthy or falsy values
 - object
-- array
+- Array
+- Function
 - undefined
 *REMEMBER ts only helps us before we compile ts -> js(in development)
 
@@ -110,3 +111,15 @@ function printResult(num: number): undefined {
   console.log(`result: ${num}`);
   return;
 }
+
+2. function as types
+- we can specify parameter and return type of the function as well
+let combineValues: Function
+let combineValues: (a: number, b: number) => number;
+
+3. callbacks
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void)
+- you can still return values from callback function. It simply tells you that value returned by callback function will not be used
+
+4. this
+https://www.typescriptlang.org/docs/handbook/functions.html
