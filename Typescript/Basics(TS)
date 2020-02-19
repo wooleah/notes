@@ -56,7 +56,6 @@ Write type object
 
 *if you want to use mixed type of array, use 'any' type(be careful), or 'union' type
 
-
 ============= Typescript additional types =============
 
 1. Tuple: fixed length array
@@ -93,11 +92,13 @@ convertingOption: 'as-number' | 'as-text'
 type adminName = 'Woojae' | 'Aleah' 
 type User = {name: string; age: number};
 
-7. optional parameter: use '?:'
-
+7. unknown(more restrictive than any)
+- it'll at least check the type
+you can check typeof unknown type variable to do some logic
 
 ============= Typescript function types =============
 *if ts can infer the type, let it do it's job
+*for optional parameter: use '?:'
 
 1. void: doesn't return anything
 function printResult(): void
@@ -122,4 +123,36 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) => void)
 - you can still return values from callback function. It simply tells you that value returned by callback function will not be used
 
 4. this
+- this has to come first in parameters
 https://www.typescriptlang.org/docs/handbook/functions.html
+function f(this: void) -> this is unusable
+
+- callback this can be specified like below(this on callback is going to be undefined anyway)
+- meaans that onclick should not have this
+interface UIElement {
+    addClickListener(onclick: (this: void, e: Event) => void): void;
+}
+
+- specifying who should call this(this must be called on the instance of Handler)
+class Handler {
+    info: string;
+    onClickBad(this: Handler, e: Event) {
+        // oops, used `this` here. using this callback would crash at runtime
+        this.info = e.message;
+    }
+}
+let h = new Handler();
+uiElement.addClickListener(h.onClickBad); // error!
+function(this: Deck) -> this is Deck object
+
+5. never(never returns, never reaches the end of the code)
+- good for error throwing functions or infinitely running function
+function generateError(message: string, code: number) {
+  throw {
+    message,
+    errorCode: code
+  };
+}
+generateError('An error occurred', 500);
+- inferred type is void(it's a new feature)
+
