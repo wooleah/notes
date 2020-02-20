@@ -1,0 +1,42 @@
+1. compile on save
+tsc app.ts --watch
+
+2. compile the entire project(multiple project)
+tsc --init
+tsc -w
+
+3. Decide which files to compile or not
+add options to tsconfig.json
+a. "exclude": []
+- you can add wildcard like "*.dev.ts" or "**/*.dev.ts" (any dev file in any folder will be excluded)
+- "node_modules" is added by default(if you don't add exclude option, but if you did add exclude option, you should add node_modules)
+b. "include": []
+- excluded folders will still be excluded
+- only the ones you included will be compiled
+c. "files": []
+- only files, not directories
+
+4. Change how is it compiled 
+- change "compilerOptions"
+a. "target": "ES6"
+- might be better because ts will do less work and our js code will be more concise
+b. "lib": []
+- we're writing nodejs program but tsc knows about document and windows. How?
+- by default all features included in your target language is included in tsc(if you un-comment lib then you'll get an error regarding basic js feature)
+https://www.typescriptlang.org/docs/handbook/compiler-options.html
+https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+c. allowJs, checkJs
+- use them if you don't want to write ts, but want to use some of its features
+d. "sourceMap"
+- allow us to read ts code
+- we can debug our ts in the browser
+e. outDir(output) and rootDir(input)
+- /src might have all the ts files and /dist might have all the js files
+- outDir changes compiled file output directory(also copies subdir)
+- rootDir reads the ts files in the dir you've given + keeps the folder structure in dist folder
+f. removeComments
+- YES
+g. noEmit
+- you don't wanna create js files, just wanna check type errors in ts files
+h. downlevelIteration
+- in older js loops can go crazy -> turn it on if you're using loops and your code is not working properly
