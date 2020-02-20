@@ -1,0 +1,2 @@
+Provider is syntactic sugar for inherited widget
+-> setup our data in one point and use it in a child and that child will look up the widget tree until it finds the first instance of that type and use that as the data source.
