@@ -101,3 +101,7 @@ then return userRef.set() -> write function that returns promise
 
 Testing: npm run shell
 firebase shell allows us to test function before deploying it
+
+
+============== Firestore functions(cloud functions) ==============
+- same as realtime database functions just different semantics
