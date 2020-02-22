@@ -1,4 +1,3 @@
-============== What is serverless ==============
 It's a pre-configured nodejs server -> you don't have to stuff that you normally have to do such as:
 load-balancing, networking, ..etc
 drawback: what you can do is limited(nodejs version for example)
@@ -106,3 +105,111 @@ firebase shell allows us to test function before deploying it
 ============== Callable function ==============
 functions.https.onCall
 using twilio to send text
+=======
+============== What is serverless ==============
+It's a pre-configured nodejs server -> you don't have to stuff that you normally have to do such as:
+load-balancing, networking, ..etc
+drawback: what you can do is limited(nodejs version for example)
+
+Two basic type of cloud functions
+1. HTTP
+- allow you to build RESTful endpoints(you get an url that you can call from client-side)
+2. Background
+- function that automatically gets fired when some event happens
+- user signs up, some file is uploaded, something changes on analytics
+
+-> This approach allows you to build more reactive infra with less code with less cost
+- pay as you go(pay as much as you used)
+- scale in linear way
+- everything you do on your backend is isolated microservice, so you don't have to worry about affecting other logics when changing something
+*Other popular approach is to write all of your code in monolith and deploy it to cloud as a docker container
+- all your code is contained in a single code base and shared throughout that project
+- to scale you deploy it with more docker container
+
+
+============== Project setup ==============
+1. Typescript
+2. npm i firebase-tools -g
+
+*keep in mind that cloud function backend is completely isolated nodejs environment and is agnostic to what frontend framework you're using
+
+3. firebase login
+4. firebase init
+
+
+============== Project structure ==============
+Functions are little microservices that handle different task we need for the backend
+- what we export from index.js will be deployed to cloud function's backend
+- we can install our own node dependencies in cloud functions
+ 
+
+============== Deployment ==============
+firebase deploy --only functions -> deploy all the functions you exported in index.js
+- logs are important as well
+- your functions will also be deployed to GCP(your actual source-code can be viewed) + can send test requests
+
+
+============== Intro to HTTP functions ==============
+Cloud functions are based on expressJs
+- these are invoked manually
+- if there is a backend code you wanna run but there's no event that can trigger it, you can use this
+
+firebase server --only functions
+or npm run serve from /functions (better)
+
+with functions.http.onRequest(req, res)
+you can res.send to the client, and parse req.query, params
+- in the real world you might use url params as an id for a doc from db and return that to the client
+
+Sending errors to the client
+- with response.status(400).send('error message')
+
+
+============== ExpressJs for advanced routing ==============
+install express in /functions dir
+const app = express();
+app.get()..
+export const api = functions.http.onRequest(app);
+
+then when you're done configuring routes -> do firebase serve
+cloud function is hosted at localhost:5000
+- when sending request from localhost to different origin you get an error -> CORS
+
+Using middleware
+app.use(cors({origin: true}))
+by using express you can keep your code DRY and maintainable
+
+study more expressjs to master this
+
+============== Auth functions(background functions) ==============
+List of events that trigger background functions
+- cloud firestore triggers
+- realtime database triggers
+- firebase authentication triggers
+- google analytics for firebase triggers
+- crashlytics triggers
+- cloud storage triggers
+- cloud pub/sub triggers
+
+*Every background function needs to return a promise
+
+1. Auth function
+- When new user signs up, run the function and store that user in the db
+
+export const createUserRecord = functions.auth.user().onCreate((user, context) => {
+  // context is a metadata that can be useful sometimes
+});
+
+defining database directly in the function is going to affect the performance
+
+admin.firestore() to get db
+and inside onCreate we get user and we can use that to get documentReference db.doc(`users/${user.uid}`)
+then return userRef.set() -> write function that returns promise
+*remember that onCreate needs to return a promise
+
+Testing: npm run shell
+firebase shell allows us to test function before deploying it
+
+
+============== Firestore functions(cloud functions) ==============
+- same as realtime database functions just different semantics
