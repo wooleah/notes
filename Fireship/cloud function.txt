@@ -101,3 +101,8 @@ then return userRef.set() -> write function that returns promise
 
 Testing: npm run shell
 firebase shell allows us to test function before deploying it
+
+
+============== Callable function ==============
+functions.https.onCall
+using twilio to send text
