@@ -105,7 +105,8 @@ firebase shell allows us to test function before deploying it
 ============== Callable function ==============
 functions.https.onCall
 using twilio to send text
-=======
+
+
 ============== What is serverless ==============
 It's a pre-configured nodejs server -> you don't have to stuff that you normally have to do such as:
 load-balancing, networking, ..etc
@@ -213,3 +214,26 @@ firebase shell allows us to test function before deploying it
 
 ============== Firestore functions(cloud functions) ==============
 - same as realtime database functions just different semantics
+
+
+============== Storage functions ==============
+Event types
+1. finalize
+- object is fully uploaded to the bucket
+- you can run this function to make thumbnail when the image file is uploaded
+- you can't scope function to a specific path(some folder in your bucket)
+- this function is run across the entire bucket
+- because of this people create completely seperate bucket(you can make multiple buckets for a single firebase project)
+2. delete
+- file is permanantly deleted
+3. archive
+- it's archived
+4. metadataUpdate
+- if you update metadata about a certain file then you can run this
+
+Practice
+- make a cloud function that resizes the image when uploaded
+cloud function can't read files from bucket so we need to install @google-cloud/storage dependency
+
+functions have temporary dir you can save files to
+google storage package comes with imagepicker but it's cumbersome to use -> go with sharp(faster and promise based)
