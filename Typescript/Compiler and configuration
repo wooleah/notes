@@ -1,11 +1,11 @@
-1. compile on save
+============= Compile on save =============
 tsc app.ts --watch
 
-2. compile the entire project(multiple project)
+============= compile the entire project(multiple project) =============
 tsc --init
 tsc -w
 
-3. Decide which files to compile or not
+============= Decide which files to compile or not =============
 add options to tsconfig.json
 a. "exclude": []
 - you can add wildcard like "*.dev.ts" or "**/*.dev.ts" (any dev file in any folder will be excluded)
@@ -40,3 +40,60 @@ g. noEmit
 - you don't wanna create js files, just wanna check type errors in ts files
 h. downlevelIteration
 - in older js loops can go crazy -> turn it on if you're using loops and your code is not working properly
+i. noEmitOnError
+- don't compile when there's an error
+- other files won't compile as well if one file has an error
+
+============= Strict compilation =============
+- enable strict: true to set all of them to true
+
+a. noImplicitAny
+- don't allow any implicit type on parameters
+- but variables are ok (like let logged; and assign it later)
+,because typescript can track the variables
+
+b. strictNullChecks
+- prevents values to be used if they can potentially be null or undefined
+- mainly for preventing runtime error
+- use ?. on possibly null variables or write ! at the end of the variable assign(const button = something!) to notify tsc that you 100% know that exists
+
+c. strictFunctionTypes
+- if set to true you have to always define what functions will return
+
+d. strictBindCallApply
+- checks if you're using it right
+
+e. strictPropertyInitialization
+- property must be initialized with types
+
+f. noImplicitThis
+- this cannot be any by implicit
+
+g. alwaysStrict
+- js file always has 'use strict'
+
+============= Code quality =============
+a. Additional checks
+noUnusedLocals, noUnusedParameters, noImplicitReturns, noFallthroughCasesInSwitch
+gives us warnings regarding the code quality
+
+b. Module Resolution Options
+- too advanced and not really used right now
+
+c. Source Map Options
+- same as above(default is fine)
+
+d. Experimental Options
+- enable experimental js features
+
+============= Debugging =============
+1. enable sourcemap to true
+2. place your breakpoints
+3. f5 to debug in chrome (server needs to be running)
+*js.map files(sourcemap) are bridges between ts-js files
+
+
+============= Refs =============
+https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+https://www.typescriptlang.org/docs/handbook/compiler-options.html
+https://code.visualstudio.com/docs/typescript/typescript-debugging

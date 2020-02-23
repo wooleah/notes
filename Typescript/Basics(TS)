@@ -113,7 +113,7 @@ function printResult(num: number): undefined {
   return;
 }
 
-2. function as types
+2. function as types***
 - we can specify parameter and return type of the function as well
 let combineValues: Function
 let combineValues: (a: number, b: number) => number;
