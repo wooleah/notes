@@ -19,3 +19,31 @@ class Rectangle {
     this.#width = width;
   }
 }
+
+
+============ important class tips ============
+
+a. this
+you can specify who should call this in a function
+describe(this: Department) { -> throws an error when this is not the Department object
+  console.log(`Department: ${this.name}`);
+}
+
+b. private & public properties
+- write private modifier in front of properties and methods
+- public is default
+
+c. initializing shorthand
+constructor(private id: string, public name: string) {
+  this.employees = [] <- private property
+}
+- you don't need to write this.id = id anymore
+
+d. readonly
+add this modifier to properties that shouldn't change after being initialized
+- this makes your code really clear
+
+
+============ inheritance ============
+- can only inherit from one class
+- private properties are not accessible from inheriting class(you can change private -> protected to allow access from child class)
