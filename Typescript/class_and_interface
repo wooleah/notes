@@ -47,3 +47,34 @@ add this modifier to properties that shouldn't change after being initialized
 ============ inheritance ============
 - can only inherit from one class
 - private properties are not accessible from inheriting class(you can change private -> protected to allow access from child class)
+
+
+============ static method, properties ============
+static methodName in class
+static propertyName in class(only accessible by static methods)
+- static is detached from class instances(cannot access with this keyword) -> access it like you would ouside of the class(Department.fiscalYear)
+
+
+============ abstract class ============
+You can of course always override the methods
+, but if you want to enforce certain features(methods) on the devs working with you to implement/override a certain method
+-> use abstract class to make some methods are available on all classes inheriting from it
+
+abstract methods are only available in abstract class
+ex: abstract describe(this: Department): void;
+- you don't implement it, you just set a guideline
+- with this setup, all classes inheriting abstract class must implement abstract methods
+** You can't instantiate abstract class
+
+============ singletons & private constructors ============
+Only one instance of class(useful when you can't use static methods & properties)
+1. make constructors private (private constructor)
+- write where you'll save instance - private static instance: AccountingDepartment;
+- you access it with static getInstance() method
+-> static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment('d2');
+    return this.instance;
+  }
