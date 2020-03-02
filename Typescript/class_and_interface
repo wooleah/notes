@@ -66,7 +66,17 @@ ex: abstract describe(this: Department): void;
 - with this setup, all classes inheriting abstract class must implement abstract methods
 ** You can't instantiate abstract class
 
-============ singletons & private constructors ============
+
+
+==========What is an interface? ============
+
+
+
+
+
+
+
+
 Only one instance of class(useful when you can't use static methods & properties)
 1. make constructors private (private constructor)
 - write where you'll save instance - private static instance: AccountingDepartment;
@@ -78,3 +88,86 @@ Only one instance of class(useful when you can't use static methods & properties
     this.instance = new AccountingDepartment('d2');
     return this.instance;
   }
+
+
+============ What is an interface? ============
+Describes an object(can't be initialized) + can be used as a type
+
+Why do we need this? Can't we just use type?
+
+type User = {
+  name: string;
+  age: number;
+
+  greet(phrase: string): void;
+}
+
+AND
+
+interface User {
+  name: string;
+  age: number;
+
+  greet(phrase: string): void;
+}
+
+ARE SAME?
+- Although you can use them interchangeably they can store different things
+1. interface can only describe object(it's clearer)
+- interfaces can't store arbitrary types like union types
+2. you can implement interface in the class(type can also do that)
+- can be used as a common denominator among multiple classes(class User implements Greetable)
+- you can implement more than one interface
+- you have to implement that interface in that class(like abstract class)
+- interface has no implementation detail at all, but abstract class can be a mixture of concrete & non-concrete
+3. in the earlier days custom types didn't have functionalities like interfaces
+
+When is it useful?
+- it enforces implementation of the properties & methods in interface
+- allow us to be clear with what certain object can do
+
+Can you add private/public modifires?
+- No, but you can add readonly(you can also use this on the custom type)
+
+You can also combine interfaces
+ex) interface Greetable extends Named
+why would I do that?
+- by doing this you can have different types of objects(Greetable without name, Greetable with name)
+
+*Interfaces define "public" contracts and as such it doesn't make sense to have protected or private access modifier on interfaces, 
+which are more of a, let's call it, implementation detail. As such you can't do what you want with an interface.
+
+*Interfaces disappears during the compilation
+
+============ Interface as Function types ============
+You could do below with type
+
+type AddFn = (a: number, b: number) => number;
+let add: AddFn;
+add = (n1: number, n2: number) => n1 + n2;
+
+You can also do this with interface
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+this is same as defining methods
+interface Greetable extends Named, Aged {
+  greet(phrase: string): void;
+}
+but we're not adding function name
+-> typescript understand that you want to use interface as function type
+
+Conclusion: It's easier to use custom type, but it's nice to know that you can do this
+
+
+============ Optional params for interfaces and classes ============
+middleName?: string;
+shoutingGreet?(phrase: string): void;
+
+constructor(public firstName: string, public age: number, public middleName?: string) { }
+-> or add a default fallback value
+
+
+============ References ============
+https://www.typescriptlang.org/docs/handbook/interfaces.html
