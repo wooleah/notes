@@ -4,3 +4,30 @@ Type guards
 Discriminated unions
 Type casting
 Function overloads
+
+
+============ Intersection types ============
+type Admin = {
+  name: string;
+  privileges: string[];
+}
+
+type Employee = {
+  name: string;
+  startDate: Date;
+}
+
+type ElevatedEmployee = Admin & Employee;
+-> you can do this with interfaces as well
+- or you can create third interface that extends both Admin and Employee interfaces
+- When you create an instance of this ElevatedEmployee, you need to initialize name, privileges, and startDate
+
+Intersection types are especially useful for object types
+- becuse you can get the combination of those two types
+
+type Combinable = string | number;
+type Numeric = number | boolean;
+
+type Universal = Combinable & Numeric;
+-> Universal is number type
+- you actually get the intersection in this case
