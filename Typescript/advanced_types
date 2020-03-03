@@ -31,3 +31,71 @@ type Numeric = number | boolean;
 type Universal = Combinable & Numeric;
 -> Universal is number type
 - you actually get the intersection in this case
+
+
+============ Type guards.. ?? ============
+1. checking with typeof and returning proper type(type casting) depending on the type received
+if (typeof a === 'string' || typeof b === 'string') {
+  return a.toString() + b.toString();
+}
+2. checking properties in the object
+- if ('startDate' in object)
+3. checking instance of a class
+- you can also use if (propertyName in object)
+- you can use if (instance instanceof className)
+- however you can't do this with interface since they're not compiled to js
+
+============ Discriminated Unions(Type guard pattern for objects) ============
+- Have one common property in all object description included in union type
+interface Bird {
+  type: 'bird';
+  flyingSpeed: number;
+}
+interface Horse {
+  type: 'horse';
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case 'bird': // you even get an autocomplete
+      speed = animal.flyingSpeed;
+      break;
+    case 'horse':
+      speed = animal.runningSpeed;
+      break;
+  }
+  console.log(`Moving at ${speed}`);
+  
+============ Type casting ============
+When tsc doesn't know something is a certain type, but we as a developer knows what that is.
+typescript gets 1 but not 2
+1. const userInputEl = document.querySelector('input'); // available because tsconfig lib has dom included
+2. const userInputEl = document.querySelector('user-input');
+
+You can do 
+<HTMLInputElement>document.querySelector('user-input');
+or
+document.querySelector('user-input') as HTMLInputElement // I like this more
+*Make sure you just use one for code consistency
+
+when you use ! in typescript it means that the expression in front of it will NEVER yield null
+document.querySelector('user-input')! // like this
+-> type casting excludes null, so if you're not sure about that, do below
+
+============ Index properties ============
+interface ErrorContainer {
+  id: string;
+  [prop: string]: string; // propertyName: value
+}
+const emptyContainer: ErrorContainer = {};
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email',
+  1: 'hi' // number will change to string
+};
+- When you're not sure which propertyName you'll have yet
+- you can't have any other type of propertyName
+- you can only have string or number
