@@ -99,3 +99,47 @@ const errorBag: ErrorContainer = {
 - When you're not sure which propertyName you'll have yet
 - you can't have any other type of propertyName
 - you can only have string or number
+
+============ Function overloads ============
+*Very useful
+function add(a: Combinable, b: Combinable) {
+  if (typeof a === 'string' || typeof b === 'string') {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+-> we know if we pass two numbers, it'll return number BUT
+const result = add(1, 5);
+-> typescript still thinks that this will return Combinable(string|number)
+-> means that we can't use autocomplete function
+
+- we can type cast it but it's not clean -> use function overload
+function add(a: number, b: number): number // this won't get compiled but typescript will tell us what type it'll be
+function add(a: Combinable, b: Combinable) {
+  if (typeof a === 'string' || typeof b === 'string') {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+- you can even make one paremeter optional
+
+
+============ Optional chaining(easier undefined if check) ============
+in JS when you use/log something that might not exist you do
+-> fetchedUserData.job && fetchedUserData.job.title
+but in typescript we have optional chaining
+-> fetchedUserData?.job?.title
+(if fetchedUserData exists -> access job, if job exists -> access title)
+
+- use this for nested objects and to not get runtime error
+
+============ Nullish coalescing ============
+when we're not sure if data is null/undefined/valid
+- checks if some value is null or undefined (not empty string or zero)
+-> use ??
+
+const userInput = undefined;
+const storedData = userInput ?? 'DEFAULT';
+
+
+
