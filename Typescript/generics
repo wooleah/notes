@@ -1,1 +1,49 @@
+============ What is it ============
+<T> is generic type
+it's used in combination with other types
 
+const names: Array<string> = ['Max', 'Manuel'];
+-> generic type can also be union types
+by doing this you can use string methods in names[i]
+
+We can also use it with promise(typescript has this type)
+const promise: Promise<string> = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('This is done'), 1000);
+});
+set type of promise like future in dart(it's all about what that promise will resolve to)
+-> by setting the return type, we can use that functionalities
+
+
+============ Create generic type (function, classes) ============
+function merge(objA: object, objB: object) {
+  return Object.assign(objA, objB);
+}
+const mergedObj = merge({ name: 'Woojae' }, { age: 30 });
+-> we can't access name or age in mergedObj because typescript doesn't know that this object has those properties
+
+So do this
+function merge<T, U>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+-> typescript knows that object.assign returns intersection so merge function will return T & U
+
+- in the previous example, typescript knows that return type will be the intersection of two objects
+, but two unknown objects
+- with generic types we're telling typescript that those two T and U objects are specific types of objects
+- we don't care about the specific object(being restrictive), we're just saying those two objects will be different types
+, so typescript you do your work and get intersection for me
+
+You can also do this when you call the function
+merge<string, number>() 
+or be more specific(kinda redundant) -> typescript will infer the type anyway(so don't do it)
+merge<{name:string, hobbies:string[]}, {age:number}>
+
+============ Constraints ============
+const mergedObj1 = merge({ name: 'Woojae', hobbies: ['reading books'] }, 30);
+console.log(mergedObj1);
+-> { name: 'Woojae', hobbies: [ 'reading books' ] } (js failed silently)
+
+to prevent this we can restrict generic types with contraints
+-> function merge<T extends object, U extends object>
+we're telling typescript that T and U can be any structure of any type but has to be objects
+- you can also use union types there
