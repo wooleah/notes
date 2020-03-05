@@ -1,2 +1,4 @@
 ===== introduction =====
 Useful for meta-programming
+- you don't directly impact end-users
+- it's used as an instruction for other developers
