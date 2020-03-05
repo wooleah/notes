@@ -47,3 +47,44 @@ to prevent this we can restrict generic types with contraints
 -> function merge<T extends object, U extends object>
 we're telling typescript that T and U can be any structure of any type but has to be objects
 - you can also use union types there
+
+============ built-in (generic) utility types** ============
+1. Partial
+- let's say that we have this interface
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+- but we want to have some validation and set the properties partially
+let courseGoal: Partial<CourseGoal> = {}; // this makes properties in CourseGoal optional
+- without Partial typescript will throw an error
+
+- Full example
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal; // Change it back to original interface
+}
+
+2. ReadOnly
+- With this used like below, you can't modify the object(both array and object)
+const names: Readonly<string[]> = ['Woojae', 'Aleah'];
+names.push('Sam');
+names.pop();
+
+find more at:
+https://www.typescriptlang.org/docs/handbook/utility-types.html
+
+
+============ Generic vs union ============
+instead of
+class DataStorage<T extends string | number | boolean> {...}
+you can do
+class DataStorage {
+  private data: (string | number | boolean)[] = [];
+}
+-> It's not the same(it's mixed)
+With generic type, you can only use one type once it enters the class instance
