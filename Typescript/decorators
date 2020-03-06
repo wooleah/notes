@@ -2,3 +2,98 @@
 Useful for meta-programming
 - you don't directly impact end-users
 - it's used as an instruction for other developers
+- it's all about classes
+- it's a function(starts with uppercase)
+
+*set "experimentalDecorators" to true in tsconfig to use decorator
+
+===== First class decorator =====
+Apply function(decorator) to the whole class
+
+- make it uppercase
+function Logger(constructor: Function) {
+  console.log('Logging');
+}
+
+- make Character point at the function(not executing)
+@Logger
+class Character {
+  name = 'slime';
+...
+
+- Logger gets constructor function as an argument and is executed before Character constructor function
+** decorators execute when your class is defined(not when it's instantiated)
+
+
+===== Decorator factory =====
+We can take input now
+function Logger(logString: String) {
+  return function (constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  }
+}
+
+@Logger('LOGGING-CHARACTER')
+class Character {
+
+
+- You can manipulate the DOM(Angular does this)
+function WithTemplate(template: string, hookId: string) {
+  return function (_: Function) {
+    const hookEl = document.getElementById(hookId);
+    if (hookEl) {
+      hookEl.innerHTML = template;
+    }
+  }
+}
+
+@WithTemplate('<h1>My Character</h1>', 'app')
+class Character {
+
+- You can also access class properties
+function WithTemplate(template: string, hookId: string) {
+  return function (constructor: any) {
+    const hookEl = document.getElementById(hookId);
+    const p = new constructor(); // <- access constructor function
+    if (hookEl) {
+      hookEl.innerHTML = template;
+      hookEl.querySelector('h1')!.textContent = p.name;
+    }
+  }
+}
+
+- Other devs need to attach this decorator to the class to use the functionality(this is meta programming)
+
+
+===== Multiple decorator =====
+- decorator(actual ones) executes from bottom to up(but factories execute from top -> bottom)
+@Logger('LOGGING-CHARACTER')
+@WithTemplate('<h1>My Character</h1>', 'app')
+class Character {
+  name = 'slime';
+
+  constructor() {
+    console.log('Creating person object..');
+  }
+}
+
+
+===== Property decorator =====
+- Runs when your class definition is registered by js(when this property is registered as part of the class)
+- you get two parameters (constructor function and simply property name)
+function Log(target: any, propertyName: string) {
+  console.log(target, propertyName);
+}
+class Product {
+  @Log
+  title: string;
+  private _price: number;
+
+  set price(val: number) {
+    if (val > 0) {
+      this._price = val;
+    } else {
+      throw new Error('Invalid price');
+    }
+  }
