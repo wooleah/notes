@@ -4,6 +4,7 @@ Useful for meta-programming
 - it's used as an instruction for other developers
 - it's all about classes
 - it's a function(starts with uppercase)
+- runs when the thing attached to them is defined
 
 *set "experimentalDecorators" to true in tsconfig to use decorator
 
@@ -82,6 +83,7 @@ class Character {
 ===== Property decorator =====
 - Runs when your class definition is registered by js(when this property is registered as part of the class)
 - you get two parameters (constructor function and simply property name)
+
 function Log(target: any, propertyName: string) {
   console.log(target, propertyName);
 }
@@ -97,3 +99,161 @@ class Product {
       throw new Error('Invalid price');
     }
   }
+
+
+===== Accessor & parameter decorator =====
+accessor: getter and setter
+we get three parameters
+
+function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+target: constructor function(class definition)
+name: accessor name
+descriptor: shows you get/setter, enumerable, configurable
+-> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+
+-> you can also do this to a method
+
+for parameter it's bit different
+function Log4(target: any, name: string | Symbol, position: number)
+name would be the method name and position is the position of the argument
+*paremeter decorator executes before method decorator
+
+===== Returning a class in a class decorator =====
+- replaces the class we added decorator to(it builds up on the existing class by inheriting it)
+
+function WithTemplate(template: string, hookId: string) {
+  console.log('TEMPLATE FACTORY');
+  return function<T extends {new(...args:any[]): {title: string}}>(originalConstructor: T) {
+    return class extends originalConstructor {
+      constructor(...args:any[]) {
+        super(...args);
+        // add logic here
+        console.log('Rendering template');
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector('h1')!.textContent = this.title;
+        }
+      }
+    }
+  }
+
+T is the constructor function and it takes any number of arguments of any type
+T extends {new(...args:any[]): {title: string}} -> tells typescript that this object can be newed
+
+-> This can be applied to accessors and methods, but not to properties and parameters
+
+
+===== Method decorator -> make Autobind =====
+
+// target will be the prototype of the object we're working with, or constructor function if we're working with the static method
+function Autobind(_: any, _2: string | Symbol, descriptor: PropertyDescriptor): PropertyDescriptor {
+  const originalMethod = descriptor.value;
+  const adjustedDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    // this is like having a value property but you can run extra logic before returning the value
+    get() {
+      // this will be something that calls this getter
+      const boundFn = originalMethod.bind(this);
+      return boundFn;
+    }
+  };
+  // typescript will replace the original descriptor with this new one
+  return adjustedDescriptor;
+}
+
+class Printer {
+  message = 'This works!';
+  
+  @Autobind
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+
+===== decorators for validation =====
+
+interface ValidatorConfig {
+  [property: string]: {
+    [validatableProp: string]: string[] // ['required', 'positive']
+  }
+}
+
+const registeredValidators: ValidatorConfig = {};
+
+// target: object with constructor in it
+// target.constructor: class definition(because it's actually a constructor function)
+function validationRegisterHelper(target: any, propName: string, validationToAdd: string) {
+  const constructorName = target.constructor.name;
+  const propList = registeredValidators[constructorName];
+  let validators;
+  if (!propList || !propList[propName]) {
+    validators = [validationToAdd];
+  } else {
+    validators = [...propList[propName], validationToAdd];
+  }
+
+  // save validators in an object by constructor function name(all functions have this name property)
+  registeredValidators[constructorName] = { ...propList, [propName]: validators };
+}
+
+function Required(target: any, propName: string) {
+  validationRegisterHelper(target, propName, 'required');
+}
+
+function PositiveNumber(target: any, propName: string) {
+  validationRegisterHelper(target, propName, 'positive');
+}
+
+function validate(obj: any) {
+  const objValidatorConfig = registeredValidators[obj.constructor.name]; // will reach out to the prototype constructor
+  if (!objValidatorConfig) {
+    return true;
+  }
+
+  let isValid = true;
+  for (const prop in objValidatorConfig) {
+    for (const validator of objValidatorConfig[prop]) {
+      switch(validator) {
+        case 'required':
+          isValid = isValid && !!obj[prop];
+          break;
+        case 'positive':
+          isValid = isValid && obj[prop] > 0;
+          break;
+      }
+    }
+  }
+  return isValid;
+}
+
+class Course {
+  @Required
+  title: string;
+  @PositiveNumber
+  price: number;
+
+  constructor(t: string, p: number) {
+    this.title = t;
+    this.price = p;
+  }
+}
+
+const courseForm = document.querySelector('form')!;
+courseForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const titleEl = document.getElementById('title') as HTMLInputElement;
+  const priceEl = document.getElementById('price') as HTMLInputElement;
+
+  const title = titleEl.value;
+  const price = +priceEl.value;
+
+  const createdCourse = new Course(title, price);
+  if (!validate(createdCourse)) {
+    alert('Invalid input. Please try again!');
+  }
+  console.log(createdCourse);
+  
+})
