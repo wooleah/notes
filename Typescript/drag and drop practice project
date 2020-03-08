@@ -1,0 +1,10 @@
+===== I will write things that I didn't know =====
+
+1. template element is not rendered initially, you can use js to get and render it
+2. document.getElementById -> we don't know which element
+3. document.importNode -> gives copy of the element, second param is deepCopy, returns DocumentFragment
+4. this.templateEl.content -> ref to the content of the template element
+5. this.hostEl.insertAdjacentElement(position, getElementById)
+6. importedNode.firstElementChild -> returns the first element child
+7. PropertyDescriptor.value on method is method itself
+8. Instead of returning something, you can return nothing or throw an error
