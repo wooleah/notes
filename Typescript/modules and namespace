@@ -38,3 +38,9 @@ change "module" to "amd"
 ===== ES6 modules =====
 import {Draggable} from '../something.js' -> has to be js
 **write on script tag type="module"
+
+- you can also "import * as alias" instead of import {a, b as B}
+- if you don't want to export specific name then use default export(only one can exist)
+
+How does this run?
+- it runs for the first time when the file is imported, only once
