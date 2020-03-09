@@ -1,0 +1,40 @@
+===== Splitting code =====
+1. Write multiple ts files, and manually import them
+- it's error prone and you give up type support if it's in different files
+2. Use namespaces(ts feature)
+- namespace allows you to group code together and import it in to other files
+- per-file or bundled compilation is possible(less imports to manage)
+3. ES6 imports/exports(js already has the solution)
+- states which file depends on the other file
+- you can use this with ts as well
+4. bundle via third party tools
+
+
+===== How to namespace =====
+- this doesn't compile to js
+1. Make namespace
+namespace DOInterfaces {
+  put anything in here -> they are only available in this namespace
+  export class x{}
+  export interface y{} -> now you can use this outside of this namespace
+}
+
+2. Go to the file you want to import namespace into
+write /// <reference path="filename.ts" />
+- this is telling ts where to find that type
+
+3. Then you wrap other file's code in namespace as well
+
+4. Change outfile option in tsconfig.json and tell it that we want one js file
+"outFile": "./dist/bundle.js"
+change "module" to "amd"
+
+5. import what each file needs -> kind cumbersome
+
+-> This is dangerous because if we depend on some other file believing that it'll handle it for us, then one day it might break when we change some files
+-> We need something that clearly states what we're importing and exporting
+
+
+===== ES6 modules =====
+import {Draggable} from '../something.js' -> has to be js
+**write on script tag type="module"
