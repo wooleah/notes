@@ -8,3 +8,6 @@
 6. importedNode.firstElementChild -> returns the first element child
 7. PropertyDescriptor.value on method is method itself
 8. Instead of returning something, you can return nothing or throw an error
+9. declare var google: any -> tells typescript that this will exist so don't worry
+10. to teach ts about other libs -> search for types something(like google maps
+11. 
