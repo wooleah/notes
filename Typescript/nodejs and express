@@ -12,3 +12,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     message: err.message
   });
 });
+
+6. make controllers for logic with same file name as routes
+7. if you don't want to manually import req, res, next all the time, import RequestHandler from express instead
+8. to parse the body of incoming request -> user body-parser(import json from it)
+- json from body-parser(middleware) parses body and makes json data then populate body keyword in req
