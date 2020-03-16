@@ -17,3 +17,15 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 7. if you don't want to manually import req, res, next all the time, import RequestHandler from express instead
 8. to parse the body of incoming request -> user body-parser(import json from it)
 - json from body-parser(middleware) parses body and makes json data then populate body keyword in req
+9. Use generic types to handle dynamic properties in req.params
+export const updateTodo: RequestHandler<{ id: string }> = (req, res, next) => {
+  const todoId = req.params.id;
+
+  const upatedText = (req.body as {text: string}).text;
+};
+10. Add a generic error handler
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({
+    message: err.message
+  });
+});
