@@ -23,7 +23,7 @@ export const updateTodo: RequestHandler<{ id: string }> = (req, res, next) => {
 
   const upatedText = (req.body as {text: string}).text;
 };
-10. Add a generic error handler
+10. Add a generic error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({
     message: err.message
