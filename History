@@ -1,0 +1,16 @@
+1. Traditional
+- html, js, css from server -> client
+- differs by browsers, we need to change js to work with all of the different browsers
+2. jQuery
+- devs don't have to think about the dom and ignore browser differences and just focus on jQuery syntax
+- devs now make larger websited(uh oh) -> backbone.js came out(organize files)
+3. Concept of SPA
+- only load html once(stay on the same page)
+- js changes dom to display new things
+4. AngularJS(2010) by google
+- wraps your project and organizes it
+- MVC is clearer
+- things get complex and it's now harder to find bugs, and facebook devs came up with their solution
+5. ReactJS(2013) by facebook
+- really took off
+- AngularJS decided to rewrite the whole lib -> changes it's name to Angular (people moves to React)
