@@ -1,3 +1,4 @@
+===== Brief History =====
 1. Traditional
 - html, js, css from server -> client
 - differs by browsers, we need to change js to work with all of the different browsers
@@ -14,3 +15,10 @@
 5. ReactJS(2013) by facebook
 - really took off
 - AngularJS decided to rewrite the whole lib -> changes it's name to Angular (people moves to React)
+- it's declarative, we don't touch the DOM, react knows the best practice, we just describe what the page should look like
+
+===== Basic concepts =====
+1. Don't touch the DOM, I'll do it
+2. Build pages with lego blocks(reusable components)
+3. Unidirectional data flow
+4. UI, the rest is up to you
