@@ -22,3 +22,11 @@
 2. Build pages with lego blocks(reusable components)
 3. Unidirectional data flow
 4. UI, the rest is up to you
+
+
+===== Be a great react dev =====
+1. Decide on components
+- how to break down the app in different components
+2. Decide the state and where it lives
+3. What changes when state changes
+- has huge effect on performance
