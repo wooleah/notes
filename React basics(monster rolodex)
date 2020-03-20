@@ -3,3 +3,9 @@
 Class component
 - we get access to the state
 - You are not allowed to modify state
+
+we need key when rendering a list
+why? react needs to know what element changed
+-> react recognizes this and only re-render changes element
+
+by extending React.Component we get functionalities React provide us and use it
