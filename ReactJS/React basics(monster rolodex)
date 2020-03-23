@@ -10,6 +10,15 @@ why? react needs to know what element changed
 
 by extending React.Component we get functionalities React provide us and use it
 
+- weird things
+Even though the super call knows which props to expect, we need to be explicit with our constructor function:
+
+export class Sample extends Component<SampleProps> {
+  constructor(props: SampleProps) {
+    super(props)
+  }
+}
+
 
 2. Folder structure
 - very important when the project gets bigger
@@ -20,4 +29,6 @@ by extending React.Component we get functionalities React provide us and use it
 - props passed to this component has children property
 - does one thing well
 
-4. Think about which component will need which state before you architect
+4. Some important things to keep in mind
+** Think about which component will need which state before you architect!!
+- when we borrow methods from React(componentDidMount, render, etc.), React sets this keyword for us, but when we're writing them we have to be careful
