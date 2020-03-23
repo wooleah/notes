@@ -19,6 +19,16 @@ export class Sample extends Component<SampleProps> {
   }
 }
 
+- Due to setState being async, if you want to update state using previous state, you need to use callback(prevState, prevProps)
+- And if you want to use that updated value after the state updates, you want to use the second callback provided to setState
+ex. handleClick = () => {
+  this.setState((prevState, prevProps) => {
+    return { meaningOfLife: prevState.meaningOfLife + 1 }
+  },
+    () => console.log(this.state.meaningOfLife);
+  )
+}
+
 
 2. Folder structure
 - very important when the project gets bigger
