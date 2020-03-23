@@ -1,6 +1,6 @@
 
 
-Class component
+1. Class component
 - we get access to the state
 - You are not allowed to modify state
 
@@ -9,3 +9,15 @@ why? react needs to know what element changed
 -> react recognizes this and only re-render changes element
 
 by extending React.Component we get functionalities React provide us and use it
+
+
+2. Folder structure
+- very important when the project gets bigger
+- file name can be explicit (card.component.jsx instead of card.js)
+**How to stay organized
+
+3. Functional component
+- props passed to this component has children property
+- does one thing well
+
+4. Think about which component will need which state before you architect
