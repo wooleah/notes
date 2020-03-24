@@ -41,4 +41,5 @@ ex. handleClick = () => {
 
 4. Some important things to keep in mind
 ** Think about which component will need which state before you architect!!
+** Decide on Components, Decide the state and where it lives, Think about what changes when state changes
 - when we borrow methods from React(componentDidMount, render, etc.), React sets this keyword for us, but when we're writing them we have to be careful
