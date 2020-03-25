@@ -1,0 +1,1 @@
+1. create-react-app reads sass files if you install node-sass(additional @types/node-sass for typescript)
