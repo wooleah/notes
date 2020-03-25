@@ -1,1 +1,8 @@
 1. create-react-app reads sass files if you install node-sass(additional @types/node-sass for typescript)
+
+**Think about how components will be(and are) connected**
+- You can easily get lost between all of those components but that's why react debugging tool exists
+- Keep each component really small(good at one thing)
+
+About /pages
+- They are components but not really re-used
