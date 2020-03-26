@@ -1,7 +1,9 @@
 1. install and import
 import { BrowserRouter as Router } from "react-router-dom";
+
 2. Wrap your <App /> with <Router> in index.js
 -> Now router functionality is available in your App component
+
 3. Use Route Now
 import { Route } from "react-router-dom";
 function App() {
@@ -12,3 +14,25 @@ function App() {
   );
 }
 -> without exact all path including / will match HomePage (ex. /hats)
+
+4. Try Switch
+import {Switch} from 'react-router-dom'
+wrap your routes in <Switch> then only the first one that matches will show and rest will not be rendered
+
+5. Component we pass to component prop in Route gets three arguments(history, location, match)
+- you get dynamic params in match.params
+- you can dynamically move with history
+- location gives you the full path to whatever you've entered 
+- with props.match.url we can make nested route structure, because our component doesn't need to know about the path the built up to that component 
+ex) <div
+      className={`${size} menu-item`}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
+    -> this component doesn't have to know all about previous url
+
+6. Use <Link> to move to different routes
+- you can do this programmatically by props.history.push('/some-route')
+
+7. Only the component that got passed to Route gets those props(history, location, match)
+- passing them down to the child component is a bad practice(prop tunneling)
+-> Use withRouter HOC from react-router-dom
