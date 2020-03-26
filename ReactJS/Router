@@ -1,0 +1,14 @@
+1. install and import
+import { BrowserRouter as Router } from "react-router-dom";
+2. Wrap your <App /> with <Router> in index.js
+-> Now router functionality is available in your App component
+3. Use Route Now
+import { Route } from "react-router-dom";
+function App() {
+  return (
+    <div>
+      <Route exact path="/" component={HomePage} />
+    </div>
+  );
+}
+-> without exact all path including / will match HomePage (ex. /hats)
