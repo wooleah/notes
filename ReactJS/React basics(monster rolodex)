@@ -1,0 +1,68 @@
+
+
+1. Class component
+- we get access to the state
+- You are not allowed to modify state
+
+we need key when rendering a list
+why? react needs to know what element changed
+-> react recognizes this and only re-render changes element
+
+by extending React.Component we get functionalities React provide us and use it
+
+- weird things
+Even though the super call knows which props to expect, we need to be explicit with our constructor function:
+
+export class Sample extends Component<SampleProps> {
+  constructor(props: SampleProps) {
+    super(props)
+  }
+}
+
+- Due to setState being async, if you want to update state using previous state, you need to use callback(prevState, prevProps)
+- And if you want to use that updated value after the state updates, you want to use the second callback provided to setState
+ex. handleClick = () => {
+  this.setState((prevState, prevProps) => {
+    return { meaningOfLife: prevState.meaningOfLife + 1 }
+  },
+    () => console.log(this.state.meaningOfLife);
+  )
+}
+
+- props and state change or forceUpdate(shouldn't really be used: it's a bad practice) re-renders that component and all children component
+-> use shouldComponentUpdate to filter unnecessary updates
+ex. shouldComponentUpdate(nextProps, nextState) {
+  return nextProps.text !== this.props.text
+}
+
+
+2. Folder structure
+- very important when the project gets bigger
+- file name can be explicit (card.component.jsx instead of card.js)
+**How to stay organized
+
+3. Functional component
+- props passed to this component has children property
+- does one thing well
+
+4. Some important things to keep in mind
+** Think about which component will need which state before you architect!!
+** Decide on Components, Decide the state and where it lives, Think about what changes when state changes
+- when we borrow methods from React(componentDidMount, render, etc.), React sets this keyword for us, but when we're writing them we have to be careful
+
+5. You can do below when passing props with same name
+{this.state.sections.map(({ title, id, imageUrl, size, linkUrl }) => (
+  <MenuItem
+    key={id}
+    title={title}
+    imageUrl={imageUrl}
+    size={size}
+    linkUrl={linkUrl}
+  />
+))}
+->
+{this.state.sections.map(({ id, ...otherSectionProps }) => (
+  <MenuItem key={id} {...otherSectionProps} />
+))}
+
+LEARN TO LEAD THE PROJECTS

@@ -1,0 +1,32 @@
+===== Brief History =====
+1. Traditional
+- html, js, css from server -> client
+- differs by browsers, we need to change js to work with all of the different browsers
+2. jQuery
+- devs don't have to think about the dom and ignore browser differences and just focus on jQuery syntax
+- devs now make larger websited(uh oh) -> backbone.js came out(organize files)
+3. Concept of SPA
+- only load html once(stay on the same page)
+- js changes dom to display new things
+4. AngularJS(2010) by google
+- wraps your project and organizes it
+- MVC is clearer
+- things get complex and it's now harder to find bugs, and facebook devs came up with their solution
+5. ReactJS(2013) by facebook
+- really took off
+- AngularJS decided to rewrite the whole lib -> changes it's name to Angular (people moves to React)
+- it's declarative, we don't touch the DOM, react knows the best practice, we just describe what the page should look like
+
+===== Basic concepts =====
+1. Don't touch the DOM, I'll do it
+2. Build pages with lego blocks(reusable components)
+3. Unidirectional data flow
+4. UI, the rest is up to you
+
+
+===== Be a great react dev =====
+1. Decide on components
+- how to break down the app in different components
+2. Decide the state and where it lives
+3. What changes when state changes
+- has huge effect on performance

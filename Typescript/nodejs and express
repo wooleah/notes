@@ -1,0 +1,31 @@
+===== Things that I didn't know about =====
+1. there is ts-node which is nodejs but ts(for production it might not be ideal, because it has the extra compilation step, so maybe just use it for dev)
+2. node runs ts file as if it's js(it doesn't care about file extension)
+3. on config file, set "moduleResolution": "node"
+4. then need to install @types/node
+5. we need to use import express from 'express'; to get type support
+
+import express, { Request, Response, NextFunction } from 'express'; -> adds types
+- now I can add types in express middleware properly
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({
+    message: err.message
+  });
+});
+
+6. make controllers for logic with same file name as routes
+7. if you don't want to manually import req, res, next all the time, import RequestHandler from express instead
+8. to parse the body of incoming request -> user body-parser(import json from it)
+- json from body-parser(middleware) parses body and makes json data then populate body keyword in req
+9. Use generic types to handle dynamic properties in req.params
+export const updateTodo: RequestHandler<{ id: string }> = (req, res, next) => {
+  const todoId = req.params.id;
+
+  const upatedText = (req.body as {text: string}).text;
+};
+10. Add a generic error handling middleware
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({
+    message: err.message
+  });
+});

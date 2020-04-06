@@ -1,0 +1,13 @@
+1. There is a special svg importing pattern in react
+import { ReactComponent as Logo } from '../../assets/crown.svg';
+
+2. This is a common pattern to pass props
+items
+  .filter((item, idx) => idx < 4)
+  .map(({ id, ...otherItemProps }) => (
+    <CollectionItem key={id} {...otherItemProps} />
+  ))
+
+3. onChange handler uses below syntax(dynamically set name: values)
+handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
