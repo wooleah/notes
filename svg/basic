@@ -1,0 +1,23 @@
+<svg width="300" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect x="0" y="0" width="50" height="75" fill="blue" />
+  <circle cx="50" cy="75" r="50" fill="pink" stroke="red" stroke-width="2" />
+  <line x1="25" y1="37.5" x2="50" y2="75" stroke="black" stroke-width="5" />
+</svg>
+
+width and height sets the size of the canvas
+- rect starts from top left corner and draws with width and height
+- circle starts from the center and draws with the radius
+- line draws a line between two different points
+
+<path d="M150 0 L75 200 L225 200 Z" fill="yellow" stroke="salmon" stroke-width="1" />
+
+For complex shapes you can make use of path
+- you set the path in d
+- M is the starting point(you Move your hand to that point)
+- L is draw line to that point(you draw a Line to that point)
+- Z is close path(hand goes back to the starting position)
+- H is draw Horizontal line
+- V is draw Vertical line
+- C is draw Curve to that point(takes 6 points, starting point, end point of control stick, and end point of the curve - cubic bezier)
+- S is draw Smooth curve to that point
