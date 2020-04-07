@@ -1,0 +1,11 @@
+1. Import only what you need
+import * as firebase from 'firebase/app'; -> needed
+import 'firebase/auth';
+import 'firebase/firestore'
+
+2. Initialize app with config saved in your console
+firebase.initializeApp(config)
+-> Now it's ready to use in your app
+
+* Always refer to the documents
+https://firebase.google.com/docs/auth/web/google-signin
