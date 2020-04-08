@@ -1,0 +1,59 @@
+How to basic
+1. create canvas
+- d3.select('canvas')
+2. create svg inside the canvas
+- canvas.append('svg')
+3. create group
+svg.append('g')
+4. feed data
+d3 expects to get data in array format -> feed this to data()
+5. connect data to the svg
+const rect = svg.select('rect')
+  .data(data)
+6. dynamic attr
+  svg.attr('width', function () { return 400 })
+7. access data in dynamic attr
+  .attr('width', function (d) {
+    return d.width;
+  })
+  .attr('height', function (d) {
+    return d.height;
+  })
+  .attr('fill', function (d) {
+    return d.fill;
+  })
+8. access index(i) and current selection(n[i])
+.attr('width', function (d, i, n) {
+  return d.width;
+})
+9. Try selecting multiple elements(works when you have more than one element that matches the selector)
+const rect = svg.selectAll('rect')
+  .data(data)
+  .attr('width', (d, i, n) => d.width)
+  .attr('height', d => d.height)
+  .attr('fill', d => d.fill)
+- when you're selecting multiple elements d3 joins them to the data and add attr to each one of them
+- data that are not connected to the element are made into virtual element made by d3(they need to enter the document) -> you can access these with enter selection
+
+10. enter selection: selection of virtual element that needs to enter the DOM
+rects.enter() -> you have access to the virtual elements
+- it's located in _enter of the svg
+
+11. review
+const svg = d3.select('svg');
+
+// join data to rects
+const rect = svg.selectAll('rect')
+  .data(data)
+
+// add attrs to rect already in DOM
+rect.attr('width', (d, i, n) => d.width)
+  .attr('height', d => d.height)
+  .attr('fill', d => d.fill)
+
+// append the enter selection to DOM
+rect.enter()
+  .append('rect')
+  .attr('width', (d, i, n) => d.width)
+  .attr('height', d => d.height)
+  .attr('fill', d => d.fill)
