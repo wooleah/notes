@@ -1,0 +1,69 @@
+If you have a dataset and one of them outnumbers the rest of them, then you need to scale down the bars so they will all fit inside 
+
+1. Create a linear scale for y axis(pass domain and range values)
+- const y = d3.scaleLinear()
+      .domain([0, 1000]) -> input
+      .range([0, 500]) -> how you want it to scale
+-> basically you're making a scale function
+
+2. Create a band scale
+- if we have many bars in the svg, then we would eventually run out of horizontal space
+- domain would be the names array
+- const x = d3.scaleBand()
+      .domain(data.map(item => item.name))
+      .range([0, 500])
+-> pass name of the item through band scale function x to get x coordinate of that item
+x('veg curry')
+x('veg pasta')
+you can also access width of each item(bar) by calling x.bandwidth()
+
+3. Add some padding
+- paddingInner -> padding between bars
+- paddingOuter -> padding between bars and the boundaries
+
+4. find min/max/extent
+const y = d3.scaleLinear()
+      .domain([0, 1000])
+      .range([0, 500]);
+This is what we did up there, but there could be an item that exceeds that domain in the future
+
+you can make use of min, max, extent functions
+- d3.min(data, d => d.orders)
+- d3.max(data, d => d.orders)
+- d3.extent(data, d => d.orders) -> returns an array [min, max]
+
+So what we're gonna do is find min/max value of given data and set our domain for linear and band scale
+
+5. Maybe add some margins
+- group the bars together first and then translate them inwards a bit
+- if svg container had 600 width and height, graph group will have 600-marginLeft-marginRight for width and 600-marginTop-marginBottom for height
+
+6. Generate axes
+- add two groups to the graph that will make each axes
+const xAxisGroup = graph.append('g');
+const yAxisGroup = graph.append('g');
+
+- then pass x scale to axisBottom(), and y scale to axisLeft
+const xAxis = d3.axisBottom(x)
+const yAxis = d3.axisLeft(y)
+-> these creates axis generator functions
+then finally you pass them to call function in each axisgroup
+xAxisGroup.call(xAxis) -> invokes the function once and returns the selection
+-> axis created
+*if you want to move the axis, you need to translate the axis group
+
+
+7. Invert scales
+- set the y scale range to .range([graphHeight, 0]), then bars will be reversed(because domain interpolates to reversed range)
+- to fix this you need to change bar height directly with height attr(graphHeight - y(d.orders))
+*d3 is flexible and only provides tools not drawGraph()
+- since rect by default start from top left, so we need to set .attr('y', d => y(d.orders)) to rect to make the graph right
+
+8. change the ticks
+- you need to chain ticks() to axis generators(.ticks(3) -> show 3 ticks)
+- format with .tickFormat(d => `${d} orders`)
+- you can also rotate the ticks with 
+  xAxisGroup.selectAll('text')
+      .attr('transform', 'rotate(-40)')
+      .attr('text-anchor', 'end')
+* you might wanna set the text anchor to the end of the text(center by default)

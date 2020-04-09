@@ -39,6 +39,8 @@ const rect = svg.selectAll('rect')
 rects.enter() -> you have access to the virtual elements
 - it's located in _enter of the svg
 
+rects.enter().append('rect') -> append rect for each enter selection
+
 11. review
 const svg = d3.select('svg');
 
@@ -46,7 +48,7 @@ const svg = d3.select('svg');
 const rect = svg.selectAll('rect')
   .data(data)
 
-// add attrs to rect already in DOM
+// add attrs to rect already in DOM -> this is important
 rect.attr('width', (d, i, n) => d.width)
   .attr('height', d => d.height)
   .attr('fill', d => d.fill)
@@ -57,3 +59,6 @@ rect.enter()
   .attr('width', (d, i, n) => d.width)
   .attr('height', d => d.height)
   .attr('fill', d => d.fill)
+
+**d3.json() reads json
+- it's an async function that returns promise
