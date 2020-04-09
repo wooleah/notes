@@ -9,3 +9,27 @@ firebase.initializeApp(config)
 
 * Always refer to the documents
 https://firebase.google.com/docs/auth/web/google-signin
+
+
+Security rules for cloud firestore
+https://firebase.google.com/docs/firestore/security/rules-structure?authuser=0
+- secure our database
+
+How to query: 
+- firestore.collection('users').doc('2unXzpUGewt6Y7Gv5FNY')
+- firestore.doc('/users/2unXzpUGewt6Y7Gv5FNY')
+- firesore.collection('/users/2unXzpUGewt6Y7Gv5FNY/cartItems')
+
+Asking for data: query
+what you get back from querying: queryReference(doc or collection) -> not the actual data(might not be in the db)
+- queryRef is the organized info of query and you can use that to fetch actual data from db or save data in db
+
+DocRef vs CollectionRef
+- you do CRUD with docRef
+- docRef.get returns documentSnapshot(actual data)
+- collectionRef returns ??
+
+Getting something from firestore
+1. userRef = firestore.doc('/users/12345') -> returns queryRef
+2. snapshot = userRef.get() -> now gets the snapshot
+-> you can check if it exists with exists property
