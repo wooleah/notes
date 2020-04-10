@@ -33,3 +33,7 @@ Getting something from firestore
 1. userRef = firestore.doc('/users/12345') -> returns queryRef
 2. snapshot = userRef.get() -> now gets the snapshot
 -> you can check if it exists with exists property
+
+Basic auth
+https://firebase.google.com/docs/auth/web/start
+https://firebase.google.com/docs/auth/web/manage-users
