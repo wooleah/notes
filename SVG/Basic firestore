@@ -1,0 +1,11 @@
+connect it with the web and get data from it
+
+1. Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+2. Get collectionRef and data
+- db.collection('dishes').get()
+  .then(res => {
+    return res.docs.map(doc => doc.data())
+  })

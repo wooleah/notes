@@ -1,0 +1,22 @@
+- enter selection are elements that needs to enter the DOM
+- exit selection are elements that are about to exit the DOM
+- group selection are elements that are currently showing on the page
+-> tells us what's currently on the page, what will enter and what should get removed
+
+D3 update pattern
+1. make a function that runs whenever firestore data updates(have to add a listener)
+
+- updates scales(domains) that relies on our data
+y.domain([0, d3.max(data, d => d.orders)]) // because max value can change when data changes
+
+- join updated data to our elements // there could be one more or less docs on the new updated data
+const rects graph.selectAll('rect').data(data)
+
+- remove unwanted shapes using exit selection
+rects.exit().remove();
+
+- update current shapes in the DOM
+rects.attr(...)
+
+- append the enter selection to the DOM
+rects.enter().append('rect').attr(...)
