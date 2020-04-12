@@ -11,3 +11,10 @@ items
 3. onChange handler uses below syntax(dynamically set name: values)
 handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
+
+4. To ensure you get proper type check for properties
+handleChange = <T extends keyof SignInState>(event: ChangeEvent<HTMLInputElement>) => {
+  const newState = { [event.target.name]: event.target.value };
+
+  this.setState(newState as { [P in T]: SignInState[P] });
+};

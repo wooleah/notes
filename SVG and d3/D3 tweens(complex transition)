@@ -1,0 +1,24 @@
+If we want to add transitions to angles and curves, simple x, y transition might not work right
+
+
+// TWEENS
+const widthTween = (d) => {
+  // define interpolation
+  // - returns a function
+  // i(0) is start and i(1) is end
+  let i = d3.interpolate(0, x.bandwidth());
+  -> with tween we're setting both starting and end point
+
+  // return a function which takes in a time ticker 't'
+  return function (t) {
+    // return the value from passing the ticker into the interpolation
+    return i(t);
+  };
+};
+
+// Apply like this
+.transition(t)
+    .attrTween("width", widthTween)
+-> transition time will go through widthTween and interpolate time value(start, end) to value we specified(0, x.bandwidth)
+
+*attr() takes function ref so you can pass x.bandwidth, but interpolate takes number values so you have to pass x.bandwidth()

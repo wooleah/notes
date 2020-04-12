@@ -16,3 +16,16 @@ rects.enter()
     // end condition(transition)
     .attr('y', d => y(d.orders))
     .attr('height', d => graphHeight - y(d.orders))
+
+- save transition in constants and use it throughout your app
+const t = d3.transition().duration(500); // specific name can go inside transition(), use null by default
+-> then later pass this transition to transition()
+
+rects
+    .attr("width", x.bandwidth)
+    .attr("fill", "orange")
+    .attr("x", (d) => x(d.name))
+    .transition(t)
+
+* What is merge() and why it's so useful
+merge one selection with the other to apply same logic(which will go under merge() with chaining) to both selections
