@@ -1,0 +1,18 @@
+1. set initial height to 0
+2. set starting condition and end condition
+3. add transition().duration(time in ms) before end condition
+- start condition is y coordinate + height
+
+rects.enter()
+    .append('rect')
+    .attr('width', x.bandwidth) // each bar's width should be 50
+    .attr('height', 0) // height initially zero
+    .attr('fill', 'orange')
+    .attr('x', d => x(d.name)) // and each bar start from i*70 on x axis
+    // starting condition(transition)
+    .attr('y', graphHeight)
+    // chain transition
+    .transition().duration(500)
+    // end condition(transition)
+    .attr('y', d => y(d.orders))
+    .attr('height', d => graphHeight - y(d.orders))

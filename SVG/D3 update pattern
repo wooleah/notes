@@ -20,3 +20,11 @@ rects.attr(...)
 
 - append the enter selection to the DOM
 rects.enter().append('rect').attr(...)
+
+when we join the updated data and the data(array) length is less than already existing(on the DOM) shapes, it sends those remaining shapes to the exit selection
+
+
+- With firestore, you use onSnapshot function to add listener
+- you can call docChanges() on the response obj to get changed objects(call doc on it to get docRef)
+(Remember that we get docChanges in the beginning as added because it's the first time that doc was loaded)
+- change has 3 types(added, removed, modified)
