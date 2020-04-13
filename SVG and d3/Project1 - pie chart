@@ -1,0 +1,37 @@
+Pie is consist of angles and arcs
+- d3.pie() is the angles(width of the pie)
+- d3.arc() is the arc(outline of the pie)
+
+1. create the angle generator with d3.pie()
+- const pie = d3.pie().sort(null).value(d => d.cost)
+*d3.pie() is the pie generator, but if you don't chain sort(null) on it, pie() will automatically sort your data(based on the size of the angle)
+
+2. create the arc with arc generator arc()
+- set outerRadius and innerRadius of the arc
+-const arcPath = d3.arc().outerRadius(num).innerRadius(num)
+
+3. feed data to angle generator to get angles
+- const angles = pie([{}, {}, {}, ...]) -> each angle gets specific innerRadius
+
+4. feed angles to the arcPath to get path for each arc
+<path d="value" <- this
+
+* you can pass function ref to attr('d', funcRef), then d3 will pass data in there and get path out(function should return path)
+
+get color for each data name
+* use ordinal scale
+Domain ['rent', 'bills', 'food']
+Range ['red', 'blue', 'pink']
+- const colour = d3.scaleOrdinal(['red', 'purple']) or use already defined scheme -> d3.scaleOrdinal(d3['schemeSet3'])
+
+*.each(func) allows us to call func on each element selected
+
+
+Add event listener
+const rects = d3.selectAll('rects')
+rects.on('click', function)
+
+* name your transitions so it doesn't interfere with other ones that draws enter, update current and remove exit selections
+
+
+used d3-legends and d3-tips 3rd party libs
