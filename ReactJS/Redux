@@ -1,0 +1,23 @@
+Managing state in one big object is what redux does
+
+Why redux?
+- good for Managing large state
+- useful for sharing data between components
+- predictable state management using 3 principles
+
+3 principles
+- Single source of truth
+- State is read-only (boost immutability)
+- Changes using pure functions (same input results with same output)
+
+redux flow
+1. action(user invokes some action)
+2. reducer(pure function) - gets an input and create an output
+3. store - gets updated
+4. DOM changes from state changes
+* this derived from flux pattern(one way data flow of action -> dispatcher -> store -> view)
+
+Key point
+- redux pretty much is this.state but much bigger
+- redux allows react state to be more scalable
+- think of it as global state(you can keep only ui related local state in components)
