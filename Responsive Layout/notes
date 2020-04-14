@@ -6,3 +6,12 @@ Problem: Make a set width and then add tons of media queries to make it responsi
 By default things are responsive
 - when you don't do anything, it's ugly, but responsive
 - because width of an element is 100% of viewport(body width) by default
+- IF IT'S NOT RESPONSIVE, IT'S YOUR FAULT
+- Heights are also bad for the same reason
+
+How does % width work?
+- x% of direct parent
+
+Using em & rem
+- 1em by default is 16px(relative to font size)
+- https://www.youtube.com/watch?v=_-aDOAMmDHI&feature=youtu.be
