@@ -9,3 +9,5 @@ const db = firebase.firestore();
   .then(res => {
     return res.docs.map(doc => doc.data())
   })
+
+  

@@ -1,0 +1,51 @@
+1. make activities collection and add doc with given properties
+db.collection("activities")
+      .add({
+        energySpent,
+        activity,
+        date: new Date().toString(),
+      })
+      .then(() => {
+        error.textContent = "";
+        input.value = "";
+      });
+
+2. listen to the changes
+db.collection("activities").onSnapshot((res) => {
+  res.docChanges().forEach((change) => {
+    const doc = {...change.doc.data()}
+  });
+});
+
+
+3. in change listener, setup a logic that makes data array
+switch (change.type) {
+      case "added": {
+        data.push(doc);
+        break;
+      }
+      case "modified": {
+        const index = data.findIndex((item) => item.id === doc.id);
+        data[index] = doc;
+        break;
+      }
+      case "removed": {
+        data = data.filter((item) => item.id !== doc.id);
+        break;
+      }
+    }
+
+4. make time scale for line graph with x-axis being the time
+- use built-in timescale(takes date object and outputs x coordinate)
+- earliest date will have x=0, and latest date will have graphWidth(whole width of the graph)
+- domain [earliest date, latest data]
+- range [0, graphWidth]
+
+5. y axis will be a linear scale of distance or energySpent
+0 distance will be the graphHeight because 0 is the top
+- domain [0, distance]
+- range [graphHeight, 0]
+
+6. when you update the current selection, only update what changes
+
+7. .attr("d", line) is special, you pass d generator into attr() and it'll draw that d
