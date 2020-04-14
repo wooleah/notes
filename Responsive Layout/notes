@@ -1,0 +1,8 @@
+Day 1: Using percentage & avoiding heights
+
+Problem: Make a set width and then add tons of media queries to make it responsive
+-> Fixed width is bad?
+
+By default things are responsive
+- when you don't do anything, it's ugly, but responsive
+- because width of an element is 100% of viewport(body width) by default
