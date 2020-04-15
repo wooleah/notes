@@ -1,0 +1,57 @@
+Data hierarchy is structured data that involves parent-child relationship
+- Tree structure
+- Root node(root)
+- leaf nodes(bottom nodes)
+- links are connection between nodes
+
+With this, we can create 
+1. tree diagram(interactive) 
+2. bubble charts
+3. Tree map
+
+Type of structured data we can use
+1. for stratify()
+const data = [
+  {name: 'a'},
+  {name: 'b', parent: 'a'},
+  {name: 'c', parent: 'a'},
+  {name: 'd', parent: 'c'},
+]
+
+2. for hierarchy()
+data: {
+  name: 'a',
+  children: [
+    {
+      name: 'b'
+    },
+    {
+      name: 'c',
+      children: [
+        {
+          name: 'd'
+        }
+      ]
+    }
+  ]
+}
+-> this works with firestore better
+
+const stratify = d3.stratify().id(d => d.name).parentId(d => d.parent)
+children id is set with id() chained to stratify, and parent id is set with parentId -> identifiers
+
+bubble charts
+- the bigger the circle, the higher the value
+- to get the sum of larger group(parent with many children) -> use sum()
+
+get the dimension of the bubble pack
+- const pack = d3.pack().size([960, 700]).padding(5)
+- padding is the distance between circles
+
+pack is the pack generator(you need to pass in the rootNode like so)
+- const rootNode = stratify(data).sum((d) => d.amount);
+- pack(rootNode) -> this will have all needed coordinates
+
+using descendants() on pack(rootNode) will return an array with all children 
+
+const bubbleData = pack(rootNode).descendants();

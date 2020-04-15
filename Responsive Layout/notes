@@ -15,3 +15,10 @@ How does % width work?
 Using em & rem
 - 1em by default is 16px(relative to font size)
 - https://www.youtube.com/watch?v=_-aDOAMmDHI&feature=youtu.be
+- em is relative to the parent(font size) and rem is relative to the root font size(of html)
+-> rem is more consistent and easy to predict
+
+When to use em?
+using em, you can make your button and text easily adapt to your font-size
+- big button with big text will change the button padding size when text gets smaller
+Just by using em to size your element, you can easily change the size of whole element by adjusting font-size
