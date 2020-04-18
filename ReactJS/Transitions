@@ -1,1 +1,26 @@
 use npm i react-transition-group
+- this adds and removes classes depending on the state -> you have to make the animation
+
+How animation works with this lib
+
+1. it adds enter class
+2. it forces reflow then add enter-active(gets added on the next tick)
+3. adds exit after timeout
+4. does the same with enter but it's exit this time
+*active is the style you want to animate to, that's why transition is only added here
+
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-110%);
+}
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all $speed ease;
+}
+.menu-primary-exit {
+  position: absolute;
+}
+.menu-primary-exit-active {
+  transform: translateX(-110%);
+  transition: all $speed ease;
+}
