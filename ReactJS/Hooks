@@ -1,0 +1,7 @@
+To use state in functional component, you can use react hooks
+
+1. useState
+- import it with {useState} from 'react'
+this returns two values when called, you can destructure it with array
+const [open, setOpen] = useState(defaulVal) for example
+- set defaultVal to set default value for open -> open is the state and setOpen is setter that sets the state
