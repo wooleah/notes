@@ -1,0 +1,11 @@
+1. Platonic shapes
+- svg is looking at a piece of graph paper that can grow infinitely in all directions
+- shapes can be drawn even outside of your view using viewBox
+2. Viewbox
+- viewBox="0 0 100 100" (x, y, width, height)
+- if you keep the viewbox and change the width of the svg, then shapes in that svg gets smaller(smaller size of graph paper)
+3. preserve aspect ratio
+- you won't need this
+4. grouping
+5. drawing paths
+6. svg on export
