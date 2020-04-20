@@ -1,11 +1,27 @@
 1. Platonic shapes
 - svg is looking at a piece of graph paper that can grow infinitely in all directions
 - shapes can be drawn even outside of your view using viewBox
+
 2. Viewbox
 - viewBox="0 0 100 100" (x, y, width, height)
 - if you keep the viewbox and change the width of the svg, then shapes in that svg gets smaller(smaller size of graph paper)
+
 3. preserve aspect ratio
-- you won't need this
-4. grouping
+- you won't need this most of the times, you need it when you need some advanced cropping techniques
+- preserveAspectRatio="xMidYMid meet"
+- x and Y takes Min/Mid/Max and you can choose between meet & slice
+- meet -> constrain in the viewBox, no shape is going to be cut off(so if you do xMidYMid, it stays in the center)
+- slice -> it expands so the corners meet the edge of the screen, and it'll cut the shape
+-> this takes all the constraints out of the shape and might stretch it
+-> you can use it for the layout(preserveAspectRatio="none")
+
+4. grouping(it's like a div)
+
 5. drawing paths
+- path start with M and closes with Z
+- L is lineTo, H is horizontal line, and V is vertical line
+- When you make MLHVZ lowercase, it becomes relative(whereever you're starting from, go a little bit down)
+- when it's absolute, it goes exactly to that spot
+- <polyline points="x,y x,y x,y" /> -> it's a squiggly line
+
 6. svg on export
