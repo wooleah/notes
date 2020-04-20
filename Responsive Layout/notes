@@ -17,8 +17,12 @@ Using em & rem
 - https://www.youtube.com/watch?v=_-aDOAMmDHI&feature=youtu.be
 - em is relative to the parent(font size) and rem is relative to the root font size(of html)
 -> rem is more consistent and easy to predict
+- using rem helps when you want to change font-size of your website
 
 When to use em?
 using em, you can make your button and text easily adapt to your font-size
 - big button with big text will change the button padding size when text gets smaller
 Just by using em to size your element, you can easily change the size of whole element by adjusting font-size
+- used with rem you can change padding easily by changing rem(font-size)
+
+Try to keep .container class to have width(%), max-width(px), and margin auto to center (minimal as possible)
