@@ -26,3 +26,8 @@ Just by using em to size your element, you can easily change the size of whole e
 - used with rem you can change padding easily by changing rem(font-size)
 
 Try to keep .container class to have width(%), max-width(px), and margin auto to center (minimal as possible)
+
+
+Setting padding on the side to keep things responsive is NOT THE WAY!
+- it'll be pushed too far on small screens
+-> add paddin on top & bottom, then control the width with container

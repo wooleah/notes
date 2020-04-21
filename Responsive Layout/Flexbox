@@ -1,0 +1,16 @@
+It shrinks to the smallest possible size by default. Also it's children becomes a column
+
+
+Adding gap between children
+1. You could add gap: 100px on flexbox(parent) to add some gaps between its childern, but it's supported in firebox only
+
+2. You can use combinator
+.col + .col {
+  background-color: limegreen;
+}
+-> checks if .col element has column before it, and if it does, it gets selected
+-> you can add margins!
+
+
+Don't merge too many properties into one class
+ex) container + row(flexbox)
