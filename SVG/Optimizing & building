@@ -1,3 +1,4 @@
+Optimizing
 1. Reduce the number of points
 2. drop shadows are expensive
 - remove the drop shadow(png), and add svg filters in illustrator(Ai_shadow)
@@ -8,3 +9,23 @@
 - svgomg
 - peter collingridge's svg editor
 - svgo(svgo-gui)
+
+
+Starting
+When you're making an svg animation
+- put all of the things inside the canvas first and then think about starting/end point
+- hide everything that's not showing on the starting point first(opacity 0), then think about how you would transition it
+- slowly reveal things
+
+*Design everything first, slowly unveil things
+
+draw thing on a piece of paper and try it out
+- ugly storyboards save you time!
+
+
+Prototyping
+1. thumbanils - notes for yourself(rough)
+2. storyboards - notes for collabs(just high enough fidelity so other people can understand it)
+3. low fidelity prototypes - show the motion(after effect?)
+- you could do it in code as well
+- you need to animate a lot of things to get better at animations
