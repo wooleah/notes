@@ -1,0 +1,10 @@
+1. Reduce the number of points
+2. drop shadows are expensive
+- remove the drop shadow(png), and add svg filters in illustrator(Ai_shadow)
+3. remove one color that's repeated a lot and instead draw a big rectangle with that color behind it(adobe illustrator)
+- select color -> same -> fill color
+
+4. optimize tools
+- svgomg
+- peter collingridge's svg editor
+- svgo(svgo-gui)

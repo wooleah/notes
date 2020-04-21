@@ -24,4 +24,24 @@
 - when it's absolute, it goes exactly to that spot
 - <polyline points="x,y x,y x,y" /> -> it's a squiggly line
 
-6. svg on export
+5.5 curves (made automatically with given points and curve commands)
+- they can also be lowercase
+C: cubic-bezier
+S: reflecting cubic-bezier(same curve as cubic-bezier, but reflects, mirrors it right next to it connecting the curve)
+- you can make waves and stuff
+Q: quadratic bezier
+- you provide two points and a controlling point which decides the curve
+T: friend of Q and reflects it liks S reflects C
+A: elliptical arc
+
+You can try path builder and study how it works
+https://codepen.io/anthonydugois/pen/mewdyZ
+
+- if you work combine template literals + svg path points, then you can have two static points and make things bounce for example
+
+6. Accessibility
+- add a role="presentation" so screen reader don't read all the shape
+- also add aria-labelledby="title" and <title id="title">description of the image</title>, the id should be set with title
+- would be better if you add lang="en" in title tag
+
+7. svg on export
