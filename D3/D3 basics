@@ -10,6 +10,7 @@ d3 expects to get data in array format -> feed this to data()
 5. connect data to the svg
 const rect = svg.select('rect')
   .data(data)
+- any methods chained after data() will run once for each item in the data set
 6. dynamic attr
   svg.attr('width', function () { return 400 })
 7. access data in dynamic attr
@@ -22,6 +23,7 @@ const rect = svg.select('rect')
   .attr('fill', function (d) {
     return d.fill;
   })
+- you can set width and height without pxs, then it becomes ratio
 8. access index(i) and current selection(n[i])
 .attr('width', function (d, i, n) {
   return d.width;
@@ -62,3 +64,8 @@ rect.enter()
 
 **d3.json() reads json
 - it's an async function that returns promise
+
+
+* you could add default tooltip with
+.append('title')
+.text(d => d) // this pairs with title element
