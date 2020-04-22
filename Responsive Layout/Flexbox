@@ -14,3 +14,10 @@ Adding gap between children
 
 Don't merge too many properties into one class
 ex) container + row(flexbox)
+
+
+
+Hero image
+when you add an image into the flexbox, it automatically stretches
+- you can set max-width: 100% to all img {} to make all images responsive, it'll never grow bigger than its original size
++ and they can shrink down (no more overflowing and side scrolling)
