@@ -21,3 +21,6 @@ For complex shapes you can make use of path
 - V is draw Vertical line
 - C is draw Curve to that point(takes 6 points, starting point, end point of control stick, and end point of the curve - cubic bezier)
 - S is draw Smooth curve to that point
+
+
+SVG was made for drawing on the web, css was built for layout

@@ -1,0 +1,33 @@
+svgs for animatin support breakdown
+(how I learned to love the inline)
+
+- for img src, embed, background url, iframe you can only designate animation if inside the svgs
+- BUT for inline, both svg animation and interaction are supported -> put it inline in the html
+
+
+Animating with css
+1. Keyframes
+@Keyframes animation-name {
+  0% {
+    background: blue;
+    transform: translateX(0);
+  }
+  50% {
+    background: purple;
+    transform: translateX(50px);
+  }
+  100% {
+    background: red;
+    transform: translateX(100px);
+  }
+}
+
+2. apply it
+.ball {
+  animation: animation-name 2s(duration) 2s(wait before animating) 3(happen three time) alternate ease-in-out forwards(make sure it doesn't snap back to its original state);
+}
+
+
+Transform origin
+
+transform-origin: x% y%
