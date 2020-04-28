@@ -1,0 +1,24 @@
+How to push something to the right
+1. add margin-left: auto on the leftmost element that are pushed to the right
+2. (more common) Make another element group
+<nav class="nav">
+  (another nav__list)
+  <ul class="nav__list">
+    <li class="nav__item"><a href="#" class="nav__link">Sign In</a></li>
+    <li class="nav__item"><a href="#" class="nav__link nav__link--button">Sign up</a></li>
+  </ul>
+</nav>
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+Remember that flexbox shrinks elements as small as possible. We can control this with
+flex-grow and flex-shrink
+
+
+Center things the easy way!
+margin: 0 auto 
