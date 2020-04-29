@@ -31,3 +31,10 @@ Try to keep .container class to have width(%), max-width(px), and margin auto to
 Setting padding on the side to keep things responsive is NOT THE WAY!
 - it'll be pushed too far on small screens
 -> add paddin on top & bottom, then control the width with container
+
+
+meta tag(viewport)
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+width of the viewport is the width of your device
+-> this tag is essential
