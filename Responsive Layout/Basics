@@ -38,3 +38,10 @@ meta tag(viewport)
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 width of the viewport is the width of your device
 -> this tag is essential
+
+
+
+Don't give an element, fixed height!
+- min-height is fine -> but adding min-height will make thing stuck to the top
+(min-height: 100vh works well, but not that much on safari)
+-> so you add diaplay: flex to it and align-items: center
