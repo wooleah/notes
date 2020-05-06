@@ -1,1 +1,17 @@
 What problem does it solve?
+- we want to make something with just ideas in our head, but there's just too much boilerplate we need to go through
+
+Gatsby will let you
+- just focus on your code and logic
+- forget front/back boilerplates
+- easily host your site on netlify
+
+How is Gatsby doing that?
+- it uses React and GraphQL under the hood
+
+CMS(Content management system) is dying
+- they are moving to headless CMS
+- future of web development is the "content mash"
+
+What is Gatsby?
+- it's a PWA generator
