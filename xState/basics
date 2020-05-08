@@ -1,0 +1,53 @@
+Problem: with normal state stored in object, you could face impossible state(lightbulb is both broken and lit)!
+- why? Because you could accidentally call the methods that changes those state
+- So you add state guard to prevent those cases, and it works
+
+But there's a better solution - ENUM(or Map)
+- you have a list of only the possible states and enumerate them
+- works, but we can evolve this into a state machine
+
+https://github.com/davidkpiano/xstate
+
+Basic setup
+1. make object for each state
+2. put them in states object
+3. set initial value and id of your state machine
+4. create config for state machine
+
+Event setup
+- each state will have on() that responds to a state changes
+on: {
+  BREAK: 'broken',
+  TOGGLE: 'unlit'
+  // event name: 'state to transition to'
+}
+
+Initialize machine with config
+const {Machine} = require('xstate');
+const stateMachine = Machine(config)
+
+Transition between states 
+stateMachine.transition('unlit', 'TOGGLE').value
+
+Modify config file
+const config = {
+  id,
+  initial,
+  states,
+  strict: true // does not allow unknown event
+}
+
+Instead of manually transitioning, use interpreter to instantiate a machine and send events
+const service = interpret(AleahMachine).start();
+service.send('TOGGLE')
+
+Set a listener for transitioning to log
+service.onTransition(state => {
+  // state has different helper methods and values
+  // such as changed or matches(stateName)
+  console.log(state.value);
+})
+
+Now check it out on the visualizer
+https://xstate.js.org/viz/
+- you can send events with extra information
